@@ -18,7 +18,7 @@ public class fontawesome {
     public Font getFont() {
         try (InputStream is = fontawesome.class.getResourceAsStream("/assets/fontawesome.ttf")) {
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            return font.deriveFont(Font.PLAIN, 24f);
+            return font.deriveFont(Font.PLAIN, 48f);
         } catch (IOException | FontFormatException exp) {
                     exp.printStackTrace();
         }
