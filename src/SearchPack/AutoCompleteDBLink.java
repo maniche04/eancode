@@ -37,18 +37,22 @@ populate();
 
 }
 
+
 public void populate() throws SQLException
 {
 java.sql.Statement st = connection1.createStatement();
 java.sql.ResultSet rs = st.executeQuery(query1);
 java.util.ArrayList<String> aal = new java.util.ArrayList<String>();
-Map<String, String> myMapp = new HashMap<String, String>();     
+Map<String, String> myMapp = new HashMap<String, String>(); 
+
 while(rs.next())
 {
   //System.out.println(rs.getString(1).trim());
-// myMapp.put(rs.getString(2).trim(), rs.getString(1).trim());    
+// myMapp.put(rs.getString(2).trim(), rs.getString(1).trim());   
+  myMapp.put(rs.getString(2).trim(), rs.getString(1).trim());     
  aal.add(rs.getString(1).trim());   
-// gv.setMyMap(myMapp);
+
+ gv.setMyMap(myMapp);
  acc.setItems(aal); 
  
  
@@ -88,23 +92,23 @@ java.util.ArrayList<String> all = new java.util.ArrayList<String>();
 Map<String, String> myMap = new HashMap<String, String>(); 
 
 while(rs.next())
-    if(col == 0)
-    {
-      if(rs.getString(1) != null && !rs.getString(1).equalsIgnoreCase(""))
-           {
-        myMap.put(rs.getString(2).trim(), rs.getString(1).trim());    
-        al.add(rs.getString(1).trim());
-           }
-    }
-    else if(col == 2)
-    {
-        if(rs.getString(1) != null && !rs.getString(1).equalsIgnoreCase(""))
-           {
-        myMap.put(rs.getString(2).trim(), rs.getString(1).trim());    
-        al.add(rs.getString(1).trim());
-           }
-    }
-    else if(col == 3)
+//    if(col == 0)
+//    {
+//      if(rs.getString(1) != null && !rs.getString(1).equalsIgnoreCase(""))
+//           {
+//        myMap.put(rs.getString(2).trim(), rs.getString(1).trim());    
+//        al.add(rs.getString(1).trim());
+//           }
+//    }
+//    else if(col == 2)
+//    {
+//        if(rs.getString(1) != null && !rs.getString(1).equalsIgnoreCase(""))
+//           {
+//        myMap.put(rs.getString(2).trim(), rs.getString(1).trim());    
+//        al.add(rs.getString(1).trim());
+//           }
+//    }
+    if(col == 3)
     {
        al.add(rs.getString(1).trim()+ "-" + rs.getString(2).trim()); 
     }  

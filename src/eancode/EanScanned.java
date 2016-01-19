@@ -101,11 +101,10 @@ public class EanScanned extends javax.swing.JFrame {
        
         atcctry = new AutoTextComplete(inputtbl);
         atcctry.setActiveColumn(3);
+        getCountryName();
         
-        
-        //getCountryName();
-        atcDes = new AutoTextComplete(inputtbl);
-        atcDes.setActiveColumn(0);
+//        atcDes = new AutoTextComplete(inputtbl);
+//        atcDes.setActiveColumn(0);
         //getMatName();
         currdoctype = doctypecmb.getSelectedItem().toString().trim();
         jScrollPane2.setVisible(false);
@@ -123,6 +122,7 @@ public class EanScanned extends javax.swing.JFrame {
         endgrnbtn.setVisible(false);
         lblgrn.setVisible(false);
         grntxt.setVisible(false); 
+        entereancode.setVisible(false);
               
     }
     
@@ -145,8 +145,7 @@ public void getMatName(String inputchar)
              
              matcomponent = entereancode;  
              AutoTextComplete atcomp = new AutoTextComplete(matcomponent);
-             autocdblink = new AutoCompleteDBLink(atcomp,epoconnekt,inputchar); /*, users, connekt*/
-             
+             autocdblink = new AutoCompleteDBLink(atcomp,epoconnekt,inputchar); /*, users, connekt*/ 
              
         } catch (Exception ex) {
             Logger.getLogger(EanScanned.class.getName()).log(Level.SEVERE, null, ex);
@@ -386,7 +385,17 @@ public void getMatName(String inputchar)
         savemsg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         savemsg.setForeground(new java.awt.Color(0, 102, 0));
 
+        entereancode.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                entereancodeInputMethodTextChanged(evt);
+            }
+        });
         entereancode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                entereancodeKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 entereancodeKeyReleased(evt);
             }
@@ -495,7 +504,10 @@ public void getMatName(String inputchar)
         try{
             
             txtean.setText("");
+            entereancode.setVisible(true);
+            
             searchInMaster(newean); 
+            
             System.out.println(newean);
                         
          } catch (Exception ex) {
@@ -511,7 +523,7 @@ public void getMatName(String inputchar)
            
            insertneweancode();  
            error.setText("");
-            
+           entereancode.setText("");
         } catch (Exception ex) {
             Logger.getLogger(EanScanned.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -857,7 +869,10 @@ public void inputcontroller()
             insertneweancode();
 //            toglectrorg.setSelected(true);
 //            toglectrorg.setText("OK");
+            
             error.setText("");
+            entereancode.setText("");
+            
                     }
           }catch (SQLException ex) {
               Logger.getLogger(EanScanned.class.getName()).log(Level.SEVERE, null, ex);
@@ -1501,13 +1516,22 @@ public String grnDigit(String dig)
     private void entereancodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_entereancodeKeyReleased
       // TODO add your handling code here:
       
+   if(entereancode.getText().isEmpty())
+        {
+            entereancode.setText("");
+
+          
+        }
+        
       if (evt.getKeyCode() == KeyEvent.VK_DELETE || evt.getKeyCode() == KeyEvent.VK_LEFT || evt.getKeyCode() == KeyEvent.VK_RIGHT || evt.getKeyCode() == KeyEvent.VK_DOWN || evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_TAB)
         {
           
-       } else {
-            System.out.println(entereancode.getText());
-            getMatName(entereancode.getText());
+       } 
+       else{ 
+                System.out.println("testtttt.........."+entereancode.getText());           
+               getMatName(entereancode.getText());
       }
+        
       
 
 //        char manupulate = ' ';
@@ -1538,6 +1562,45 @@ public String grnDigit(String dig)
 //         }
          
     }//GEN-LAST:event_entereancodeKeyReleased
+
+    private void entereancodeInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_entereancodeInputMethodTextChanged
+        // TODO add your handling code here:
+     
+         if(entereancode.getText().isEmpty())
+        {
+            entereancode.setText("");
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_entereancodeInputMethodTextChanged
+
+    private void entereancodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_entereancodeKeyPressed
+        // TODO add your handling code here:
+  if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+  {
+      if(!entereancode.getText().isEmpty())
+      {
+          inputtbl.getModel().setValueAt(entereancode.getText(), 0, 0);
+            Set set2 = gv.getMyMap().entrySet();
+
+        Iterator iterator2 = set2.iterator();
+        while(iterator2.hasNext()) {
+         Map.Entry mentry2 = (Map.Entry)iterator2.next();
+         if(mentry2.getValue().toString().equals(inputtbl.getValueAt(0,0).toString()))
+             {
+            inputtbl.getModel().setValueAt(mentry2.getKey().toString().trim(),0,1);
+             }
+       }
+      }
+      
+  }
+
+
+        
+        
+    }//GEN-LAST:event_entereancodeKeyPressed
 
 //    System.out.println("is goes focusable");
 //    dm = (DefaultTableModel)inputtbl.getModel();
@@ -1864,11 +1927,11 @@ public static void main(String args[]) {
     private javax.swing.JButton btnclose;
     private javax.swing.JComboBox doctypecmb;
     private javax.swing.JButton endgrnbtn;
-    private javax.swing.JTextField entereancode;
+    public static javax.swing.JTextField entereancode;
     private javax.swing.JLabel error;
     private javax.swing.JButton grnstartbtn;
     private javax.swing.JTextField grntxt;
-    private javax.swing.JTable inputtbl;
+    public static javax.swing.JTable inputtbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

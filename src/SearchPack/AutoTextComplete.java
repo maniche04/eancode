@@ -10,6 +10,7 @@ package SearchPack;
  * @author USER
  */
 //http://developeriq.in/articles/2009/mar/19/text-auto-completion-component-for-java/
+import static eancode.EanScanned.inputtbl;
 import eancode.GlobalVariable;
 import javax.swing.*;
 import javax.swing.text.*;
@@ -190,17 +191,9 @@ return;
 int kc = ke.getKeyCode();
 if(kc == KeyEvent.VK_ENTER || (parent instanceof JTextField && kc==KeyEvent.VK_ENTER))
 {
-    System.out.println("on hit of insert");
-  select(true);
-//Set set2 = gv.getMyMap().entrySet();
-//
-//Iterator iterator2 = set2.iterator();
-//      while(iterator2.hasNext()) {
-//          Map.Entry mentry2 = (Map.Entry)iterator2.next();
-//          if()
-//          System.out.print("Key is: "+mentry2.getKey() + " & Value is: ");
-//          System.out.println(mentry2.getValue());
-//       }
+ 
+ select(true);
+
 
 }
 else if(parent != null || tableParent.getSelectedColumn() == activeColumn)
