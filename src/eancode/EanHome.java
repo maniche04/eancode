@@ -101,6 +101,8 @@ public class EanHome extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         scanerbtn.setBackground(new java.awt.Color(204, 204, 255));
         scanerbtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         scanerbtn.setText("Scan EAN");
