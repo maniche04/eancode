@@ -1497,15 +1497,32 @@ public String grnDigit(String dig)
 
     private void entereancodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_entereancodeKeyReleased
       // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_DELETE || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_LEFT || evt.getKeyCode() == KeyEvent.VK_RIGHT || evt.getKeyCode() == KeyEvent.VK_DOWN || evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_TAB)
+        char manupulate = ' ';
+        if (evt.getKeyCode() == KeyEvent.VK_DELETE || evt.getKeyCode() == KeyEvent.VK_LEFT || evt.getKeyCode() == KeyEvent.VK_RIGHT || evt.getKeyCode() == KeyEvent.VK_DOWN || evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_TAB)
         {
           
-        }
+        }else if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+         {
+            searchstring = "";        
+         }else if(evt.getKeyCode() == KeyEvent.VK_SPACE )
+         {
+             
+           searchstring =   searchstring + manupulate;
+             
+         }
+         else if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+         {
+             if(!searchstring.isEmpty())
+             {
+                 searchstring = searchstring.substring(0, searchstring.length());
+          System.out.println("testttttttttttttttttt................."+ searchstring );
+             }
+         }
          else
-        {   
+         {   
          searchstring = searchstring + evt.getKeyChar();
          getMatName(searchstring);  
-        }
+         }
          
     }//GEN-LAST:event_entereancodeKeyReleased
 
