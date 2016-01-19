@@ -1595,10 +1595,10 @@ public String grnDigit(String dig)
          if(mentry2.getValue().toString().equals(inputtbl.getValueAt(0,0).toString()))
              {
             inputtbl.getModel().setValueAt(mentry2.getKey().toString().trim(),0,1);
-             URL url = new URL(maturl.getImage(mentry2.getKey().toString().trim()));
-             BufferedImage image = ImageIO.read(url); 
+            URL url = new URL(maturl.getImage(mentry2.getKey().toString().trim()));
+            BufferedImage image = ImageIO.read(url); 
             imglbl.setIcon(new javax.swing.ImageIcon(image));
-             System.out.println("url of pic...."+maturl.getImage(mentry2.getKey().toString().trim()));
+            System.out.println("url of pic...."+maturl.getImage(mentry2.getKey().toString().trim()));
              
              }
        }
