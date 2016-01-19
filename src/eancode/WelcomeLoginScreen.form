@@ -112,7 +112,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="33" red="33" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Please, Login to Jizan E-promis Scanner"/>
+            <Property name="text" type="java.lang.String" value="Kindly provide your login credentials!"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">

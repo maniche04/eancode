@@ -70,7 +70,7 @@ public class WelcomeLoginScreen extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel1.setText("Please, Login to Jizan E-promis Scanner");
+        jLabel1.setText("Kindly provide your login credentials!");
 
         jLabel2.setText("User ID :");
 
