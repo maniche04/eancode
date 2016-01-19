@@ -1882,8 +1882,10 @@ try {
         }
         else
         {
-            dm = (DefaultTableModel)inputtbl.getModel();
             
+            
+            dm = (DefaultTableModel)inputtbl.getModel();
+            imglbl.setText("<html><img width='200' height='200' src='http://www.bruachproperty.com/images/noImageFound.jpg'</img></html>");
 //            inputable.setEnabled(true);
             System.out.print("else part");
             error.setBackground(new java.awt.Color(153,255,153));
