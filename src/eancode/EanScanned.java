@@ -1580,6 +1580,7 @@ public String grnDigit(String dig)
         // TODO add your handling code here:
   if (evt.getKeyCode() == KeyEvent.VK_ENTER)
   {
+      
       if(!entereancode.getText().isEmpty())
       {
           inputtbl.getModel().setValueAt(entereancode.getText(), 0, 0);
