@@ -28,7 +28,7 @@ GlobalVariable gv = new GlobalVariable();
 public AutoCompleteDBLink(AutoTextComplete atc,java.sql.Connection con,String inputchar) throws SQLException {       /*, String query, java.sql.Connection con*/
 /*this.query = query;
 connection = con;*/
-this.query1 = "select ite_name,ite_code from dicihmas where ite_name like '"+ inputchar  +"%'";
+this.query1 = "select TOP 100 ite_name,ite_code from dicihmas where ite_name like '%"+ inputchar  +"%'";
 System.out.println("need sql" + query1); 
 
 connection1 = con;
@@ -45,7 +45,7 @@ java.util.ArrayList<String> aal = new java.util.ArrayList<String>();
 Map<String, String> myMapp = new HashMap<String, String>();     
 while(rs.next())
 {
-  System.out.println(rs.getString(1).trim());
+  //System.out.println(rs.getString(1).trim());
 // myMapp.put(rs.getString(2).trim(), rs.getString(1).trim());    
  aal.add(rs.getString(1).trim());   
 // gv.setMyMap(myMapp);
