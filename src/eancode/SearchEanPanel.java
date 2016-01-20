@@ -677,7 +677,7 @@ public  void searchResult()
           
           updatebtn.setText("Save");
           updatebtn.setBackground(new java.awt.Color(153,255,153));
-          eantbl.setBackground(new java.awt.Color(215, 249, 255));
+          eantbl.setBackground(new java.awt.Color(153,255,153));
           delrowtbn.setBackground(new java.awt.Color(153,255,153));
       }
       else if("Save".equals(evt.getActionCommand()))  
@@ -1258,7 +1258,7 @@ public void deleterow()
         updatebtn.setBackground(new java.awt.Color(255,153,153));
         updatebtn.setText("Edit");
         delrowtbn.setBackground(new java.awt.Color(255,153,153));   
-        eantbl.setBackground(new java.awt.Color(239,217,224));
+        eantbl.setBackground(new java.awt.Color(255,153,153));
            }
            else
            {
@@ -1296,7 +1296,7 @@ public void deleterow()
         updatebtn.setText("Edit");
         delrowtbn.setBackground(new java.awt.Color(255,153,153));
         cancelbtn.setEnabled(false);
-         eantbl.setBackground(new java.awt.Color(239,217,224));
+         eantbl.setBackground(new java.awt.Color(255,153,153));
     }//GEN-LAST:event_cancelbtnActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
