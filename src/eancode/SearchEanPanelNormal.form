@@ -300,7 +300,7 @@
                         <Column editable="false" title="GoodQty" type="java.lang.String"/>
                         <Column editable="false" title="Dmg_Box_Qty" type="java.lang.String"/>
                         <Column editable="false" title="Dmg_leak_qty" type="java.lang.String"/>
-                        <Column editable="true" title="Dmg_Brkn_qty" type="java.lang.String"/>
+                        <Column editable="false" title="Dmg_Brkn_qty" type="java.lang.String"/>
                         <Column editable="false" title="Total" type="java.lang.String"/>
                         <Column editable="false" title="CountryOrigin" type="java.lang.String"/>
                         <Column editable="false" title="eancode" type="java.lang.String"/>
