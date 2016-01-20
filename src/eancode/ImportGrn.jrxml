@@ -546,7 +546,7 @@
 				<textElement>
 					<font fontName="Segoe UI" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[* FORWARD ANT SPECIAL INFORMATION TO THE MANAGING DIRECTOR IMMEDIATELY]]></text>
+				<text><![CDATA[* FORWARD AND SPECIAL INFORMATION TO THE MANAGING DIRECTOR IMMEDIATELY]]></text>
 			</staticText>
 			<line>
 				<reportElement x="727" y="30" width="1" height="27" uuid="22f94d04-51f9-4080-86e2-3944b57e48fa"/>
