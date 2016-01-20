@@ -232,7 +232,10 @@
 				<text><![CDATA[of]]></text>
 			</staticText>
 			<textField evaluationTime="Report">
-				<reportElement x="480" y="18" width="87" height="20" uuid="8ff14dea-fc09-4639-8d08-cb55be84ae74"/>
+				<reportElement x="477" y="16" width="45" height="20" uuid="8ff14dea-fc09-4639-8d08-cb55be84ae74"/>
+				<textElement>
+					<font fontName="Segoe UI" size="12" isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
