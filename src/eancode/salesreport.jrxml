@@ -213,26 +213,26 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="65" splitType="Stretch"/>
+		<band height="66" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="42" splitType="Stretch">
+		<band height="26" splitType="Immediate">
 			<textField>
-				<reportElement x="421" y="16" width="33" height="20" uuid="36849779-9aef-4fcf-9dfb-eb4166ea4a48"/>
+				<reportElement x="421" y="5" width="33" height="20" uuid="36849779-9aef-4fcf-9dfb-eb4166ea4a48"/>
 				<textElement>
 					<font fontName="Segoe UI" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="455" y="16" width="19" height="20" uuid="d5120e21-2239-4cda-8a1d-8629905e4c59"/>
+				<reportElement x="455" y="5" width="19" height="20" uuid="d5120e21-2239-4cda-8a1d-8629905e4c59"/>
 				<textElement>
 					<font fontName="Segoe UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[of]]></text>
 			</staticText>
 			<textField evaluationTime="Page">
-				<reportElement x="477" y="16" width="45" height="20" uuid="8ff14dea-fc09-4639-8d08-cb55be84ae74"/>
+				<reportElement x="477" y="5" width="45" height="20" uuid="8ff14dea-fc09-4639-8d08-cb55be84ae74"/>
 				<textElement>
 					<font fontName="Segoe UI" size="12" isBold="true"/>
 				</textElement>
