@@ -147,23 +147,17 @@ public class  EnglishNumberToWords {
   
 public static String convertDicimal(String number) 
   {
-      String decimalpointtotext = "";
+    String decimalpointtotext = "";
       
-//  number.substring(0,0);
-//  number.substring(1,1);
-//  System.out.println(number);
-//  System.out.println(number.substring(1,2));
-//  System.out.println(number.substring(2));
-      
+    
      decimalpointtotext = "And " + checkDecimal(number.substring(1,2))+" "+checkDecimal(number.substring(2));
      return decimalpointtotext;   
-     
   }
   
 private static String checkDecimal(String str)
 {
-    
     String value="";
+    
     switch (str)
      {
          case "0" :
@@ -200,7 +194,6 @@ private static String checkDecimal(String str)
                 
      }
   return value;
-    
 }
-    
+
 }
