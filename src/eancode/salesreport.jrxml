@@ -280,7 +280,7 @@
 				<text><![CDATA[No. of cartons :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="391" y="167" width="63" height="16" uuid="3371575e-fa2c-482e-90f5-ca99f8992afa"/>
+				<reportElement x="400" y="167" width="63" height="16" uuid="3371575e-fa2c-482e-90f5-ca99f8992afa"/>
 				<textElement>
 					<font fontName="Segoe UI"/>
 				</textElement>
@@ -308,28 +308,28 @@
 				<textFieldExpression><![CDATA[$P{nettot}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="391" y="184" width="63" height="16" uuid="f749de2e-5afe-4637-a602-59b9767ee878"/>
+				<reportElement x="400" y="184" width="63" height="16" uuid="f749de2e-5afe-4637-a602-59b9767ee878"/>
 				<textElement>
 					<font fontName="Segoe UI"/>
 				</textElement>
 				<text><![CDATA[Discount]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="391" y="202" width="63" height="16" uuid="a2addbbe-e842-4b8d-b86d-a4ebb891c5bc"/>
+				<reportElement x="400" y="202" width="63" height="16" uuid="a2addbbe-e842-4b8d-b86d-a4ebb891c5bc"/>
 				<textElement>
 					<font fontName="Segoe UI"/>
 				</textElement>
 				<text><![CDATA[Net Total]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="24" y="170" width="43" height="20" uuid="b42d1de8-15b4-451c-8d11-075492e8eb9f"/>
+				<reportElement x="24" y="170" width="52" height="20" uuid="b42d1de8-15b4-451c-8d11-075492e8eb9f"/>
 				<textElement>
 					<font fontName="Segoe UI" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{currtyp}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToBandHeight" x="71" y="170" width="312" height="20" uuid="a8c6eaf4-386a-46e8-b5c7-0b8613d0600a"/>
+				<reportElement stretchType="RelativeToBandHeight" x="76" y="170" width="321" height="20" uuid="a8c6eaf4-386a-46e8-b5c7-0b8613d0600a"/>
 				<textElement>
 					<font fontName="Segoe UI" size="10"/>
 				</textElement>
@@ -343,7 +343,7 @@
 				<textFieldExpression><![CDATA[$P{qtytot}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="391" y="151" width="63" height="16" uuid="b5e679c4-bce6-4f32-af25-81a9ab1cc92a"/>
+				<reportElement x="401" y="151" width="63" height="16" uuid="b5e679c4-bce6-4f32-af25-81a9ab1cc92a"/>
 				<textElement>
 					<font fontName="Segoe UI"/>
 				</textElement>
