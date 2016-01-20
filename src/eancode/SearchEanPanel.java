@@ -257,12 +257,14 @@ public SearchEanPanel() {
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
+        eantbl.setBackground(new java.awt.Color(239, 217, 224));
+        eantbl.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         eantbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "matcode", "des", "GoodQty", "Box_Qty", "leak_qty", "Brkn_qty", "Total", "CountryOrigin", "eancode", "Weight", "Remark", "lotnumber", "doctype", "docnum", "grnnum", "docstatus", "grnstatus"
+                "ID", "matcode", "Description", "GoodQty", "Dmg", "Leak", "Brkn", "Total", "Origin", "eancode", "Weight", "Remark", "lotnumber", "doctype", "docnum", "grnnum", "docstatus", "grnstatus"
             }
         ) {
             Class[] types = new Class [] {
@@ -309,26 +311,52 @@ public SearchEanPanel() {
         });
         jScrollPane1.setViewportView(eantbl);
         if (eantbl.getColumnModel().getColumnCount() > 0) {
-            eantbl.getColumnModel().getColumn(0).setResizable(false);
-            eantbl.getColumnModel().getColumn(0).setPreferredWidth(25);
-            eantbl.getColumnModel().getColumn(1).setPreferredWidth(70);
+            eantbl.getColumnModel().getColumn(0).setMinWidth(30);
+            eantbl.getColumnModel().getColumn(0).setPreferredWidth(30);
+            eantbl.getColumnModel().getColumn(0).setMaxWidth(30);
+            eantbl.getColumnModel().getColumn(1).setMinWidth(80);
+            eantbl.getColumnModel().getColumn(1).setPreferredWidth(80);
+            eantbl.getColumnModel().getColumn(1).setMaxWidth(80);
             eantbl.getColumnModel().getColumn(2).setPreferredWidth(200);
+            eantbl.getColumnModel().getColumn(3).setMinWidth(40);
+            eantbl.getColumnModel().getColumn(3).setPreferredWidth(40);
+            eantbl.getColumnModel().getColumn(3).setMaxWidth(40);
+            eantbl.getColumnModel().getColumn(4).setMinWidth(40);
+            eantbl.getColumnModel().getColumn(4).setPreferredWidth(40);
+            eantbl.getColumnModel().getColumn(4).setMaxWidth(40);
+            eantbl.getColumnModel().getColumn(5).setMinWidth(40);
+            eantbl.getColumnModel().getColumn(5).setPreferredWidth(40);
+            eantbl.getColumnModel().getColumn(5).setMaxWidth(40);
+            eantbl.getColumnModel().getColumn(6).setMinWidth(40);
+            eantbl.getColumnModel().getColumn(6).setPreferredWidth(40);
+            eantbl.getColumnModel().getColumn(6).setMaxWidth(40);
             eantbl.getColumnModel().getColumn(7).setMinWidth(40);
             eantbl.getColumnModel().getColumn(7).setPreferredWidth(40);
             eantbl.getColumnModel().getColumn(7).setMaxWidth(40);
-            eantbl.getColumnModel().getColumn(8).setMinWidth(90);
-            eantbl.getColumnModel().getColumn(8).setPreferredWidth(90);
-            eantbl.getColumnModel().getColumn(8).setMaxWidth(90);
-            eantbl.getColumnModel().getColumn(9).setMinWidth(150);
-            eantbl.getColumnModel().getColumn(9).setPreferredWidth(150);
-            eantbl.getColumnModel().getColumn(9).setMaxWidth(150);
-            eantbl.getColumnModel().getColumn(10).setPreferredWidth(40);
-            eantbl.getColumnModel().getColumn(13).setMinWidth(80);
-            eantbl.getColumnModel().getColumn(13).setPreferredWidth(80);
-            eantbl.getColumnModel().getColumn(13).setMaxWidth(80);
-            eantbl.getColumnModel().getColumn(14).setMinWidth(80);
-            eantbl.getColumnModel().getColumn(14).setPreferredWidth(80);
-            eantbl.getColumnModel().getColumn(14).setMaxWidth(80);
+            eantbl.getColumnModel().getColumn(8).setMinWidth(50);
+            eantbl.getColumnModel().getColumn(8).setPreferredWidth(50);
+            eantbl.getColumnModel().getColumn(8).setMaxWidth(50);
+            eantbl.getColumnModel().getColumn(9).setMinWidth(100);
+            eantbl.getColumnModel().getColumn(9).setPreferredWidth(100);
+            eantbl.getColumnModel().getColumn(9).setMaxWidth(100);
+            eantbl.getColumnModel().getColumn(10).setMinWidth(50);
+            eantbl.getColumnModel().getColumn(10).setPreferredWidth(50);
+            eantbl.getColumnModel().getColumn(10).setMaxWidth(50);
+            eantbl.getColumnModel().getColumn(11).setMinWidth(50);
+            eantbl.getColumnModel().getColumn(11).setPreferredWidth(50);
+            eantbl.getColumnModel().getColumn(11).setMaxWidth(50);
+            eantbl.getColumnModel().getColumn(12).setMinWidth(70);
+            eantbl.getColumnModel().getColumn(12).setPreferredWidth(70);
+            eantbl.getColumnModel().getColumn(12).setMaxWidth(70);
+            eantbl.getColumnModel().getColumn(13).setMinWidth(50);
+            eantbl.getColumnModel().getColumn(13).setPreferredWidth(50);
+            eantbl.getColumnModel().getColumn(13).setMaxWidth(50);
+            eantbl.getColumnModel().getColumn(14).setMinWidth(70);
+            eantbl.getColumnModel().getColumn(14).setPreferredWidth(70);
+            eantbl.getColumnModel().getColumn(14).setMaxWidth(70);
+            eantbl.getColumnModel().getColumn(15).setMinWidth(100);
+            eantbl.getColumnModel().getColumn(15).setPreferredWidth(100);
+            eantbl.getColumnModel().getColumn(15).setMaxWidth(100);
             eantbl.getColumnModel().getColumn(16).setMinWidth(40);
             eantbl.getColumnModel().getColumn(16).setPreferredWidth(40);
             eantbl.getColumnModel().getColumn(16).setMaxWidth(40);
@@ -649,7 +677,7 @@ public  void searchResult()
           
           updatebtn.setText("Save");
           updatebtn.setBackground(new java.awt.Color(153,255,153));
-          
+          eantbl.setBackground(new java.awt.Color(215, 249, 255));
           delrowtbn.setBackground(new java.awt.Color(153,255,153));
       }
       else if("Save".equals(evt.getActionCommand()))  
@@ -757,22 +785,21 @@ public  void searchResult()
          updatebtn.setText("Edit");
          delrowtbn.setBackground(new java.awt.Color(255,153,153));
          cancelbtn.setEnabled(false);
+         eantbl.setBackground(new java.awt.Color(239, 217, 224));
       }
         
     }//GEN-LAST:event_updatebtnActionPerformed
 
-
- 
- 
- public void updatetatalqty(java.awt.event.KeyEvent evt)
- {
+public void updatetotalqtyonmouseclick()
+{
+     {
     
     
        colvalue = eantbl.getSelectedColumn();
       
        if(updatebtn.getText().equals("Save"))
        {
-       if(eantbl.getColumnName(3).equals("GoodQty") || eantbl.getColumnName(4).equals("Box_Qty") || eantbl.getColumnName(5).equals("leak_qty") || eantbl.getColumnName(6).equals("Brkn_qty"))
+       if(eantbl.getColumnName(3).equals("GoodQty") || eantbl.getColumnName(4).equals("Dmg") || eantbl.getColumnName(5).equals("Leak") || eantbl.getColumnName(6).equals("Brkn"))
        {
            System.out.println("qty selected");
            
@@ -801,6 +828,79 @@ public  void searchResult()
      {
     if(colvalue == 3 || colvalue == 4 || colvalue == 5 || colvalue == 6 || colvalue == 7)
         {
+             if(eantbl.getValueAt(rowclick,3).toString().equals(""))
+                  {gdstr = "0";}
+                    else
+                    {gdstr = eantbl.getValueAt(rowclick,3).toString().trim();}
+                    
+            if (Integer.parseInt(gdstr) > 0 || qtybox > 0 ||  qtyleak > 0 || qtybrk > 0)
+                    {
+                    if(java.util.regex.Pattern.matches("\\d+",gdstr))
+                        {
+                          System.out.println("test 321"+ qtybrk);
+                          qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
+                          if(qtytot > 0)
+                          {
+                          eantbl.getModel().setValueAt(qtytot,rowclick,7);   
+                          }
+                        }
+                     else
+                        {
+                          System.out.println("test 321 test");
+                          qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
+                          if(qtytot > 0)
+                          {
+                        eantbl.getModel().setValueAt(qtygd,rowclick,3); 
+                          }
+                        }     
+                    }
+           }  
+        }
+       }
+       }
+       }
+       
+       
+     System.out.println("current selected row is "+ rowclick);
+}
+    
+  
+ public void updatetatalqty(java.awt.event.KeyEvent evt)
+ {
+    colvalue = eantbl.getSelectedColumn();
+      
+      if(updatebtn.getText().equals("Save"))
+       {
+        if(eantbl.getColumnName(3).equals("GoodQty") || eantbl.getColumnName(4).equals("Dmg") || eantbl.getColumnName(5).equals("Leak") || eantbl.getColumnName(6).equals("Brkn"))
+          {
+           System.out.println("qty selected");
+
+           if(eantbl.getValueAt(rowclick,3).toString().equals(""))
+           {qtygd = 0;}
+           else
+           {qtygd = Integer.parseInt(eantbl.getValueAt(rowclick,3).toString().trim());}
+           if(eantbl.getValueAt(rowclick,4).toString().equals(""))
+           {qtybox = 0;}
+           else
+           {qtybox = Integer.parseInt(eantbl.getValueAt(rowclick,4).toString().trim());}
+           if(eantbl.getValueAt(rowclick,5).toString().equals(""))
+           {qtyleak = 0;}
+           else
+           {qtyleak = Integer.parseInt(eantbl.getValueAt(rowclick,5).toString().trim());}
+           if(eantbl.getValueAt(rowclick,6).toString().equals(""))
+           {qtybrk = 0;}
+           else
+           {qtybrk =  Integer.parseInt(eantbl.getValueAt(rowclick,6).toString().trim());}
+           if(eantbl.getValueAt(rowclick,7).toString().equals(""))
+           {qtytot = 0;}
+           else
+           {qtytot = Integer.parseInt(eantbl.getValueAt(rowclick,7).toString().trim());}
+               
+   if(currowval == rowval)
+     {
+    if(colvalue == 3 || colvalue == 4 || colvalue == 5 || colvalue == 6 || colvalue == 7)
+        {
+            
           if(evt.getKeyCode()== KeyEvent.VK_TAB || evt.getKeyCode()== KeyEvent.VK_ENTER || evt.getKeyCode()== KeyEvent.VK_LEFT || evt.getKeyCode()== KeyEvent.VK_RIGHT ||  evt.getKeyCode()== KeyEvent.VK_DOWN || evt.getKeyCode()== KeyEvent.VK_UP)
            {
                if(eantbl.getValueAt(rowclick,3).toString().equals(""))
@@ -808,21 +908,31 @@ public  void searchResult()
                     else
                     {gdstr = eantbl.getValueAt(rowclick,3).toString().trim();}
                     
-          
-                    if(java.util.regex.Pattern.matches("\\d+",gdstr))
-                        {
-                          System.out.println("test 321"+ qtybrk);
-                          qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
-                          eantbl.getModel().setValueAt(qtytot,rowclick,7);   
-                        }
-                     else
-                        {
-                          System.out.println("test 321 test");
-                          qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
-                          eantbl.getModel().setValueAt(qtygd,rowclick,3);  
-                        }     
-                   
+               System.out.println("good , box, leak, brkn"+Integer.parseInt(gdstr)+"  "+ qtybox + "  " + qtyleak + " "+ qtybrk);
+                  
+               if (Integer.parseInt(gdstr) > 0 || qtybox > 0 ||  qtyleak > 0 || qtybrk > 0)
+                    {
+                                if(java.util.regex.Pattern.matches("\\d+",gdstr))
+                                    {
+                                      System.out.println("test 321"+ qtybrk);
+                                      qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
+                                      if(qtytot > 0)
+                                      {
+                                      eantbl.getModel().setValueAt(qtytot,rowclick,7);   
+                                      }
+                                    }
+                                 else
+                                    {
+                                      System.out.println("test 321 test");
+                                      qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
+                                      if(qtytot > 0)
+                                        {
+                                      eantbl.getModel().setValueAt(qtygd,rowclick,3);  
+                                        }
+                                    }     
+                    }
            }  
+                 
         }
        }
        }
@@ -985,9 +1095,12 @@ public  void searchResult()
     
     private void eantblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eantblMouseClicked
         // TODO add your handling code here:
+        updatetotalqtyonmouseclick();
+        
       int colval = eantbl.getSelectedColumn();
            
       rowval = eantbl.getSelectedRow();
+
       
     if(colval == 0)
       {
@@ -1145,7 +1258,7 @@ public void deleterow()
         updatebtn.setBackground(new java.awt.Color(255,153,153));
         updatebtn.setText("Edit");
         delrowtbn.setBackground(new java.awt.Color(255,153,153));   
-        
+        eantbl.setBackground(new java.awt.Color(239,217,224));
            }
            else
            {
@@ -1183,6 +1296,7 @@ public void deleterow()
         updatebtn.setText("Edit");
         delrowtbn.setBackground(new java.awt.Color(255,153,153));
         cancelbtn.setEnabled(false);
+         eantbl.setBackground(new java.awt.Color(239,217,224));
     }//GEN-LAST:event_cancelbtnActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

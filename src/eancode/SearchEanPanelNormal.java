@@ -260,12 +260,14 @@ public SearchEanPanelNormal() {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
+        eantbl.setBackground(new java.awt.Color(239, 217, 224));
+        eantbl.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         eantbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "matcode", "des", "GoodQty", "Dmg_Box_Qty", "Dmg_leak_qty", "Dmg_Brkn_qty", "Total", "CountryOrigin", "eancode", "Weight", "Remark", "lotnumber", "doctype", "docnum", "grnnum", "docstatus", "grnstatus"
+                "ID", "matcode", "Description", "GoodQty", "Dmg", "Leak", "Brkn", "Total", "Origin", "eancode", "Weight", "Remark", "lotnumber", "doctype", "docnum", "grnnum", "docstatus", "grnstatus"
             }
         ) {
             Class[] types = new Class [] {
@@ -312,26 +314,49 @@ public SearchEanPanelNormal() {
         });
         jScrollPane1.setViewportView(eantbl);
         if (eantbl.getColumnModel().getColumnCount() > 0) {
-            eantbl.getColumnModel().getColumn(0).setResizable(false);
-            eantbl.getColumnModel().getColumn(0).setPreferredWidth(25);
-            eantbl.getColumnModel().getColumn(1).setPreferredWidth(70);
+            eantbl.getColumnModel().getColumn(0).setMinWidth(30);
+            eantbl.getColumnModel().getColumn(0).setPreferredWidth(30);
+            eantbl.getColumnModel().getColumn(0).setMaxWidth(30);
+            eantbl.getColumnModel().getColumn(1).setMinWidth(80);
+            eantbl.getColumnModel().getColumn(1).setPreferredWidth(80);
+            eantbl.getColumnModel().getColumn(1).setMaxWidth(80);
             eantbl.getColumnModel().getColumn(2).setPreferredWidth(200);
+            eantbl.getColumnModel().getColumn(3).setMinWidth(40);
+            eantbl.getColumnModel().getColumn(3).setPreferredWidth(40);
+            eantbl.getColumnModel().getColumn(3).setMaxWidth(40);
+            eantbl.getColumnModel().getColumn(5).setMinWidth(40);
+            eantbl.getColumnModel().getColumn(5).setPreferredWidth(40);
+            eantbl.getColumnModel().getColumn(5).setMaxWidth(40);
+            eantbl.getColumnModel().getColumn(6).setMinWidth(40);
+            eantbl.getColumnModel().getColumn(6).setPreferredWidth(40);
+            eantbl.getColumnModel().getColumn(6).setMaxWidth(40);
             eantbl.getColumnModel().getColumn(7).setMinWidth(40);
             eantbl.getColumnModel().getColumn(7).setPreferredWidth(40);
             eantbl.getColumnModel().getColumn(7).setMaxWidth(40);
-            eantbl.getColumnModel().getColumn(8).setMinWidth(90);
-            eantbl.getColumnModel().getColumn(8).setPreferredWidth(90);
-            eantbl.getColumnModel().getColumn(8).setMaxWidth(90);
-            eantbl.getColumnModel().getColumn(9).setMinWidth(150);
-            eantbl.getColumnModel().getColumn(9).setPreferredWidth(150);
-            eantbl.getColumnModel().getColumn(9).setMaxWidth(150);
-            eantbl.getColumnModel().getColumn(10).setPreferredWidth(40);
-            eantbl.getColumnModel().getColumn(13).setMinWidth(80);
-            eantbl.getColumnModel().getColumn(13).setPreferredWidth(80);
-            eantbl.getColumnModel().getColumn(13).setMaxWidth(80);
-            eantbl.getColumnModel().getColumn(14).setMinWidth(80);
-            eantbl.getColumnModel().getColumn(14).setPreferredWidth(80);
-            eantbl.getColumnModel().getColumn(14).setMaxWidth(80);
+            eantbl.getColumnModel().getColumn(8).setMinWidth(50);
+            eantbl.getColumnModel().getColumn(8).setPreferredWidth(50);
+            eantbl.getColumnModel().getColumn(8).setMaxWidth(50);
+            eantbl.getColumnModel().getColumn(9).setMinWidth(100);
+            eantbl.getColumnModel().getColumn(9).setPreferredWidth(100);
+            eantbl.getColumnModel().getColumn(9).setMaxWidth(100);
+            eantbl.getColumnModel().getColumn(10).setMinWidth(50);
+            eantbl.getColumnModel().getColumn(10).setPreferredWidth(50);
+            eantbl.getColumnModel().getColumn(10).setMaxWidth(50);
+            eantbl.getColumnModel().getColumn(11).setMinWidth(50);
+            eantbl.getColumnModel().getColumn(11).setPreferredWidth(50);
+            eantbl.getColumnModel().getColumn(11).setMaxWidth(50);
+            eantbl.getColumnModel().getColumn(12).setMinWidth(70);
+            eantbl.getColumnModel().getColumn(12).setPreferredWidth(70);
+            eantbl.getColumnModel().getColumn(12).setMaxWidth(70);
+            eantbl.getColumnModel().getColumn(13).setMinWidth(50);
+            eantbl.getColumnModel().getColumn(13).setPreferredWidth(50);
+            eantbl.getColumnModel().getColumn(13).setMaxWidth(50);
+            eantbl.getColumnModel().getColumn(14).setMinWidth(70);
+            eantbl.getColumnModel().getColumn(14).setPreferredWidth(70);
+            eantbl.getColumnModel().getColumn(14).setMaxWidth(70);
+            eantbl.getColumnModel().getColumn(15).setMinWidth(100);
+            eantbl.getColumnModel().getColumn(15).setPreferredWidth(100);
+            eantbl.getColumnModel().getColumn(15).setMaxWidth(100);
             eantbl.getColumnModel().getColumn(16).setMinWidth(40);
             eantbl.getColumnModel().getColumn(16).setPreferredWidth(40);
             eantbl.getColumnModel().getColumn(16).setMaxWidth(40);

@@ -27,15 +27,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel8" min="-2" pref="71" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="savegrnbtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="printgrnbtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -54,27 +54,24 @@
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="shipmodtxt" max="32767" attributes="0"/>
-                                  <Component id="grndatetxt1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="grnnumtxt1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="recvdatetxt1" alignment="0" pref="160" max="32767" attributes="0"/>
-                                  <Component id="srnotxt" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="prnotxt" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="sealnotxt" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="countsizetxt" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="skidstxt" max="32767" attributes="0"/>
-                                  <Component id="wgttxt" alignment="0" max="32767" attributes="0"/>
-                              </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel1" min="-2" pref="71" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="comptitledrop" max="32767" attributes="0"/>
-                                  <Component id="comptxt1" max="32767" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="shipmodtxt" max="32767" attributes="0"/>
+                          <Component id="grndatetxt1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="grnnumtxt1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="recvdatetxt1" alignment="0" pref="160" max="32767" attributes="0"/>
+                          <Component id="srnotxt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="prnotxt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="sealnotxt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="countsizetxt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="skidstxt" max="32767" attributes="0"/>
+                          <Component id="wgttxt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="comptitledrop" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -87,24 +84,21 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="savegrnbtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="printgrnbtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="savegrnbtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="printgrnbtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="comptitledrop" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="comptxt1" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="comptitledrop" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -156,7 +150,7 @@
                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="wgttxt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -170,7 +164,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="99" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Save GRN"/>
+        <Property name="text" type="java.lang.String" value="Save &amp; print GRN"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="savegrnbtn">
@@ -193,8 +187,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Comp. Title:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="comptxt1">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
