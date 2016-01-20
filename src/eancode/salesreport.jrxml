@@ -231,7 +231,7 @@
 				</textElement>
 				<text><![CDATA[of]]></text>
 			</staticText>
-			<textField evaluationTime="Report">
+			<textField evaluationTime="Page">
 				<reportElement x="477" y="16" width="45" height="20" uuid="8ff14dea-fc09-4639-8d08-cb55be84ae74"/>
 				<textElement>
 					<font fontName="Segoe UI" size="12" isBold="true"/>
