@@ -289,7 +289,10 @@ public SearchEanPanel() {
                 return canEdit [columnIndex];
             }
         });
+        eantbl.setGridColor(new java.awt.Color(255, 102, 0));
         eantbl.setRowHeight(26);
+        eantbl.setSelectionBackground(new java.awt.Color(153, 153, 255));
+        eantbl.getTableHeader().setReorderingAllowed(false);
         eantbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 eantblMouseClicked(evt);
