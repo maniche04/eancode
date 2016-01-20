@@ -315,9 +315,9 @@ public SearchEanPanel() {
             eantbl.getColumnModel().getColumn(0).setMinWidth(30);
             eantbl.getColumnModel().getColumn(0).setPreferredWidth(30);
             eantbl.getColumnModel().getColumn(0).setMaxWidth(30);
-            eantbl.getColumnModel().getColumn(1).setMinWidth(90);
-            eantbl.getColumnModel().getColumn(1).setPreferredWidth(90);
-            eantbl.getColumnModel().getColumn(1).setMaxWidth(90);
+            eantbl.getColumnModel().getColumn(1).setMinWidth(100);
+            eantbl.getColumnModel().getColumn(1).setPreferredWidth(100);
+            eantbl.getColumnModel().getColumn(1).setMaxWidth(100);
             eantbl.getColumnModel().getColumn(2).setPreferredWidth(200);
             eantbl.getColumnModel().getColumn(3).setMinWidth(30);
             eantbl.getColumnModel().getColumn(3).setPreferredWidth(30);
