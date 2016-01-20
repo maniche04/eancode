@@ -218,7 +218,7 @@
 	<pageFooter>
 		<band height="42" splitType="Stretch">
 			<textField>
-				<reportElement x="415" y="16" width="39" height="20" uuid="36849779-9aef-4fcf-9dfb-eb4166ea4a48"/>
+				<reportElement x="421" y="16" width="33" height="20" uuid="36849779-9aef-4fcf-9dfb-eb4166ea4a48"/>
 				<textElement>
 					<font fontName="Segoe UI" size="12" isBold="true"/>
 				</textElement>
@@ -232,11 +232,8 @@
 				<text><![CDATA[of]]></text>
 			</staticText>
 			<textField evaluationTime="Report">
-				<reportElement x="474" y="16" width="40" height="20" uuid="c52f8779-1158-4252-97fe-95345d2b1586"/>
-				<textElement>
-					<font fontName="Segoe UI" size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
+				<reportElement x="480" y="18" width="87" height="20" uuid="8ff14dea-fc09-4639-8d08-cb55be84ae74"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
