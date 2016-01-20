@@ -126,7 +126,7 @@ public class SearchEanPanel extends javax.swing.JFrame {
     JTable salestable = new JTable();
     JLabel label1;
     JLabel label2;
-    
+     int currowval = 0;
      int rowclick = 0;
         
       
@@ -767,9 +767,10 @@ public  void searchResult()
  public void updatetatalqty(java.awt.event.KeyEvent evt)
  {
     
-      colvalue = eantbl.getSelectedColumn();
+    
+       colvalue = eantbl.getSelectedColumn();
       
-       if (updatebtn.getText().equals("Save"))
+       if(updatebtn.getText().equals("Save"))
        {
        if(eantbl.getColumnName(3).equals("GoodQty") || eantbl.getColumnName(4).equals("Box_Qty") || eantbl.getColumnName(5).equals("leak_qty") || eantbl.getColumnName(6).equals("Brkn_qty"))
        {
@@ -796,36 +797,35 @@ public  void searchResult()
            else
            {qtytot = Integer.parseInt(eantbl.getValueAt(rowclick,7).toString().trim());}
                
-     
+   if(currowval == rowval)
+     {
     if(colvalue == 3 || colvalue == 4 || colvalue == 5 || colvalue == 6 || colvalue == 7)
-               {
-           if(evt.getKeyCode()== KeyEvent.VK_TAB || evt.getKeyCode()== KeyEvent.VK_ENTER || evt.getKeyCode()== KeyEvent.VK_LEFT || evt.getKeyCode()== KeyEvent.VK_RIGHT ||  evt.getKeyCode()== KeyEvent.VK_DOWN || evt.getKeyCode()== KeyEvent.VK_UP)
+        {
+          if(evt.getKeyCode()== KeyEvent.VK_TAB || evt.getKeyCode()== KeyEvent.VK_ENTER || evt.getKeyCode()== KeyEvent.VK_LEFT || evt.getKeyCode()== KeyEvent.VK_RIGHT ||  evt.getKeyCode()== KeyEvent.VK_DOWN || evt.getKeyCode()== KeyEvent.VK_UP)
            {
-              
-                   
-                    if(eantbl.getValueAt(rowclick,3).toString().equals(""))
-                    {gdstr = "0";}
+               if(eantbl.getValueAt(rowclick,3).toString().equals(""))
+                  {gdstr = "0";}
                     else
                     {gdstr = eantbl.getValueAt(rowclick,3).toString().trim();}
                     
           
                     if(java.util.regex.Pattern.matches("\\d+",gdstr))
                         {
-                             System.out.println("test 321"+ qtybrk);
-                            qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
-                            eantbl.getModel().setValueAt(qtytot,rowclick,7);   
+                          System.out.println("test 321"+ qtybrk);
+                          qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
+                          eantbl.getModel().setValueAt(qtytot,rowclick,7);   
                         }
                      else
                         {
-                             System.out.println("test 321 test");
-                             //qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
-                            eantbl.getModel().setValueAt(qtygd,rowclick,3);  
+                          System.out.println("test 321 test");
+                          qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
+                          eantbl.getModel().setValueAt(qtygd,rowclick,3);  
                         }     
                    
            }  
         }
        }
-       
+       }
        }
        else
        {
@@ -833,9 +833,7 @@ public  void searchResult()
             
        }
        
-       
-           
-           System.out.println("current selected row is "+ rowclick);
+     System.out.println("current selected row is "+ rowclick);
  }
     
     
@@ -844,7 +842,7 @@ public  void searchResult()
     private void eantblKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eantblKeyReleased
         // TODO add your handling code here:
 
-     //updatetatalqty(evt);
+     updatetatalqty(evt);
      
       rowval = eantbl.getSelectedRow();
       colvalue = eantbl.getSelectedColumn();
@@ -1077,7 +1075,7 @@ public  void searchResult()
     private void eantblKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eantblKeyPressed
         // TODO add your handling code here:
         rowclick  = eantbl.getSelectedRow();
-        
+        currowval = rowclick;
 //         if (evt.getKeyCode() == KeyEvent.VK_DELETE || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE)
 //        {
 //            flag = true;
