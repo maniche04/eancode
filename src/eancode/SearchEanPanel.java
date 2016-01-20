@@ -87,6 +87,8 @@ public class SearchEanPanel extends javax.swing.JFrame {
     /**
      * Creates new form SearchEanPanel
      */
+    TableRowResizer tblrowresize = new TableRowResizer();
+    TableRowResizerSeltbl tblrowresizeseltbl = new TableRowResizerSeltbl();
     DefaultTableModel currtableModel;
     AutoTextComplete atcdes;
     AutoCompleteDBLink autocdblink;
@@ -138,7 +140,11 @@ public SearchEanPanel() {
         
         gv.setAppDefaultImg(this); 
         
-
+        
+        /*ROW HEIGHT EXPAND ON RUN TIME*/
+        tblrowresize.TableRowResizer(eantbl);
+        tblrowresizeseltbl.TableRowResizer(eantbl);
+        /*END OF ROW HEIGHT EXPAND ON RUN TIME*/
         cancelbtn.setEnabled(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -282,7 +288,7 @@ public SearchEanPanel() {
                 return canEdit [columnIndex];
             }
         });
-        eantbl.setRowHeight(22);
+        eantbl.setRowHeight(26);
         eantbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 eantblMouseClicked(evt);
