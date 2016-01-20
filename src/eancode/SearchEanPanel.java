@@ -258,7 +258,7 @@ public SearchEanPanel() {
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         eantbl.setBackground(new java.awt.Color(239, 217, 224));
-        eantbl.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        eantbl.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         eantbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -282,6 +282,7 @@ public SearchEanPanel() {
                 return canEdit [columnIndex];
             }
         });
+        eantbl.setRowHeight(22);
         eantbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 eantblMouseClicked(evt);
@@ -314,22 +315,22 @@ public SearchEanPanel() {
             eantbl.getColumnModel().getColumn(0).setMinWidth(30);
             eantbl.getColumnModel().getColumn(0).setPreferredWidth(30);
             eantbl.getColumnModel().getColumn(0).setMaxWidth(30);
-            eantbl.getColumnModel().getColumn(1).setMinWidth(80);
-            eantbl.getColumnModel().getColumn(1).setPreferredWidth(80);
-            eantbl.getColumnModel().getColumn(1).setMaxWidth(80);
+            eantbl.getColumnModel().getColumn(1).setMinWidth(90);
+            eantbl.getColumnModel().getColumn(1).setPreferredWidth(90);
+            eantbl.getColumnModel().getColumn(1).setMaxWidth(90);
             eantbl.getColumnModel().getColumn(2).setPreferredWidth(200);
-            eantbl.getColumnModel().getColumn(3).setMinWidth(40);
-            eantbl.getColumnModel().getColumn(3).setPreferredWidth(40);
-            eantbl.getColumnModel().getColumn(3).setMaxWidth(40);
-            eantbl.getColumnModel().getColumn(4).setMinWidth(40);
-            eantbl.getColumnModel().getColumn(4).setPreferredWidth(40);
-            eantbl.getColumnModel().getColumn(4).setMaxWidth(40);
-            eantbl.getColumnModel().getColumn(5).setMinWidth(40);
-            eantbl.getColumnModel().getColumn(5).setPreferredWidth(40);
-            eantbl.getColumnModel().getColumn(5).setMaxWidth(40);
-            eantbl.getColumnModel().getColumn(6).setMinWidth(40);
-            eantbl.getColumnModel().getColumn(6).setPreferredWidth(40);
-            eantbl.getColumnModel().getColumn(6).setMaxWidth(40);
+            eantbl.getColumnModel().getColumn(3).setMinWidth(30);
+            eantbl.getColumnModel().getColumn(3).setPreferredWidth(30);
+            eantbl.getColumnModel().getColumn(3).setMaxWidth(30);
+            eantbl.getColumnModel().getColumn(4).setMinWidth(30);
+            eantbl.getColumnModel().getColumn(4).setPreferredWidth(30);
+            eantbl.getColumnModel().getColumn(4).setMaxWidth(30);
+            eantbl.getColumnModel().getColumn(5).setMinWidth(30);
+            eantbl.getColumnModel().getColumn(5).setPreferredWidth(30);
+            eantbl.getColumnModel().getColumn(5).setMaxWidth(30);
+            eantbl.getColumnModel().getColumn(6).setMinWidth(30);
+            eantbl.getColumnModel().getColumn(6).setPreferredWidth(30);
+            eantbl.getColumnModel().getColumn(6).setMaxWidth(30);
             eantbl.getColumnModel().getColumn(7).setMinWidth(40);
             eantbl.getColumnModel().getColumn(7).setPreferredWidth(40);
             eantbl.getColumnModel().getColumn(7).setMaxWidth(40);
@@ -354,9 +355,8 @@ public SearchEanPanel() {
             eantbl.getColumnModel().getColumn(14).setMinWidth(70);
             eantbl.getColumnModel().getColumn(14).setPreferredWidth(70);
             eantbl.getColumnModel().getColumn(14).setMaxWidth(70);
-            eantbl.getColumnModel().getColumn(15).setMinWidth(100);
-            eantbl.getColumnModel().getColumn(15).setPreferredWidth(100);
-            eantbl.getColumnModel().getColumn(15).setMaxWidth(100);
+            eantbl.getColumnModel().getColumn(15).setMinWidth(110);
+            eantbl.getColumnModel().getColumn(15).setMaxWidth(110);
             eantbl.getColumnModel().getColumn(16).setMinWidth(40);
             eantbl.getColumnModel().getColumn(16).setPreferredWidth(40);
             eantbl.getColumnModel().getColumn(16).setMaxWidth(40);
@@ -504,7 +504,7 @@ public SearchEanPanel() {
                     .addComponent(jLabel7)
                     .addComponent(filtercountryorigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jMenu1.setText("Others");
@@ -530,9 +530,7 @@ public SearchEanPanel() {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
