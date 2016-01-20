@@ -265,6 +265,7 @@ public SearchEanPanel() {
 
         eantbl.setBackground(new java.awt.Color(239, 217, 224));
         eantbl.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        eantbl.setForeground(new java.awt.Color(0, 0, 255));
         eantbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
