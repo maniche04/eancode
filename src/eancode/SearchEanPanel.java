@@ -869,6 +869,7 @@ public void updatetotalqtyonmouseclick()
                           if(qtytot > 0)
                           {
                         eantbl.getModel().setValueAt(qtygd,rowclick,3); 
+                       
                           }
                         }     
                     }
