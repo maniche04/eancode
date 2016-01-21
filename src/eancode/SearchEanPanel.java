@@ -63,6 +63,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -128,8 +130,9 @@ public class SearchEanPanel extends javax.swing.JFrame {
     JTable salestable = new JTable();
     JLabel label1;
     JLabel label2;
-    public static int currowval = 0;
+    int currowval = 0;
      int rowclick = 0;
+     int currenttotval = 0;
         
       
       
@@ -795,6 +798,7 @@ public  void searchResult()
          delrowtbn.setBackground(new java.awt.Color(255,204,204));
          cancelbtn.setEnabled(false);
          eantbl.setBackground(new java.awt.Color(255,204,204));
+         eantbl.setForeground(new java.awt.Color(0,0,255));
       }
         
     }//GEN-LAST:event_updatebtnActionPerformed
@@ -929,7 +933,14 @@ public void updatetotalqtyonmouseclick()
                                       {
                                       
                                       eantbl.getModel().setValueAt(qtytot,rowclick,7); 
-                                      eantbl.setDefaultRenderer(Boolean.class,new ColorCellRender());  
+                                      if(currenttotval!=qtytot)
+                                      {
+                                       TableCellRenderer tcr = new PositiveNumber(currowval);
+                                       TableColumn column = eantbl.getColumnModel().getColumn(7);  
+                                       column.setCellRenderer(tcr);  
+                                      }
+                                      
+                                      //eantbl.setDefaultRenderer(Object.class,new ColorCellRender());  
                                       }
                                     }
                             else
@@ -939,7 +950,12 @@ public void updatetotalqtyonmouseclick()
                                       if(qtytot > 0)
                                         {
                                       eantbl.getModel().setValueAt(qtygd,rowclick,3); 
-                                      eantbl.setDefaultRenderer(Boolean.class,new ColorCellRender());
+                                    if(currenttotval!=qtytot)
+                                      {
+                                       TableCellRenderer tcr = new PositiveNumber(currowval);
+                                       TableColumn column = eantbl.getColumnModel().getColumn(7);  
+                                       column.setCellRenderer(tcr);  
+                                      }
                                 }
                         }     
                     }
@@ -1201,6 +1217,8 @@ public void updatetotalqtyonmouseclick()
         // TODO add your handling code here:
         rowclick  = eantbl.getSelectedRow();
         currowval = rowclick;
+        currenttotval = Integer.parseInt(eantbl.getModel().getValueAt(currowval, 7).toString().trim());
+       
 //         if (evt.getKeyCode() == KeyEvent.VK_DELETE || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE)
 //        {
 //            flag = true;
@@ -1271,6 +1289,7 @@ public void deleterow()
         updatebtn.setText("Edit");
         delrowtbn.setBackground(new java.awt.Color(255,204,204));   
         eantbl.setBackground(new java.awt.Color(255,204,204));
+        eantbl.setForeground(new java.awt.Color(0,0,255));
            }
            else
            {
@@ -1309,6 +1328,7 @@ public void deleterow()
         delrowtbn.setBackground(new java.awt.Color(255,204,204));
         cancelbtn.setEnabled(false);
          eantbl.setBackground(new java.awt.Color(255,204,204));
+         eantbl.setForeground(new java.awt.Color(0,0,255));
     }//GEN-LAST:event_cancelbtnActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
