@@ -51,4 +51,24 @@ public class MatImage {
     
 }
     
+    
+ public int currentTotal(int id) throws Exception
+    {
+        String checkmatcode = "SELECT TOP 1  qty from eancodetbl where id ='"+ id+"'";  
+        int currtotal = 0;
+        try {
+            scanconnekt =  dbconn.conn();
+            scanpst = scanconnekt.prepareStatement(checkmatcode);
+            scanrs = scanpst.executeQuery();  
+      if(scanrs.next())
+            {
+        currtotal = Integer.parseInt(scanrs.getString(1));
+         return currtotal;
+            }
+        }catch(Exception ex) {
+            Logger.getLogger(EanScanned.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return 1;
+    }   
 }

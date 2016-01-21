@@ -10,6 +10,7 @@ package eancode;
 
 import SearchPack.AutoCompleteDBLink;
 import SearchPack.AutoTextComplete;
+import eancode.helpers.MatImage;
 
 
 
@@ -89,6 +90,7 @@ public class SearchEanPanel extends javax.swing.JFrame {
     /**
      * Creates new form SearchEanPanel
      */
+    MatImage mt = new MatImage();
     TableRowResizer tblrowresize = new TableRowResizer();
     TableRowResizerSeltbl tblrowresizeseltbl = new TableRowResizerSeltbl();
     DefaultTableModel currtableModel;
@@ -133,6 +135,7 @@ public class SearchEanPanel extends javax.swing.JFrame {
     int currowval = 0;
      int rowclick = 0;
      int currenttotval = 0;
+    
         
       
       
@@ -917,7 +920,7 @@ public void updatetotalqtyonmouseclick()
                
    if(currowval == rowval)
      {
-    if(colvalue == 3 || colvalue == 4 || colvalue == 5 || colvalue == 6 )
+    if(colvalue == 3 || colvalue == 4 || colvalue == 5 || colvalue == 6 || colvalue == 7)
         {
             System.out.println("colvalue........."+colvalue);
             
@@ -940,13 +943,14 @@ public void updatetotalqtyonmouseclick()
                                       {
                                       
                                       eantbl.getModel().setValueAt(qtytot,rowclick,7);
-                                      
+                                     
                                       if(currenttotval!=qtytot)
                                       {
                                        TableCellRenderer tcr = new PositiveNumber(currowval);
                                        TableColumn column = eantbl.getColumnModel().getColumn(7);  
                                        column.setCellRenderer(tcr);  
                                       }
+                                      
                                       
                                       //eantbl.setDefaultRenderer(Object.class,new ColorCellRender());  
                                       }
@@ -958,13 +962,14 @@ public void updatetotalqtyonmouseclick()
                                       if(qtytot > 0)
                                         {
                                       eantbl.getModel().setValueAt(qtygd,rowclick,3); 
-                                    if(currenttotval!=qtytot)
+                                      if(currenttotval!=qtytot)
                                       {
                                        TableCellRenderer tcr = new PositiveNumber(currowval);
                                        TableColumn column = eantbl.getColumnModel().getColumn(7);  
                                        column.setCellRenderer(tcr);  
                                       }
-                                }
+                                    
+                                         }
                         }     
                     }
                   }  
@@ -1222,25 +1227,21 @@ public void updatetotalqtyonmouseclick()
     }//GEN-LAST:event_eantblKeyTyped
 
     private void eantblKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eantblKeyPressed
-        // TODO add your handling code here:
-           colvalue = eantbl.getSelectedColumn();
-        rowclick  = eantbl.getSelectedRow();
-        currowval = rowclick;
-        currenttotval = Integer.parseInt(eantbl.getModel().getValueAt(currowval, 7).toString().trim());
-        
-//         if (evt.getKeyCode() == KeyEvent.VK_DELETE || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE)
-//        {
-//            flag = true;
-////            //eantbl.getSelectionModel().clearSelection();
-////  
-////            //DefaultTableModel dm = (DefaultTableModel) .getModel();
-////   
-////            eantbl.getModel().setValueAt("asdf",rowval,2);
-////            System.out.println("delete pressed!" + rowval);
-//           
-//        
-//        }
-        
+    
+            // TODO add your handling code here:
+            colvalue = eantbl.getSelectedColumn();
+            rowclick  = eantbl.getSelectedRow();
+            currowval = rowclick;
+//        currenttotval = Integer.parseInt(eantbl.getModel().getValueAt(currowval, 7).toString().trim());
+//
+        try {
+          if(colvalue == 3 || colvalue == 4 || colvalue == 5 || colvalue == 6 || colvalue == 7)
+          {currenttotval = mt.currentTotal(Integer.parseInt(eantbl.getModel().getValueAt(currowval, 0).toString()));}
+          
+        } catch (Exception ex) {
+            Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
     }//GEN-LAST:event_eantblKeyPressed
 
 public void deleterow()
