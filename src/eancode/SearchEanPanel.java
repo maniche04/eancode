@@ -917,8 +917,9 @@ public void updatetotalqtyonmouseclick()
                
    if(currowval == rowval)
      {
-    if(colvalue == 3 || colvalue == 4 || colvalue == 5 || colvalue == 6 || colvalue == 7)
+    if(colvalue == 3 || colvalue == 4 || colvalue == 5 || colvalue == 6 )
         {
+            System.out.println("colvalue........."+colvalue);
             
           if(evt.getKeyCode()== KeyEvent.VK_TAB || evt.getKeyCode()== KeyEvent.VK_ENTER || evt.getKeyCode()== KeyEvent.VK_LEFT || evt.getKeyCode()== KeyEvent.VK_RIGHT ||  evt.getKeyCode()== KeyEvent.VK_DOWN || evt.getKeyCode()== KeyEvent.VK_UP)
            {
@@ -927,7 +928,7 @@ public void updatetotalqtyonmouseclick()
                     else
                     {gdstr = eantbl.getValueAt(rowclick,3).toString().trim();}
                     
-               System.out.println("good , box, leak, brkn"+Integer.parseInt(gdstr)+"  "+ qtybox + "  " + qtyleak + " "+ qtybrk);
+               //System.out.println("good , box, leak, brkn"+Integer.parseInt(gdstr)+"  "+ qtybox + "  " + qtyleak + " "+ qtybrk);
                   
                if (Integer.parseInt(gdstr) > 0 || qtybox > 0 ||  qtyleak > 0 || qtybrk > 0)
                     {
@@ -935,10 +936,11 @@ public void updatetotalqtyonmouseclick()
                                     {
                                       System.out.println("test 321"+ qtybrk);
                                       qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
-                                      if(qtytot > 0)
+                                      if(qtytot > 0 )
                                       {
                                       
-                                      eantbl.getModel().setValueAt(qtytot,rowclick,7); 
+                                      eantbl.getModel().setValueAt(qtytot,rowclick,7);
+                                      
                                       if(currenttotval!=qtytot)
                                       {
                                        TableCellRenderer tcr = new PositiveNumber(currowval);
@@ -1221,10 +1223,11 @@ public void updatetotalqtyonmouseclick()
 
     private void eantblKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eantblKeyPressed
         // TODO add your handling code here:
+           colvalue = eantbl.getSelectedColumn();
         rowclick  = eantbl.getSelectedRow();
         currowval = rowclick;
         currenttotval = Integer.parseInt(eantbl.getModel().getValueAt(currowval, 7).toString().trim());
-       
+        
 //         if (evt.getKeyCode() == KeyEvent.VK_DELETE || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE)
 //        {
 //            flag = true;
@@ -1327,14 +1330,16 @@ public void deleterow()
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
-        // TODO add your handling code here:
+        //TODO add your handling code here:
         searchResult();
+        
         updatebtn.setBackground(new java.awt.Color(255,204,204));
         updatebtn.setText("Edit");
         delrowtbn.setBackground(new java.awt.Color(255,204,204));
         cancelbtn.setEnabled(false);
-         eantbl.setBackground(new java.awt.Color(255,204,204));
-         eantbl.setForeground(new java.awt.Color(0,0,255));
+        eantbl.setBackground(new java.awt.Color(255,204,204));
+        eantbl.setForeground(new java.awt.Color(0,0,255));
+        
     }//GEN-LAST:event_cancelbtnActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
