@@ -128,7 +128,7 @@ public class SearchEanPanel extends javax.swing.JFrame {
     JTable salestable = new JTable();
     JLabel label1;
     JLabel label2;
-     int currowval = 0;
+    public static int currowval = 0;
      int rowclick = 0;
         
       
@@ -921,28 +921,31 @@ public void updatetotalqtyonmouseclick()
                   
                if (Integer.parseInt(gdstr) > 0 || qtybox > 0 ||  qtyleak > 0 || qtybrk > 0)
                     {
-                                if(java.util.regex.Pattern.matches("\\d+",gdstr))
+                            if(java.util.regex.Pattern.matches("\\d+",gdstr))
                                     {
                                       System.out.println("test 321"+ qtybrk);
                                       qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
                                       if(qtytot > 0)
                                       {
-                                      eantbl.getModel().setValueAt(qtytot,rowclick,7);   
+                                      
+                                      eantbl.getModel().setValueAt(qtytot,rowclick,7); 
+                                      eantbl.setDefaultRenderer(Boolean.class,new ColorCellRender());  
                                       }
                                     }
-                                 else
+                            else
                                     {
                                       System.out.println("test 321 test");
                                       qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
                                       if(qtytot > 0)
                                         {
-                                      eantbl.getModel().setValueAt(qtygd,rowclick,3);  
-                                        }
-                                    }     
+                                      eantbl.getModel().setValueAt(qtygd,rowclick,3); 
+                                      eantbl.setDefaultRenderer(Boolean.class,new ColorCellRender());
+                                }
+                        }     
                     }
-           }  
+                  }  
                  
-        }
+                }
        }
        }
        }
