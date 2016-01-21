@@ -31,7 +31,8 @@ public class PositiveNumber extends DefaultTableCellRenderer{
     if(selectedRow!=-1){
         if(selectedRow==row){
             ((JLabel) cell).setHorizontalAlignment(SwingConstants.CENTER);
-            cell.setFont(new Font("Serif", Font.BOLD, 12));
+            cell.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+            
                 cell.setForeground(Color.RED);
              ((JLabel) cell).setText(value.toString()); 
         }else{

@@ -303,6 +303,9 @@ public SearchEanPanel() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 eantblMouseEntered(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                eantblMousePressed(evt);
+            }
         });
         eantbl.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -854,7 +857,9 @@ public void updatetotalqtyonmouseclick()
                           qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
                           if(qtytot > 0)
                           {
-                          eantbl.getModel().setValueAt(qtytot,rowclick,7);   
+                               
+                          eantbl.getModel().setValueAt(qtytot,rowclick,7); 
+                          
                           }
                         }
                      else
@@ -1404,6 +1409,12 @@ public void deleterow()
     
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void eantblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eantblMousePressed
+        // TODO add your handling code here:
+//        int mousecurrrowval = eantbl.getSelectedRow();
+//          currenttotval = Integer.parseInt(eantbl.getModel().getValueAt(mousecurrrowval, 7).toString().trim());
+    }//GEN-LAST:event_eantblMousePressed
 
   
 
