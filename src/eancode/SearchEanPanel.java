@@ -309,6 +309,9 @@ public SearchEanPanel() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 eantblMousePressed(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                eantblMouseReleased(evt);
+            }
         });
         eantbl.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -813,7 +816,6 @@ public void updatetotalqtyonmouseclick()
 {
      {
     
-    
        colvalue = eantbl.getSelectedColumn();
       
        if(updatebtn.getText().equals("Save"))
@@ -862,6 +864,7 @@ public void updatetotalqtyonmouseclick()
                           {
                                
                           eantbl.getModel().setValueAt(qtytot,rowclick,7); 
+                           
                           
                           }
                         }
@@ -872,11 +875,30 @@ public void updatetotalqtyonmouseclick()
                           if(qtytot > 0)
                           {
                         eantbl.getModel().setValueAt(qtygd,rowclick,3); 
+                         
                        
                           }
                         }     
                     }
-           }  
+           } 
+    
+    try {
+            currenttotval =  mt.currentTotal(Integer.parseInt(eantbl.getModel().getValueAt(rowclick,0).toString()));
+            System.out.println("current row total"+currenttotval);
+//currenttotval = Integer.parseInt(eantbl.getModel().getValueAt(currowval, 7).toString().trim());
+        } catch (Exception ex) {
+            Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    if(currenttotval!=qtytot)
+            {
+                TableCellRenderer tcr = new PositiveNumber(currowval);
+                TableColumn column = eantbl.getColumnModel().getColumn(7);  
+                column.setCellRenderer(tcr);  
+            }
+    
+    
+    
+    
         }
        }
        }
@@ -889,6 +911,7 @@ public void updatetotalqtyonmouseclick()
   
  public void updatetatalqty(java.awt.event.KeyEvent evt)
  {
+     
     colvalue = eantbl.getSelectedColumn();
       
       if(updatebtn.getText().equals("Save"))
@@ -944,12 +967,7 @@ public void updatetotalqtyonmouseclick()
                                       
                                       eantbl.getModel().setValueAt(qtytot,rowclick,7);
                                      
-                                      if(currenttotval!=qtytot)
-                                      {
-                                       TableCellRenderer tcr = new PositiveNumber(currowval);
-                                       TableColumn column = eantbl.getColumnModel().getColumn(7);  
-                                       column.setCellRenderer(tcr);  
-                                      }
+                                      
                                       
                                       
                                       //eantbl.setDefaultRenderer(Object.class,new ColorCellRender());  
@@ -962,12 +980,7 @@ public void updatetotalqtyonmouseclick()
                                       if(qtytot > 0)
                                         {
                                       eantbl.getModel().setValueAt(qtygd,rowclick,3); 
-                                      if(currenttotval!=qtytot)
-                                      {
-                                       TableCellRenderer tcr = new PositiveNumber(currowval);
-                                       TableColumn column = eantbl.getColumnModel().getColumn(7);  
-                                       column.setCellRenderer(tcr);  
-                                      }
+                                     
                                     
                                          }
                         }     
@@ -975,7 +988,21 @@ public void updatetotalqtyonmouseclick()
                   }  
                  
                 }
-       }
+        
+    try {
+          currenttotval =  mt.currentTotal(Integer.parseInt(eantbl.getModel().getValueAt(rowclick,0).toString()));
+          System.out.println("current row total"+currenttotval);
+//currenttotval = Integer.parseInt(eantbl.getModel().getValueAt(currowval, 7).toString().trim());
+        } catch (Exception ex) {
+            Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    if(currenttotval!=qtytot)
+          {
+              TableCellRenderer tcr = new PositiveNumber(currowval);
+              TableColumn column = eantbl.getColumnModel().getColumn(7);  
+              column.setCellRenderer(tcr);  
+          }
+        }
        }
        }
        else
@@ -1136,8 +1163,10 @@ public void updatetotalqtyonmouseclick()
     
     private void eantblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eantblMouseClicked
         // TODO add your handling code here:
-        updatetotalqtyonmouseclick();
+       
+         updatetotalqtyonmouseclick();  
         
+         
       int colval = eantbl.getSelectedColumn();
            
       rowval = eantbl.getSelectedRow();
@@ -1214,6 +1243,7 @@ public void updatetotalqtyonmouseclick()
 
     private void eantblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eantblMouseEntered
         // TODO add your handling code here:
+      
         
     }//GEN-LAST:event_eantblMouseEntered
 
@@ -1228,22 +1258,16 @@ public void updatetotalqtyonmouseclick()
 
     private void eantblKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eantblKeyPressed
     
-            // TODO add your handling code here:
+        
+            //TODO add your handling code here:
             colvalue = eantbl.getSelectedColumn();
             rowclick  = eantbl.getSelectedRow();
             currowval = rowclick;
-//        currenttotval = Integer.parseInt(eantbl.getModel().getValueAt(currowval, 7).toString().trim());
-//
-        try {
-          if(colvalue == 3 || colvalue == 4 || colvalue == 5 || colvalue == 6 || colvalue == 7)
-          {currenttotval = mt.currentTotal(Integer.parseInt(eantbl.getModel().getValueAt(currowval, 0).toString()));}
-          
-        } catch (Exception ex) {
-            Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      
+            
+         
     }//GEN-LAST:event_eantblKeyPressed
 
+    
 public void deleterow()
 {
     String ids = "";
@@ -1418,7 +1442,9 @@ public void deleterow()
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void eantblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eantblMousePressed
-        // TODO add your handling code here:
+ // TODO add your handling code here:
+             
+// TODO add your handling code here:
 //        int mousecurrrowval = eantbl.getSelectedRow();
 //         int mousclickgrdtot = Integer.parseInt(eantbl.getModel().getValueAt(mousecurrrowval, 7).toString().trim());
 //          
@@ -1433,6 +1459,10 @@ public void deleterow()
           
           
     }//GEN-LAST:event_eantblMousePressed
+
+    private void eantblMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eantblMouseReleased
+       
+    }//GEN-LAST:event_eantblMouseReleased
 
   
 
@@ -1523,7 +1553,7 @@ public void searchEsixtEancode(String currsear, JTable currtbl)
            
         }
     
-        
+      
      }catch (ClassNotFoundException ex) {
         Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
      }catch (SQLException ex) {

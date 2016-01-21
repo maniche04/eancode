@@ -21,6 +21,8 @@ import java.util.logging.Logger;
  */
 public class MatImage {
     
+    
+       
     DbConnection dbconn = new DbConnection(); 
     GlobalVariable gv = new GlobalVariable();
     Connection scanconnekt = null;
@@ -52,7 +54,7 @@ public class MatImage {
 }
     
     
- public int currentTotal(int id) throws Exception
+ public  int currentTotal(int id) throws Exception
     {
         String checkmatcode = "SELECT TOP 1  qty from eancodetbl where id ='"+ id+"'";  
         int currtotal = 0;
@@ -63,6 +65,7 @@ public class MatImage {
       if(scanrs.next())
             {
         currtotal = Integer.parseInt(scanrs.getString(1));
+        System.out.println("exectution string"+ checkmatcode);
          return currtotal;
             }
         }catch(Exception ex) {
