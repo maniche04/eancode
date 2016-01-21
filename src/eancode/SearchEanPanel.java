@@ -1412,8 +1412,19 @@ public void deleterow()
 
     private void eantblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eantblMousePressed
         // TODO add your handling code here:
-//        int mousecurrrowval = eantbl.getSelectedRow();
-//          currenttotval = Integer.parseInt(eantbl.getModel().getValueAt(mousecurrrowval, 7).toString().trim());
+        int mousecurrrowval = eantbl.getSelectedRow();
+         int mousclickgrdtot = Integer.parseInt(eantbl.getModel().getValueAt(mousecurrrowval, 7).toString().trim());
+          
+         if(currenttotval != mousclickgrdtot ) 
+         {
+             TableCellRenderer tcr = new PositiveNumber(mousecurrrowval);
+             TableColumn column = eantbl.getColumnModel().getColumn(7);  
+             column.setCellRenderer(tcr);  
+             
+         }
+          
+          
+          
     }//GEN-LAST:event_eantblMousePressed
 
   
