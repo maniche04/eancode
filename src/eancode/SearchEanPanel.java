@@ -38,6 +38,7 @@ import java.io.FileNotFoundException;
 //import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
 import java.sql.ResultSetMetaData;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -133,10 +134,11 @@ public class SearchEanPanel extends javax.swing.JFrame {
     JLabel label1;
     JLabel label2;
     int currowval = 0;
-     int rowclick = 0;
-     int currenttotval = 0;
-    
-        
+    int rowclick = 0;
+    int currenttotval = 0;
+    ArrayList<Integer> arrlist = new ArrayList<Integer>(100);
+   
+    int increament = 0; 
       
       
 public SearchEanPanel() {
@@ -862,42 +864,23 @@ public void updatetotalqtyonmouseclick()
                           qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
                           if(qtytot > 0)
                           {
-                               
+                        
                           eantbl.getModel().setValueAt(qtytot,rowclick,7); 
-                           
-                          
+                        
                           }
                         }
                      else
                         {
-                          System.out.println("test 321 test");
-                          qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
-                          if(qtytot > 0)
-                          {
-                        eantbl.getModel().setValueAt(qtygd,rowclick,3); 
-                         
-                       
-                          }
+                           System.out.println("test 321 test");
+                                qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
+                            if(qtytot > 0)
+                                {
+                            eantbl.getModel().setValueAt(qtygd,rowclick,3);
+                             
+                                }
                         }     
                     }
            } 
-    
-    try {
-            currenttotval =  mt.currentTotal(Integer.parseInt(eantbl.getModel().getValueAt(rowclick,0).toString()));
-            System.out.println("current row total"+currenttotval);
-//currenttotval = Integer.parseInt(eantbl.getModel().getValueAt(currowval, 7).toString().trim());
-        } catch (Exception ex) {
-            Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    if(currenttotval!=qtytot)
-            {
-                TableCellRenderer tcr = new PositiveNumber(currowval);
-                TableColumn column = eantbl.getColumnModel().getColumn(7);  
-                column.setCellRenderer(tcr);  
-            }
-    
-    
-    
     
         }
        }
@@ -1001,6 +984,13 @@ public void updatetotalqtyonmouseclick()
               TableCellRenderer tcr = new PositiveNumber(currowval);
               TableColumn column = eantbl.getColumnModel().getColumn(7);  
               column.setCellRenderer(tcr);  
+              
+              arrlist.add(currowval);
+               
+             
+              System.out.println("value to pushed"+currowval);
+            
+             
           }
         }
        }
@@ -1014,7 +1004,7 @@ public void updatetotalqtyonmouseclick()
      System.out.println("current selected row is "+ rowclick);
  }
     
-    
+ 
    
     
     private void eantblKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eantblKeyReleased
@@ -1163,9 +1153,11 @@ public void updatetotalqtyonmouseclick()
     
     private void eantblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eantblMouseClicked
         // TODO add your handling code here:
+      updatetotalqtyonmouseclick();  
        
-         updatetotalqtyonmouseclick();  
-        
+    
+     
+  
          
       int colval = eantbl.getSelectedColumn();
            
@@ -1443,7 +1435,7 @@ public void deleterow()
 
     private void eantblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eantblMousePressed
  // TODO add your handling code here:
-             
+              
 // TODO add your handling code here:
 //        int mousecurrrowval = eantbl.getSelectedRow();
 //         int mousclickgrdtot = Integer.parseInt(eantbl.getModel().getValueAt(mousecurrrowval, 7).toString().trim());
@@ -1461,7 +1453,8 @@ public void deleterow()
     }//GEN-LAST:event_eantblMousePressed
 
     private void eantblMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eantblMouseReleased
-       
+     
+        
     }//GEN-LAST:event_eantblMouseReleased
 
   
