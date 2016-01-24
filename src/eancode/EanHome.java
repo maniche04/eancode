@@ -190,17 +190,17 @@ public class EanHome extends javax.swing.JFrame {
 
     private void scanerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanerbtnActionPerformed
         // TODO add your handling code here:
-        if(gv.getUsertype().equals("admin"))
-        { 
+//        if(gv.getUsertype().equals("admin"))
+//        { 
         EanScanned scanner = new EanScanned();
         scanner.setVisible(true);
         this.scanerbtn.setEnabled(false);
         gv.setObj(this);
-        }
-        else
-        {
-          JOptionPane.showMessageDialog(this,"Only For Admin user!");               
-        }  
+//        }
+//        else
+//        {
+//          JOptionPane.showMessageDialog(this,"Only For Admin user!");               
+//        }  
     }//GEN-LAST:event_scanerbtnActionPerformed
 
     private void scanersrchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanersrchbtnActionPerformed

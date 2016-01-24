@@ -108,12 +108,12 @@ while(rs.next())
         al.add(rs.getString(1).trim());
            }
     }
-    if(col == 3)
-    {
-       al.add(rs.getString(1).trim()+ "-" + rs.getString(2).trim()); 
-    }  
-gv.setMyMap(myMap);
-ac.setItems(al);
+//    if(col == 3)
+//    {
+//       al.add(rs.getString(1).trim()+ "-" + rs.getString(2).trim()); 
+//    }  
+//gv.setMyMap(myMap);
+//ac.setItems(al);
 } catch(Exception ex) {
     ex.printStackTrace();
 }
