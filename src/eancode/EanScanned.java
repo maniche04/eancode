@@ -198,6 +198,8 @@ public void getMatName(String inputchar)
         jScrollPane1.setViewportView(jTable1);
 
         setTitle("Jizan Scanner");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(255, 255, 255));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -403,8 +405,10 @@ public void getMatName(String inputchar)
             }
         });
 
+        imglbl.setBackground(new java.awt.Color(255, 255, 255));
         imglbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imglbl.setText("Image Appears Here");
+        imglbl.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 0, 255), null));
         imglbl.setMaximumSize(new java.awt.Dimension(118, 100));
         imglbl.setMinimumSize(new java.awt.Dimension(118, 100));
         imglbl.setPreferredSize(new java.awt.Dimension(118, 100));
@@ -648,10 +652,6 @@ public void getLastGrn() throws SQLException
        
 }
 
-
-
-
-
 public int checkdoctypestatus() throws Exception
 {
      String docstat = "select docstatus from doctyperegistertbl Where doctype = '" + currdoctype + "' and docnum = '" + currdocnumtxt + "'";
@@ -684,14 +684,14 @@ public int checkdoctypestatus() throws Exception
         return 0;
 }
     
- 
- public void insertdocstat(String matstat) throws Exception
-       {                       
-          String addnewmatstat = "insert into doctyperegistertbl values ('"+ currdoctype +"','" + currdocnumtxt + "','" + matstat + "')";
-          System.out.println(addnewmatstat);
-          scanpst = scanconnekt.prepareStatement(addnewmatstat);
-          scanpst.executeUpdate();              
-       }
+
+public void insertdocstat(String matstat) throws Exception
+    {                       
+        String addnewmatstat = "insert into doctyperegistertbl values ('"+ currdoctype +"','" + currdocnumtxt + "','" + matstat + "')";
+        System.out.println(addnewmatstat);
+        scanpst = scanconnekt.prepareStatement(addnewmatstat);
+        scanpst.executeUpdate();              
+    }
  
  
 public void updatedocstat(String updatemat) throws Exception
@@ -741,10 +741,11 @@ public void updategrndocstat(String grnnum,String grnstat) throws Exception
 
 public void inputcontroller()
  {
+     
    Pattern pattern;
    Matcher matcher;
         
-        if (currdoctype.equals("Current"))
+        if(currdoctype.equals("Current"))
             {
               pattern  = Pattern.compile("\\d{4}");
               matcher = pattern.matcher(txtdocno.getText().trim());
@@ -809,8 +810,7 @@ public void inputcontroller()
                 {
                     grnstartbtn.setText("Start");
                     grnstartbtn.setEnabled(false); 
-                }
-                
+                } 
             }  
  }
     
