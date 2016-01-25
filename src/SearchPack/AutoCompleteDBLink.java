@@ -61,8 +61,6 @@ while(rs.next())
 }
 
 
-
-
 public AutoCompleteDBLink(AutoTextComplete atc, String itename, java.sql.Connection con,int col) {
   
 if(col != 3)
@@ -108,17 +106,28 @@ while(rs.next())
         al.add(rs.getString(1).trim());
            }
     }
-//    if(col == 3)
-//    {
+
+//if(col == 3)
+//  {
 //       al.add(rs.getString(1).trim()+ "-" + rs.getString(2).trim()); 
 //    }  
 //gv.setMyMap(myMap);
 //ac.setItems(al);
+
+
 } catch(Exception ex) {
     ex.printStackTrace();
 }
 }
     
+
+
+        
+        
+        
+  
+
+
 }
 
 
