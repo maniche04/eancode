@@ -5,6 +5,7 @@
  */
 package SearchPack;
 
+import com.lowagie.text.Element;
 import eancode.GlobalVariable;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -47,15 +48,15 @@ Map<String, String> myMapp = new HashMap<String, String>();
 
 while(rs.next())
 {
-  //System.out.println(rs.getString(1).trim());
-// myMapp.put(rs.getString(2).trim(), rs.getString(1).trim());   
-  myMapp.put(rs.getString(2).trim(), rs.getString(1).trim());     
+    
+//System.out.println(rs.getString(1).trim());
+//myMapp.put(rs.getString(2).trim(), rs.getString(1).trim());   
+    
+ myMapp.put(rs.getString(2).trim(), rs.getString(1).trim());     
  aal.add(rs.getString(1).trim());   
-
  gv.setMyMap(myMapp);
  acc.setItems(aal); 
- 
- 
+
 }
 
 }
@@ -65,13 +66,13 @@ public AutoCompleteDBLink(AutoTextComplete atc, String itename, java.sql.Connect
   
 if(col != 3)
 {
-    itename = "%" + itename + "%"; 
-    this.query = "select ite_name,ite_code from dicihmas"; // where ite_name like '"+ itename  +"'
-    System.out.println("need sql" + query);
+  itename = "%" + itename + "%"; 
+  this.query = "select ite_name,ite_code from dicihmas"; // where ite_name like '"+ itename  +"'
+  System.out.println("need sql" + query);
 }
 else
 {
-    this.query = "select Description, Country from countrymas";   
+  this.query = "select Description, Country from countrymas";   
 }
 
 
@@ -98,6 +99,7 @@ while(rs.next())
 //        al.add(rs.getString(1).trim());
 //           }
 //    }
+    
  if(col == 2)
     {
         if(rs.getString(1) != null && !rs.getString(1).equalsIgnoreCase(""))
@@ -107,27 +109,19 @@ while(rs.next())
            }
     }
 
-// if(col == 3)
-//        {
-//   al.add(rs.getString(1).trim()+ "-" + rs.getString(2).trim()); 
-//        }  
+
+//if(col == 3)
+// {
+//al.add(rs.getString(1).trim()+ "-" + rs.getString(2).trim()); 
+// }  
 // gv.setMyMap(myMap);
 // ac.setItems(al);
-
-
 
 
 } catch(Exception ex) {
     ex.printStackTrace();
 }
 }
-    
-
-
-        
-        
-        
-  
 
 
 }
