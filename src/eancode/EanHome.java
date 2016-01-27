@@ -192,12 +192,13 @@ loginusername.setText(gv.getGlobusername());
     private void scanerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanerbtnActionPerformed
 // TODO add your handling code here:
 //if(gv.getUsertype().equals("admin"))
-//        { 
+//{
+    
     EanScanned scanner = new EanScanned();
     scanner.setVisible(true);
     this.scanerbtn.setEnabled(false);
     gv.setObj(this);
-    
+
 //}
 // else
 // {
@@ -206,7 +207,22 @@ loginusername.setText(gv.getGlobusername());
     
     }//GEN-LAST:event_scanerbtnActionPerformed
 
- 
+    
+    
+public void ItemData(int totitem)
+       {
+            if(totitem > 0)
+                {
+             
+                    
+                    
+            }else
+                {
+                    
+                }
+                
+       }
+    
     private void scanersrchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanersrchbtnActionPerformed
         // TODO add your handling code here:
         
@@ -231,7 +247,7 @@ loginusername.setText(gv.getGlobusername());
         //TODO add your handling code here:
         //System.out.println("sadfasd"+ gv.getUsertype());
         
-          if(gv.getUsertype().equals("admin"))
+        if(gv.getUsertype().equals("admin"))
           {
               SalePrintManager saleprtmang = new SalePrintManager();
               saleprtmang.setVisible(true);
@@ -240,14 +256,15 @@ loginusername.setText(gv.getGlobusername());
               
           }else
           {
-              SalesInvoice saleinv = new SalesInvoice();
-              saleinv.SalesReport();
-          
+              
+    SalesInvoice saleinv = new SalesInvoice();
+    saleinv.SalesReport();
+            
           }          
-          
-    
+        
     }//GEN-LAST:event_salesActionPerformed
 
+    
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
