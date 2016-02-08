@@ -103,10 +103,10 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="4">
-                <Column editable="true" title="doctype" type="java.lang.String"/>
-                <Column editable="true" title="Docnum" type="java.lang.String"/>
-                <Column editable="true" title="Grn no." type="java.lang.String"/>
-                <Column editable="false" title="Docstatus" type="java.lang.String"/>
+                <Column editable="false" title="ID" type="java.lang.Object"/>
+                <Column editable="false" title="Doctype" type="java.lang.String"/>
+                <Column editable="false" title="Docnum" type="java.lang.String"/>
+                <Column editable="false" title="Docgrnnum" type="java.lang.String"/>
                 <Column editable="true" title="Grnstatus" type="java.lang.String"/>
               </Table>
             </Property>

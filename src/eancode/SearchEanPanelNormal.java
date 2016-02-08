@@ -297,7 +297,8 @@ public SearchEanPanelNormal() {
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         eantbl.setBackground(new java.awt.Color(239, 217, 224));
-        eantbl.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        eantbl.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        eantbl.setForeground(new java.awt.Color(0, 0, 255));
         eantbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -321,6 +322,8 @@ public SearchEanPanelNormal() {
                 return canEdit [columnIndex];
             }
         });
+        eantbl.setGridColor(new java.awt.Color(255, 102, 102));
+        eantbl.setRowHeight(26);
         eantbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 eantblMouseClicked(evt);
@@ -1379,17 +1382,18 @@ public void deleterow()
        if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("LGR")) 
        {
            try {
+               gv.setDialogname("normal");
                gv.setSearchNormalobj(this);
                GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
                grnprintobj.setVisible(true);
-               
-               
+                 
            } catch (Exception ex) {
                Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
            }
        }else if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("MTN")) 
        {
            try {
+               gv.setDialogname("normal");
                gv.setSearchNormalobj(this);
                GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
                grnprintobj.setVisible(true);
@@ -1401,6 +1405,7 @@ public void deleterow()
        }else if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("AR ")) 
        {
            try {
+               gv.setDialogname("normal");
                gv.setSearchNormalobj(this);
                GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
                grnprintobj.setVisible(true);
@@ -1413,6 +1418,7 @@ public void deleterow()
        else if(!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("IMP"))
        {
            try {
+               gv.setDialogname("normal");
                gv.setSearchNormalobj(this);
                GrnPrintSaveImport grnprintimpoobj =  new GrnPrintSaveImport(filtergrn.getText().trim());
                grnprintimpoobj.setVisible(true);

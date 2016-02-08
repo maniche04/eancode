@@ -73,7 +73,7 @@
 			</staticText>
 			<staticText>
 				<reportElement x="176" y="9" width="84" height="20" uuid="8451e082-d00b-464d-bb2c-d6a0de71dad5"/>
-				<text><![CDATA[SUPP. INVOICE#]]></text>
+				<text><![CDATA[Ducument num#]]></text>
 			</staticText>
 			<line>
 				<reportElement x="262" y="5" width="1" height="50" uuid="afc42928-af8b-4f2e-9bde-39fbdf29ab51"/>
@@ -449,6 +449,12 @@
 				<reportElement x="477" y="117" width="73" height="20" uuid="b60b5323-df0a-413f-8fff-05eba9c46983"/>
 				<textFieldExpression><![CDATA[$P{preparedby}]]></textFieldExpression>
 			</textField>
+			<rectangle>
+				<reportElement x="205" y="99" width="152" height="35" uuid="e58d959d-0895-495d-af9b-e667152e71cb"/>
+			</rectangle>
+			<line>
+				<reportElement x="281" y="99" width="1" height="35" uuid="e10cccf4-acbb-40bc-a06f-6361e64b736e"/>
+			</line>
 		</band>
 	</pageFooter>
 	<summary>

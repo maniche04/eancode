@@ -388,9 +388,10 @@ public void updateGrnvaluesImpo(String grnnum) throws Exception
                  try {
                     this.setVisible(false);  
                    
-                          mygrnimptbl = gv.getSearchobj().eantbl;
-                          if(mygrnimptbl  != null)
+                          
+                         if(gv.getDialogname().equals("admin"))
                           {
+                              mygrnimptbl = gv.getSearchobj().eantbl;
                     String recvdate  = ((JTextField)recvdatetxt1.getDateEditor().getUiComponent()).getText().trim();
                     JasperGeneratorImportGrn(mygrnimptbl,comptitledrop.getSelectedItem().toString(),grnnumtxt1.getText().trim(),grndatetxt1.getText().trim(),recvdate,srnotxt.getText().trim(),prnotxt.getText().trim(),sealnotxt.getText().trim(),shipmodtxt.getText().trim(),countsizetxt.getText().trim(),skidstxt.getText().trim(),wgttxt.getText().trim());
                           }

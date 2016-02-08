@@ -1378,7 +1378,8 @@ public void deleterow()
       if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("LGR")) 
        {
            try {
-               
+               gv.setDialogname("admin");
+               System.out.println("admin:"+gv.getDialogname() );
                GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
                grnprintobj.setVisible(true);
                gv.setSearchobj(this);
@@ -1389,7 +1390,7 @@ public void deleterow()
        }else if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("MTN")) 
        {
            try {
-               
+               gv.setDialogname("admin");
                GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
                grnprintobj.setVisible(true);
                gv.setSearchobj(this);
@@ -1400,7 +1401,7 @@ public void deleterow()
        }else if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("AR ")) 
        {
            try {
-               
+               gv.setDialogname("admin");
                GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
                grnprintobj.setVisible(true);
                gv.setSearchobj(this);
@@ -1411,7 +1412,7 @@ public void deleterow()
        }else if(!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("IMP"))
        {
            try {
-               
+              gv.setDialogname("admin"); 
                GrnPrintSaveImport grnprintimpoobj =  new GrnPrintSaveImport(filtergrn.getText().trim());
                grnprintimpoobj.setVisible(true);
                gv.setSearchobj(this);

@@ -87,14 +87,14 @@ public class Docmissing extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "doctype", "Docnum", "Grn no.", "Docstatus", "Grnstatus"
+                "ID", "Doctype", "Docnum", "Docgrnnum", "Grnstatus"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, true, false, true
+                false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -201,63 +201,63 @@ private void searchResult() {
     private void misstblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_misstblMouseClicked
         // TODO add your handling code here:
         // TODO add your handling code here:
-         int colval = misstbl.getSelectedColumn();
-           
-      int rowval = misstbl.getSelectedRow();
-      
-     
-      
-      /*Start -  Disable for normal user only*/
-      
-      
-      if(colval == 3 && evt.getClickCount() == 2 )
-      {
-           testdia.jcomobostat.removeAllItems();;
-          
-            String selctdoctypval = misstbl.getValueAt(rowval, 0).toString();
-            String selctdocnumval = misstbl.getValueAt(rowval, 1).toString();
-            String selctdocstatus = misstbl.getValueAt(rowval, 3).toString();
-            //System.out.println("test"+selctdocstatus);
-            testdia.doctypset.setText(selctdoctypval);
-            testdia.docnumset.setText(selctdocnumval);
-            
-            testdia.jcomobostat.addItem(selctdocstatus);
-            if(selctdocstatus.equals("Start") || selctdocstatus.equals("Break"))
-            {
-                testdia.jcomobostat.addItem("Close");
-            }
-            else
-            {
-                 testdia.jcomobostat.addItem("Start");
-            }
-           
-          testdia.updateto = "doctypetbl";
-          testdia.setVisible(true);
-      }
-      if(colval == 4 && evt.getClickCount() == 2 )
-      {
-            testdia.jcomobostat.removeAllItems();;
-            rowval = misstbl.getSelectedRow();
-            String selctdoctypval = misstbl.getValueAt(rowval, 0).toString();
-            String selctrgrnval = misstbl.getValueAt(rowval, 2).toString();
-            String selctgrnstatus = misstbl.getValueAt(rowval, 4).toString();
-            //System.out.println("test"+selctdocstatus);
-            testdia.doctypset.setText(selctdoctypval);
-            testdia.docnumset.setText(selctrgrnval);
-
-            testdia.jcomobostat.addItem(selctgrnstatus);
-            if(selctgrnstatus.equals("Start") || selctgrnstatus.equals("Break"))
-            {
-                testdia.jcomobostat.addItem("Close");
-            }
-            else
-            {
-                 testdia.jcomobostat.addItem("Start");
-            }
- 
-        testdia.updateto = "grntbl";  
-        testdia.setVisible(true); 
-      }
+//         int colval = misstbl.getSelectedColumn();
+//           
+//      int rowval = misstbl.getSelectedRow();
+//      
+//     
+//      
+//      /*Start -  Disable for normal user only*/
+//      
+//      
+//      if(colval == 4 && evt.getClickCount() == 2 )
+//      {
+//           testdia.jcomobostat.removeAllItems();;
+//          
+//            String selctdoctypval = misstbl.getValueAt(rowval, 1).toString();
+//            String selctdocnumval = misstbl.getValueAt(rowval, 2).toString();
+//            String selctdocstatus = misstbl.getValueAt(rowval, 3).toString();
+//            //System.out.println("test"+selctdocstatus);
+//            testdia.doctypset.setText(selctdoctypval);
+//            testdia.docnumset.setText(selctdocnumval);
+//            
+//            testdia.jcomobostat.addItem(selctdocstatus);
+//            if(selctdocstatus.equals("Start") || selctdocstatus.equals("Break"))
+//            {
+//                testdia.jcomobostat.addItem("Close");
+//            }
+//            else
+//            {
+//                 testdia.jcomobostat.addItem("Start");
+//            }
+//           
+//          testdia.updateto = "doctypetbl";
+//          testdia.setVisible(true);
+//      }
+//      if(colval == 4 && evt.getClickCount() == 2 )
+//      {
+//            testdia.jcomobostat.removeAllItems();;
+//            rowval = misstbl.getSelectedRow();
+//            String selctdoctypval = misstbl.getValueAt(rowval, 0).toString();
+//            String selctrgrnval = misstbl.getValueAt(rowval, 2).toString();
+//            String selctgrnstatus = misstbl.getValueAt(rowval, 4).toString();
+//            //System.out.println("test"+selctdocstatus);
+//            testdia.doctypset.setText(selctdoctypval);
+//            testdia.docnumset.setText(selctrgrnval);
+//
+//            testdia.jcomobostat.addItem(selctgrnstatus);
+//            if(selctgrnstatus.equals("Start") || selctgrnstatus.equals("Break"))
+//            {
+//                testdia.jcomobostat.addItem("Close");
+//            }
+//            else
+//            {
+//                 testdia.jcomobostat.addItem("Start");
+//            }
+// 
+//        testdia.updateto = "grntbl";  
+//        testdia.setVisible(true); 
+//      }
          /*End -  Disable for normal user only*/
     }//GEN-LAST:event_misstblMouseClicked
 

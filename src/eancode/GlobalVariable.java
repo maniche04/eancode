@@ -30,10 +30,11 @@ public class GlobalVariable {
     public static String barcodedata = "";
     public static String prevsysname = "";
     public static String usertype = "";
+    public static String dialogname ="";
     public static  Map<String, String> myMap = new HashMap<String, String>();
     
     
-     public SearchEanPanel getSearchobj() {
+    public SearchEanPanel getSearchobj() {
         return Searchobj;
     }
 
@@ -152,7 +153,14 @@ public class GlobalVariable {
        frm.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/eancode/scanimg.png"))); 
     }
      
-   
+   public String getDialogname() {
+        return this.dialogname;
+    }
+
+    public void setDialogname(String dialogname) {
+        this.dialogname = dialogname;
+        
+    }
    
     
    

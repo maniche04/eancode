@@ -52,6 +52,7 @@ public final class GrnPrintSave extends javax.swing.JFrame {
     String mysearch = "";
     int flaginsertupdate = 0;
     String currgrnnumber = "";
+    Object panelget =null;    
     JTable mygrntbl = new JTable();
 
   
@@ -311,28 +312,20 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
             {
                  try {
                    this.setVisible(false);  
-                   
-                   
-                    mygrntbl = gv.getSearchobj().eantbl;
-                        if(mygrntbl  != null)
-                          {
+                   System.out.println("dialogname"+gv.getDialogname());
+                   if(gv.getDialogname().equals("admin"))
+                        {
+                            
+                   mygrntbl = gv.getSearchobj().eantbl;
                    String recvdatetxt1 = ((JTextField)recvdatetxt.getDateEditor().getUiComponent()).getText().trim();
                    JasperGenerator(mygrntbl,compdrop.getSelectedItem().toString(),suppinvctxt.getText().trim(),ctntxt.getText().trim(),grnnumtxt.getText().trim(),grndatetxt.getText().trim(),recvdatetxt1,recvfromtxt.getText().trim());
-                   
-                          }else
-                          {
-                              
+                        }else       
+                        {       
                     mygrntbl = gv.getSearchNormalobj().eantbl;          
                    String recvdatetxt1 = ((JTextField)recvdatetxt.getDateEditor().getUiComponent()).getText().trim();
                    JasperGenerator(mygrntbl, compdrop.getSelectedItem().toString(),suppinvctxt.getText().trim(),ctntxt.getText().trim(),grnnumtxt.getText().trim(),grndatetxt.getText().trim(),recvdatetxt1,recvfromtxt.getText().trim());
-                   
-                              
-                          }
-                              
-                          
-                   
-                                     
-                   
+                        }
+                       
                    } catch (Exception ex) {
                         Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -409,6 +402,11 @@ reporte.setLocationRelativeTo(null);
 map.put("inputtitle",title);//Parameter value is title
 map.put("suppinvoice",suppinvc);
 map.put("ctns",ctn);
+if(grnnum.substring(0, 3).equals("MTN"))
+{
+    grnnum = grnnum.replace("MTN", "LOC");
+    System.out.println("tttt"+grnnum);
+}
 map.put("grnnum",grnnum);
 map.put("grndate",grndate);
 map.put("recddate",recddate);
