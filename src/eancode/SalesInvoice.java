@@ -151,8 +151,7 @@ public class SalesInvoice extends EanHome{
         
         
     String qry1 = "SELECT DISTINCT A.vr_no, A.vr_date, A.br_code, C.br_name, B.acc_code, B.Acc_name, (CASE A.cur_rate WHEN 1 THEN 'AED' ELSE 'USD' END) as currency, A.cur_rate,A.disc_percent,ISNULL(B.particulars,''),ISNULL(B.remarks2,''),B.sales_man, S.salesman_name FROM diczdata A LEFT JOIN dichdata B ON A.trc_code = B.trc_code AND A.vr_no = B.vr_no LEFT JOIN brmas C ON A.br_code = C.br_code LEFT JOIN salesman S ON B.sales_man = S.salesman_code WHERE A.trc_code = '"+trantypestr.trim()+"' AND A.vr_no = '"+suppinvc.getText().trim()+"'";
-   
-    
+
     String qry2 = "SELECT A.sr_no, A.ite_code, B.ite_name, 'PCS' as unit, A.ite_qty, A.ite_rate, A.ite_rate * A.ite_qty as totalprice FROM diczdata A LEFT JOIN dicihmas B on A.ite_code = B.ite_code WHERE A.trc_code = '"+trantypestr.trim()+"' AND A.vr_no = '"+suppinvc.getText().trim()+"' ORDER BY A.sr_no";
     
     Connection epoconnekt = null;
@@ -161,7 +160,7 @@ public class SalesInvoice extends EanHome{
     ResultSet epors = null;   
     ResultSet epors2 = null; 
         try {
-            
+
             epoconnekt =  dbconn.epormisconn();
             epost =  epoconnekt.prepareStatement(qry1);
             epors = epost.executeQuery();
@@ -169,10 +168,9 @@ public class SalesInvoice extends EanHome{
             epors2 = epost2.executeQuery();
             
            
-            
-           
-            if(epors.next())
+        if(epors.next())
             {
+                
                 varno = epors.getString(1);
                 vardate = epors.getString(2);
                 brcode = epors.getString(3);
@@ -186,9 +184,8 @@ public class SalesInvoice extends EanHome{
                 remarks =  epors.getString(11);
                 salesmancode = epors.getString(12);
                 salesmanname =  epors.getString(13);
-                
-                
-            }
+                                
+           }
             
         //clear & fill data in table 
            
@@ -235,6 +232,7 @@ public class SalesInvoice extends EanHome{
  
         
 }
+   
    
     
 public void jasperSalesReport(JTable table,String vrnum,String vrdate,String brcode,String brname,String acccode,String accname,String curr,String currrate, String dispercent,String particular,String headremarks,String salemancode,String salesmanname) throws JRException
@@ -328,14 +326,13 @@ map.put("currtyp","Total DHS :");
 map.put("currtyp","Total USD :");
 }
 
-
 JasperPrint jPrint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("eancode/salesreport.jasper"),map, new JRBeanCollectionDataSource(Resultadospack));
 JRViewer jv = new JRViewer(jPrint);
 reporte.getContentPane().add(jv);
 reporte.setVisible(true);  
      
-    
- }
+ 
+}
     
     
 public void insertviewnumber()

@@ -789,10 +789,7 @@ public  void searchResult()
               pst = connekt.prepareStatement(strupdate);
               pst.executeUpdate();
               
-              
-        
-              
-              
+            
             }
         } catch (Exception ex) {
               Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -1094,7 +1091,7 @@ public void updatetotalqtyonmouseclick()
     public void mouseupdatetotal(java.awt.event.MouseEvent evt)
     {
        
-         int modifiers = evt.getModifiers();
+        int modifiers = evt.getModifiers();
         int rowclick = eantbl.getSelectedRow();
        
        if(eantbl.getColumnName(3).equals("GoodQty") || eantbl.getColumnName(4).equals("Dmg_Box_Qty") || eantbl.getColumnName(5).equals("Dmg_leak_qty") || eantbl.getColumnName(6).equals("Dmg_Brkn_qty"))
@@ -1126,16 +1123,15 @@ public void updatetotalqtyonmouseclick()
                     {gdstr = "0";}
                     else
                     {gdstr = eantbl.getValueAt(rowclick,3).toString().trim();}
-                    
           
                     if(java.util.regex.Pattern.matches("\\d+",gdstr))
                         {
                             //qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
-                            if(qtytot !=  (Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk))
+                        if(qtytot !=  (Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk))
                             {
-//                                eantbl.getModel().setValueAt(colvalue, rowclick, colvalue);
+//eantbl.getModel().setValueAt(colvalue, rowclick, colvalue);
                             }
-                            //eantbl.getModel().setValueAt(qtytot,rowclick,7);   
+//eantbl.getModel().setValueAt(qtytot,rowclick,7);   
                         }
                      else
                         {

@@ -168,6 +168,7 @@ public void updategrntbl() throws Exception
   scanpst.executeUpdate();    
   }
          
+
 public void updatetbl() throws Exception
  {
       
@@ -178,9 +179,11 @@ public void updatetbl() throws Exception
  scanpst.executeUpdate(); 
  
  }
-    /**
-     * @param args the command line arguments
-     */
+
+
+/**
+* @param args the command line arguments
+*/
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

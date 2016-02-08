@@ -11,6 +11,7 @@ package eancode;
 import SearchPack.AutoCompleteDBLink;
 import SearchPack.AutoTextComplete;
 import SearchPack.Popuplist;
+import eancode.helpers.MatImage;
 
 
 //import com.lowagie.text.Document;
@@ -65,6 +66,8 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -89,11 +92,17 @@ public class SearchEanPanelNormal extends javax.swing.JFrame {
     /**
      * Creates new form SearchEanPanel
      */
-    
+     /**
+     * Creates new form SearchEanPanel
+     */
+    MatImage mt = new MatImage();
+    TableRowResizer tblrowresize = new TableRowResizer();
+    TableRowResizerSeltbl tblrowresizeseltbl = new TableRowResizerSeltbl();
     DefaultTableModel currtableModel;
     AutoTextComplete atcdes;
     AutoCompleteDBLink autocdblink;
     DbConnection dbconn = new DbConnection(); 
+    testjd testdia =  new testjd(this,true);
     Connection connekt = null;
     Statement stmt = null;
     PreparedStatement pst =null;
@@ -126,17 +135,34 @@ public class SearchEanPanelNormal extends javax.swing.JFrame {
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     Date date = new Date(); 
     JTable salestable = new JTable();
+    JLabel label1;
+    JLabel label2;
+    int currowval = 0;
+    int rowclick = 0;
+    int currenttotval = 0;
+    ArrayList<Integer> arrlist = new ArrayList<Integer>(100);
+   
+    int increament = 0; 
 
     
       
        
 public SearchEanPanelNormal() {
            
-        initComponents();
-        gv.setAppDefaultImg(this); 
-        updatebtn.setVisible(false);
+         initComponents();
+         
+         
         delrowtbn.setVisible(false);
-
+        
+        gv.setAppDefaultImg(this); 
+        
+        
+        
+        /*ROW HEIGHT EXPAND ON RUN TIME*/
+        tblrowresize.TableRowResizer(eantbl);
+        tblrowresizeseltbl.TableRowResizer(eantbl);
+        /*END OF ROW HEIGHT EXPAND ON RUN TIME*/
+        cancelbtn.setEnabled(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         jScrollPane1.setHorizontalScrollBar(jScrollPane1.createHorizontalScrollBar());
@@ -144,6 +170,7 @@ public SearchEanPanelNormal() {
         atcdes = new AutoTextComplete(eantbl);
         //atcdes.setItems(new String[] {"Cash","Credit","Transfer","Other"});
         atcdes.setActiveColumn(2);
+
      
     }
 
@@ -159,6 +186,7 @@ public SearchEanPanelNormal() {
         popupMenu1 = new java.awt.PopupMenu();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenu1 = new javax.swing.JMenu();
+        cancelbtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         filterdesc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -184,6 +212,7 @@ public SearchEanPanelNormal() {
         jLabel8 = new javax.swing.JLabel();
         filtergrn = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        cancelbtn1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -192,6 +221,13 @@ public SearchEanPanelNormal() {
         popupMenu1.setLabel("popupMenu1");
 
         jMenu1.setText("jMenu1");
+
+        cancelbtn.setText("Cancel");
+        cancelbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelbtnActionPerformed(evt);
+            }
+        });
 
         setTitle("Jizan Scanner");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -274,7 +310,7 @@ public SearchEanPanelNormal() {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -408,6 +444,13 @@ public SearchEanPanelNormal() {
             }
         });
 
+        cancelbtn1.setText("Cancel");
+        cancelbtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelbtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -426,11 +469,7 @@ public SearchEanPanelNormal() {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(filtermaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(filterdesc, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(filtermaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -439,8 +478,14 @@ public SearchEanPanelNormal() {
                         .addComponent(updatebtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(delrowtbn)
-                        .addGap(27, 27, 27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelbtn1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(filterdesc, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -494,7 +539,8 @@ public SearchEanPanelNormal() {
                         .addComponent(updatebtn)
                         .addComponent(delrowtbn)
                         .addComponent(jButton2)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cancelbtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 6, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -656,8 +702,7 @@ public void searchResult()
             Logger.getLogger(SearchEanPanelNormal.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-        
-        
+         
     }//GEN-LAST:event_printsetupbtnActionPerformed
   
     
@@ -678,9 +723,9 @@ public void searchResult()
           eantbl.setEnabled(true);
           
           updatebtn.setText("Save");
-          updatebtn.setBackground(new java.awt.Color(153,255,153));
-          
-          delrowtbn.setBackground(new java.awt.Color(153,255,153));
+          updatebtn.setBackground(new java.awt.Color(204,255,204));
+          eantbl.setBackground(new java.awt.Color(204,255,204));
+          delrowtbn.setBackground(new java.awt.Color(204,255,204));
       }
       else if("Save".equals(evt.getActionCommand()))  
       {
@@ -696,6 +741,40 @@ public void searchResult()
             TableCellEditor seltce = eantbl.getCellEditor(); 
             seltce.stopCellEditing();      
         }
+      
+      
+    /*Start - to check if good, damages item is just enter but not hit tab key */ 
+              
+                      
+         if(eantbl.getValueAt(rowclick,3).toString().equals(""))
+           {qtygd = 0;}
+           else
+           {qtygd = Integer.parseInt(eantbl.getValueAt(rowclick,3).toString().trim());}
+           if(eantbl.getValueAt(rowclick,4).toString().equals(""))
+           {qtybox = 0;}
+           else
+           {qtybox = Integer.parseInt(eantbl.getValueAt(rowclick,4).toString().trim());}
+           if(eantbl.getValueAt(rowclick,5).toString().equals(""))
+           {qtyleak = 0;}
+           else
+           {qtyleak = Integer.parseInt(eantbl.getValueAt(rowclick,5).toString().trim());}
+           if(eantbl.getValueAt(rowclick,6).toString().equals(""))
+           {qtybrk = 0;}
+           else
+           {qtybrk =  Integer.parseInt(eantbl.getValueAt(rowclick,6).toString().trim());}
+           if(eantbl.getValueAt(rowclick,7).toString().equals(""))
+           {qtytot = 0;}
+           else
+           {qtytot = Integer.parseInt(eantbl.getValueAt(rowclick,7).toString().trim());}
+            
+            qtytot = qtygd + qtybox + qtyleak + qtybrk;
+        
+            eantbl.getModel().setValueAt(qtytot,rowclick,7); 
+                      
+              
+    /*End - to check if good, damages item is just enter but not hit tab key */   
+      
+      
       
    /*verify all required fields are filled or not*/ 
         
@@ -726,16 +805,12 @@ public void searchResult()
             String strupdate ="UPDATE eancodetbl SET epromis_material = '" + matcode + "', des = '" + des + "', cond_goodqty  = '"+ gdqty1 + "', cond_dmgboxqty = '"+ dmgboxqty1 + "', cond_dmgleakqty = '"+ dmgleakqty1 + "', cond_dmgbrkqty = '"+ dmgbrknqty1 + "',"
               + " qty = '"+ total + "',contrycode = '"+ contyrorg + "',eancode = '"+ encode +"', weight = '"+ wght + "', remark = '"+ rmrk + "', lotnumber = '"+ lotnum + "', doctype = '" + doctype + "', docnum = '" + docnum + "', grnnum = '" + grnnumstr + "' WHERE id = '" + id + "'";
        
-        
-           
-                
+            
+            pst = connekt.prepareStatement(strupdate);
+            pst.executeUpdate();
               
               
-              pst = connekt.prepareStatement(strupdate);
-              pst.executeUpdate();
-              
-              
-            }
+           }
         } catch (Exception ex) {
               Logger.getLogger(SearchEanPanelNormal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -746,17 +821,97 @@ public void searchResult()
           
          searchResult();
          //eantbl.setEnabled(false);
-         updatebtn.setBackground(new java.awt.Color(255,153,153));
+         updatebtn.setBackground(new java.awt.Color(255,204,204));
          updatebtn.setText("Edit");
-         delrowtbn.setBackground(new java.awt.Color(255,153,153));
+         delrowtbn.setBackground(new java.awt.Color(255,204,204));
+         cancelbtn.setEnabled(false);
+         eantbl.setBackground(new java.awt.Color(255,204,204));
+         eantbl.setForeground(new java.awt.Color(0,0,255));
       }
         
     }//GEN-LAST:event_updatebtnActionPerformed
 
+public void updatetotalqtyonmouseclick()
+{
+     {
+    
+       colvalue = eantbl.getSelectedColumn();
+      
+       if(updatebtn.getText().equals("Save"))
+       {
+       if(eantbl.getColumnName(3).equals("GoodQty") || eantbl.getColumnName(4).equals("Dmg") || eantbl.getColumnName(5).equals("Leak") || eantbl.getColumnName(6).equals("Brkn"))
+       {
+           System.out.println("qty selected");
+           
+           if(eantbl.getValueAt(rowclick,3).toString().equals(""))
+           {qtygd = 0;}
+           else
+           {qtygd = Integer.parseInt(eantbl.getValueAt(rowclick,3).toString().trim());}
+           if(eantbl.getValueAt(rowclick,4).toString().equals(""))
+           {qtybox = 0;}
+           else
+           {qtybox = Integer.parseInt(eantbl.getValueAt(rowclick,4).toString().trim());}
+           if(eantbl.getValueAt(rowclick,5).toString().equals(""))
+           {qtyleak = 0;}
+           else
+           {qtyleak = Integer.parseInt(eantbl.getValueAt(rowclick,5).toString().trim());}
+           if(eantbl.getValueAt(rowclick,6).toString().equals(""))
+           {qtybrk = 0;}
+           else
+           {qtybrk =  Integer.parseInt(eantbl.getValueAt(rowclick,6).toString().trim());}
+           if(eantbl.getValueAt(rowclick,7).toString().equals(""))
+           {qtytot = 0;}
+           else
+           {qtytot = Integer.parseInt(eantbl.getValueAt(rowclick,7).toString().trim());}
+               
+   if(currowval == rowval)
+     {
+    if(colvalue == 3 || colvalue == 4 || colvalue == 5 || colvalue == 6 || colvalue == 7)
+        {
+             if(eantbl.getValueAt(rowclick,3).toString().equals(""))
+                  {gdstr = "0";}
+                    else
+                    {gdstr = eantbl.getValueAt(rowclick,3).toString().trim();}
+                    
+            if (Integer.parseInt(gdstr) > 0 || qtybox > 0 ||  qtyleak > 0 || qtybrk > 0)
+                    {
+                    if(java.util.regex.Pattern.matches("\\d+",gdstr))
+                        {
+                          System.out.println("test 321"+ qtybrk);
+                          qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
+                          if(qtytot > 0)
+                          {
+                        
+                          eantbl.getModel().setValueAt(qtytot,rowclick,7); 
+                        
+                          }
+                        }
+                     else
+                        {
+                           System.out.println("test 321 test");
+                                qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
+                            if(qtytot > 0)
+                                {
+                            eantbl.getModel().setValueAt(qtygd,rowclick,3);
+                             
+                                }
+                        }     
+                    }
+           } 
+    
+        }
+       }
+       }
+       }
+       
+       
+     System.out.println("current selected row is "+ rowclick);
+}    
+    
  
  public void updatetatalqty(java.awt.event.KeyEvent evt)
  {
-      int rowclick = eantbl.getSelectedRow();
+     colvalue = eantbl.getSelectedColumn();
        if (updatebtn.getText().equals("Save"))
        {
        if(eantbl.getColumnName(3).equals("GoodQty") || eantbl.getColumnName(4).equals("Dmg_Box_Qty") || eantbl.getColumnName(5).equals("Dmg_leak_qty") || eantbl.getColumnName(6).equals("Dmg_Brkn_qty"))
@@ -785,27 +940,76 @@ public void searchResult()
                
      
     
-           if(evt.getKeyCode()== KeyEvent.VK_TAB || evt.getKeyCode()== KeyEvent.VK_ENTER || evt.getKeyCode()== KeyEvent.VK_LEFT || evt.getKeyCode()== KeyEvent.VK_RIGHT ||  evt.getKeyCode()== KeyEvent.VK_DOWN || evt.getKeyCode()== KeyEvent.VK_UP)
+    if(currowval == rowval)
+     {
+    if(colvalue == 3 || colvalue == 4 || colvalue == 5 || colvalue == 6 || colvalue == 7)
+        {
+            System.out.println("colvalue........."+colvalue);
+            
+          if(evt.getKeyCode()== KeyEvent.VK_TAB || evt.getKeyCode()== KeyEvent.VK_ENTER || evt.getKeyCode()== KeyEvent.VK_LEFT || evt.getKeyCode()== KeyEvent.VK_RIGHT ||  evt.getKeyCode()== KeyEvent.VK_DOWN || evt.getKeyCode()== KeyEvent.VK_UP)
            {
-                    if(eantbl.getValueAt(rowclick,3).toString().equals(""))
-                    {gdstr = "0";}
+               if(eantbl.getValueAt(rowclick,3).toString().equals(""))
+                  {gdstr = "0";}
                     else
                     {gdstr = eantbl.getValueAt(rowclick,3).toString().trim();}
                     
-          
-                    if(java.util.regex.Pattern.matches("\\d+",gdstr))
-                        {
-                            qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
-                            eantbl.getModel().setValueAt(qtytot,rowclick,7);   
-                        }
-                     else
-                        {
-                            eantbl.getModel().setValueAt(qtygd,rowclick,3);  
+               //System.out.println("good , box, leak, brkn"+Integer.parseInt(gdstr)+"  "+ qtybox + "  " + qtyleak + " "+ qtybrk);
+                  
+               if (Integer.parseInt(gdstr) > 0 || qtybox > 0 ||  qtyleak > 0 || qtybrk > 0)
+                    {
+                            if(java.util.regex.Pattern.matches("\\d+",gdstr))
+                                    {
+                                      System.out.println("test 321"+ qtybrk);
+                                      qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
+                                      if(qtytot > 0 )
+                                      {
+                                      
+                                      eantbl.getModel().setValueAt(qtytot,rowclick,7);
+                                     
+                                      
+                                      
+                                      
+                                      //eantbl.setDefaultRenderer(Object.class,new ColorCellRender());  
+                                      }
+                                    }
+                            else
+                                    {
+                                      System.out.println("test 321 test");
+                                      qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
+                                      if(qtytot > 0)
+                                        {
+                                      eantbl.getModel().setValueAt(qtygd,rowclick,3); 
+                                     
+                                    
+                                         }
                         }     
                     }
-                  
+                  }  
+                 
+                }
+        
+    try {
+          currenttotval =  mt.currentTotal(Integer.parseInt(eantbl.getModel().getValueAt(rowclick,0).toString()));
+          System.out.println("current row total"+currenttotval);
+//currenttotval = Integer.parseInt(eantbl.getModel().getValueAt(currowval, 7).toString().trim());
+        } catch (Exception ex) {
+            Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    if(currenttotval!=qtytot)
+          {
+              TableCellRenderer tcr = new PositiveNumber(currowval);
+              TableColumn column = eantbl.getColumnModel().getColumn(7);  
+              column.setCellRenderer(tcr);  
+              
+              arrlist.add(currowval);
+               
+             
+              System.out.println("value to pushed"+currowval);
+            
+             
+          }
+        }
        }
-       
        }
        else
        {
@@ -813,9 +1017,7 @@ public void searchResult()
             
        }
        
-       
-           
-           System.out.println("current selected row is "+ rowclick);
+     System.out.println("current selected row is "+ rowclick);
  }
     
     
@@ -824,7 +1026,7 @@ public void searchResult()
     private void eantblKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eantblKeyReleased
         // TODO add your handling code here:
         
-     updatetatalqty(evt);
+      updatetatalqty(evt);
      
       rowval = eantbl.getSelectedRow();
       colvalue = eantbl.getSelectedColumn();
@@ -834,12 +1036,12 @@ public void searchResult()
                 
      if (evt.getKeyCode() == KeyEvent.VK_DELETE || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_LEFT || evt.getKeyCode() == KeyEvent.VK_RIGHT || evt.getKeyCode() == KeyEvent.VK_DOWN || evt.getKeyCode() == KeyEvent.VK_UP)
         {
-//            flag = true;
-////            //eantbl.getSelectionModel().clearSelection();
+//   flag = true;
+//// eantbl.getSelectionModel().clearSelection();
 ////  
-////            //DefaultTableModel dm = (DefaultTableModel) .getModel();
+//// DefaultTableModel dm = (DefaultTableModel) .getModel();
 ////   
-////            eantbl.getModel().setValueAt("asdf",rowval,2);
+//// eantbl.getModel().setValueAt("asdf",rowval,2);
 ////            System.out.println("delete pressed!" + rowval);
 //           
 //        
@@ -933,19 +1135,19 @@ public void searchResult()
            else
            {qtytot = Integer.parseInt(eantbl.getValueAt(rowclick,7).toString().trim());}
                
-     
-    
-           
-                    if(eantbl.getValueAt(rowclick,3).toString().equals(""))
+                 if(eantbl.getValueAt(rowclick,3).toString().equals(""))
                     {gdstr = "0";}
                     else
                     {gdstr = eantbl.getValueAt(rowclick,3).toString().trim();}
-                    
           
                     if(java.util.regex.Pattern.matches("\\d+",gdstr))
                         {
-                            qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
-                            eantbl.getModel().setValueAt(qtytot,rowclick,7);   
+                            //qtytot = Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk;
+                        if(qtytot !=  (Integer.parseInt(gdstr) + qtybox + qtyleak + qtybrk))
+                            {
+//eantbl.getModel().setValueAt(colvalue, rowclick, colvalue);
+                            }
+//eantbl.getModel().setValueAt(qtytot,rowclick,7);   
                         }
                      else
                         {
@@ -954,10 +1156,8 @@ public void searchResult()
                    
                   
        }
-       
-      
-           
-           System.out.println("current selected row is "+ rowclick);
+         
+       System.out.println("current selected row is "+ rowclick); 
         
     }
     
@@ -965,7 +1165,11 @@ public void searchResult()
     
     private void eantblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eantblMouseClicked
         // TODO add your handling code here:
+      updatetotalqtyonmouseclick();  
+       
       int colval = eantbl.getSelectedColumn();
+           
+      rowval = eantbl.getSelectedRow();
       
       if(colval == 0)
       {
@@ -978,7 +1182,59 @@ public void searchResult()
            eantbl.setRowSelectionAllowed(false); 
            eantbl.setCellSelectionEnabled(true);
       }
-        
+      
+      /*Start -  Disable for normal user only*/
+      
+      
+//      if(colval == 16 && evt.getClickCount() == 2 && !eantbl.getValueAt(rowval, 16).toString().equalsIgnoreCase("Null") && updatebtn.getText().equals("Save"))
+//      {
+//           testdia.jcomobostat.removeAllItems();;
+//          
+//            String selctdoctypval = eantbl.getValueAt(rowval, 13).toString();
+//            String selctdocnumval = eantbl.getValueAt(rowval, 14).toString();
+//            String selctdocstatus = eantbl.getValueAt(rowval, 16).toString();
+//            //System.out.println("test"+selctdocstatus);
+//            testdia.doctypset.setText(selctdoctypval);
+//            testdia.docnumset.setText(selctdocnumval);
+//            
+//            testdia.jcomobostat.addItem(selctdocstatus);
+//            if(selctdocstatus.equals("Start") || selctdocstatus.equals("Break"))
+//            {
+//                testdia.jcomobostat.addItem("Close");
+//            }
+//            else
+//            {
+//                 testdia.jcomobostat.addItem("Start");
+//            }
+//           
+//          testdia.updateto = "doctypetbl";
+//          testdia.setVisible(true);
+//      }
+//      if(colval == 17 && evt.getClickCount() == 2 && !eantbl.getValueAt(rowval, 16).toString().equalsIgnoreCase("Null") && updatebtn.getText().equals("Save"))
+//      {
+//            testdia.jcomobostat.removeAllItems();;
+//            rowval = eantbl.getSelectedRow();
+//            String selctdoctypval = eantbl.getValueAt(rowval, 13).toString();
+//            String selctrgrnval = eantbl.getValueAt(rowval, 15).toString();
+//            String selctgrnstatus = eantbl.getValueAt(rowval, 17).toString();
+//            //System.out.println("test"+selctdocstatus);
+//            testdia.doctypset.setText(selctdoctypval);
+//            testdia.docnumset.setText(selctrgrnval);
+//
+//            testdia.jcomobostat.addItem(selctgrnstatus);
+//            if(selctgrnstatus.equals("Start") || selctgrnstatus.equals("Break"))
+//            {
+//                testdia.jcomobostat.addItem("Close");
+//            }
+//            else
+//            {
+//                 testdia.jcomobostat.addItem("Start");
+//            }
+// 
+//        testdia.updateto = "grntbl";  
+//        testdia.setVisible(true); 
+//      }
+         /*End -  Disable for normal user only*/
        
     }//GEN-LAST:event_eantblMouseClicked
 
@@ -999,7 +1255,10 @@ public void searchResult()
     }//GEN-LAST:event_eantblKeyTyped
 
     private void eantblKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eantblKeyPressed
-        // TODO add your handling code here:
+        //TODO add your handling code here:
+            colvalue = eantbl.getSelectedColumn();
+            rowclick  = eantbl.getSelectedRow();
+            currowval = rowclick;
 
         
     }//GEN-LAST:event_eantblKeyPressed
@@ -1023,18 +1282,18 @@ public void deleterow()
                }
             String delrow = "delete from eancodetbl where id IN ("+ ids +")";
             
-             
-        try {
+    try{
         connekt =  dbconn.conn();
         pst = connekt.prepareStatement(delrow);
         pst.executeUpdate();
         searchResult();
         } catch (ClassNotFoundException ex) {
-        Logger.getLogger(SearchEanPanelNormal.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
-        Logger.getLogger(SearchEanPanelNormal.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
     }
-            }
+        }
+           
 }
     
     
@@ -1042,19 +1301,24 @@ public void deleterow()
     
     private void delrowtbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delrowtbnActionPerformed
         // TODO add your handling code here:
-        if(evt.getActionCommand().equals("Edit"))
+        // TODO add your handling code here:
+        if(updatebtn.getText().equals("Edit"))
         {
-           JOptionPane.showMessageDialog(this,"Not in Edit mode!");  
+           JOptionPane.showMessageDialog(this,"Make in edit mode!");  
         }
-        else
+        else 
         {
-           if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
-        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {  
+           
+           
+        if(JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) { 
         deleterow();
         eantbl.setEnabled(false);
-        updatebtn.setBackground(new java.awt.Color(255,153,153));
+        updatebtn.setBackground(new java.awt.Color(255,204,204));
         updatebtn.setText("Edit");
-        delrowtbn.setBackground(new java.awt.Color(255,153,153));
+        delrowtbn.setBackground(new java.awt.Color(255,204,204));   
+        eantbl.setBackground(new java.awt.Color(255,204,204));
+        eantbl.setForeground(new java.awt.Color(0,0,255));
            }
            else
            {
@@ -1066,7 +1330,7 @@ public void deleterow()
 
  public void textlistner(final JTextField jtx)
  {
-     jtx.addFocusListener(new java.awt.event.FocusAdapter() {
+    jtx.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
             jtx.setText("");
             }
@@ -1080,15 +1344,13 @@ public void deleterow()
 
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-//TODO add your handling code here:   
-SwingUtilities.invokeLater(new Runnable() {
-public void run() {
-         
-    StickerPrint stck = new  StickerPrint();
-    stck.setVisible(true);
-     
-     }
-   });
+ // TODO add your handling code here:
+        SwingUtilities.invokeLater(new Runnable() {
+      public void run() {
+     StickerPrint stck = new  StickerPrint();
+     stck.setVisible(true);
+      }
+    });
   
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -1164,10 +1426,26 @@ public void run() {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
+        //TODO add your handling code here:
+        
+
+    }//GEN-LAST:event_cancelbtnActionPerformed
+
+    private void cancelbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtn1ActionPerformed
+        //TODO add your handling code here:
+        searchResult();
+
+        updatebtn.setBackground(new java.awt.Color(255,204,204));
+        updatebtn.setText("Edit");
+        delrowtbn.setBackground(new java.awt.Color(255,204,204));
+        cancelbtn.setEnabled(false);
+        eantbl.setBackground(new java.awt.Color(255,204,204));
+        eantbl.setForeground(new java.awt.Color(0,0,255));
+        
+    }//GEN-LAST:event_cancelbtn1ActionPerformed
 
 
-  
-   
 public void myMethod(JTable entryTable) throws Exception {
      
 String result = "";
@@ -1306,6 +1584,12 @@ public String stringstat(String str)
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1316,6 +1600,8 @@ public String stringstat(String str)
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelbtn;
+    private javax.swing.JButton cancelbtn1;
     private javax.swing.JButton delrowtbn;
     public javax.swing.JTable eantbl;
     private javax.swing.JTextField filtercountryorigin;

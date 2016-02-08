@@ -72,6 +72,8 @@ public EanHome() {
 loginusername.setText(gv.getGlobusername());
 //End-to confirm defore closing the application
 
+sales.setVisible(false);
+
     }
 
         

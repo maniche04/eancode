@@ -24,6 +24,7 @@ import javax.swing.table.TableCellEditor;
  *
  * @author santosh
  */
+
 public class SalePrintManager extends javax.swing.JFrame {
 
     /**
@@ -172,12 +173,13 @@ public class SalePrintManager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    // TODO add your handling code here:
+
         searchResult();
-        
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
          SalesInvoice saleinv = new SalesInvoice();
@@ -273,10 +275,11 @@ Component co = currtbl.getEditorComponent();
     rs = null; 
       
       try {
+          
         connekt =  dbconn.conn();
         pst = connekt.prepareStatement(currsear);
         rs = pst.executeQuery();
-        
+
         while(currtbl.getRowCount() > 0) 
         {
           ((DefaultTableModel) currtbl.getModel()).removeRow(0);
@@ -286,16 +289,16 @@ Component co = currtbl.getEditorComponent();
         
         while(rs.next())
           {  
-              Object[] row = new Object[columns];
               
-              for (int i = 1; i <= columns; i++)
-                    {  
-               row[i - 1] = rs.getObject(i).toString().trim();
-                   }
-                   
-              ((DefaultTableModel) currtbl.getModel()).insertRow(rs.getRow()-1,row);
-      
-        }
+            Object[] row = new Object[columns];
+  
+            for (int i = 1; i <= columns; i++)
+               {  
+             row[i - 1] = rs.getObject(i).toString().trim();
+               }
+            ((DefaultTableModel) currtbl.getModel()).insertRow(rs.getRow()-1,row);
+            
+          }
           
      }catch (ClassNotFoundException ex) {
         Logger.getLogger(SearchEanPanelNormal.class.getName()).log(Level.SEVERE, null, ex);
@@ -307,7 +310,7 @@ Component co = currtbl.getEditorComponent();
         }
 }
       
-    
+ 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -321,4 +324,6 @@ Component co = currtbl.getEditorComponent();
     private javax.swing.JTable printerview;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
+
+
 }
