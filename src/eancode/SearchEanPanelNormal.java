@@ -310,7 +310,7 @@ public SearchEanPanelNormal() {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, true, true, true, true, false, false, false, false, true, true, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -353,19 +353,23 @@ public SearchEanPanelNormal() {
             eantbl.getColumnModel().getColumn(0).setMinWidth(30);
             eantbl.getColumnModel().getColumn(0).setPreferredWidth(30);
             eantbl.getColumnModel().getColumn(0).setMaxWidth(30);
-            eantbl.getColumnModel().getColumn(1).setMinWidth(80);
-            eantbl.getColumnModel().getColumn(1).setPreferredWidth(80);
-            eantbl.getColumnModel().getColumn(1).setMaxWidth(80);
-            eantbl.getColumnModel().getColumn(2).setPreferredWidth(200);
+            eantbl.getColumnModel().getColumn(1).setMinWidth(100);
+            eantbl.getColumnModel().getColumn(1).setPreferredWidth(100);
+            eantbl.getColumnModel().getColumn(1).setMaxWidth(100);
+            eantbl.getColumnModel().getColumn(2).setCellEditor(new TextAreaEditor());
+            eantbl.getColumnModel().getColumn(2).setCellRenderer(new TextAreaRenderer());
             eantbl.getColumnModel().getColumn(3).setMinWidth(40);
             eantbl.getColumnModel().getColumn(3).setPreferredWidth(40);
             eantbl.getColumnModel().getColumn(3).setMaxWidth(40);
-            eantbl.getColumnModel().getColumn(5).setMinWidth(40);
-            eantbl.getColumnModel().getColumn(5).setPreferredWidth(40);
-            eantbl.getColumnModel().getColumn(5).setMaxWidth(40);
-            eantbl.getColumnModel().getColumn(6).setMinWidth(40);
-            eantbl.getColumnModel().getColumn(6).setPreferredWidth(40);
-            eantbl.getColumnModel().getColumn(6).setMaxWidth(40);
+            eantbl.getColumnModel().getColumn(4).setMinWidth(30);
+            eantbl.getColumnModel().getColumn(4).setPreferredWidth(30);
+            eantbl.getColumnModel().getColumn(4).setMaxWidth(30);
+            eantbl.getColumnModel().getColumn(5).setMinWidth(30);
+            eantbl.getColumnModel().getColumn(5).setPreferredWidth(30);
+            eantbl.getColumnModel().getColumn(5).setMaxWidth(30);
+            eantbl.getColumnModel().getColumn(6).setMinWidth(30);
+            eantbl.getColumnModel().getColumn(6).setPreferredWidth(30);
+            eantbl.getColumnModel().getColumn(6).setMaxWidth(30);
             eantbl.getColumnModel().getColumn(7).setMinWidth(40);
             eantbl.getColumnModel().getColumn(7).setPreferredWidth(40);
             eantbl.getColumnModel().getColumn(7).setMaxWidth(40);
@@ -390,9 +394,8 @@ public SearchEanPanelNormal() {
             eantbl.getColumnModel().getColumn(14).setMinWidth(70);
             eantbl.getColumnModel().getColumn(14).setPreferredWidth(70);
             eantbl.getColumnModel().getColumn(14).setMaxWidth(70);
-            eantbl.getColumnModel().getColumn(15).setMinWidth(100);
-            eantbl.getColumnModel().getColumn(15).setPreferredWidth(100);
-            eantbl.getColumnModel().getColumn(15).setMaxWidth(100);
+            eantbl.getColumnModel().getColumn(15).setMinWidth(110);
+            eantbl.getColumnModel().getColumn(15).setMaxWidth(110);
             eantbl.getColumnModel().getColumn(16).setMinWidth(40);
             eantbl.getColumnModel().getColumn(16).setPreferredWidth(40);
             eantbl.getColumnModel().getColumn(16).setMaxWidth(40);

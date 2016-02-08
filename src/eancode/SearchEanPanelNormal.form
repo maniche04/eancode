@@ -322,8 +322,8 @@
                         <Column editable="false" title="Origin" type="java.lang.String"/>
                         <Column editable="false" title="eancode" type="java.lang.String"/>
                         <Column editable="false" title="Weight" type="java.lang.String"/>
-                        <Column editable="false" title="Remark" type="java.lang.String"/>
-                        <Column editable="false" title="lotnumber" type="java.lang.String"/>
+                        <Column editable="true" title="Remark" type="java.lang.String"/>
+                        <Column editable="true" title="lotnumber" type="java.lang.String"/>
                         <Column editable="false" title="doctype" type="java.lang.String"/>
                         <Column editable="false" title="docnum" type="java.lang.String"/>
                         <Column editable="false" title="grnnum" type="java.lang.String"/>
@@ -338,32 +338,36 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="80" minWidth="80" prefWidth="80" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="40" minWidth="40" prefWidth="40" resizable="true">
+                        <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
-                          <Editor/>
-                          <Renderer/>
+                          <Editor editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                            <Connection code="new TextAreaEditor()" type="code"/>
+                          </Editor>
+                          <Renderer editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                            <Connection code="new TextAreaRenderer()" type="code"/>
+                          </Renderer>
                         </Column>
                         <Column maxWidth="40" minWidth="40" prefWidth="40" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="40" minWidth="40" prefWidth="40" resizable="true">
+                        <Column maxWidth="30" minWidth="30" prefWidth="30" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="30" minWidth="30" prefWidth="30" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="30" minWidth="30" prefWidth="30" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -408,7 +412,7 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                        <Column maxWidth="110" minWidth="110" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
