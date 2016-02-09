@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="742e15e7-3903-4009-87ad-906887cbc93e">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="68"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="inputtitle" class="java.lang.String"/>
 	<parameter name="suppinvoice" class="java.lang.String"/>
 	<parameter name="ctns" class="java.lang.String"/>
@@ -19,6 +19,7 @@
 	<parameter name="preparedby" class="java.lang.String"/>
 	<parameter name="note" class="java.lang.String"/>
 	<parameter name="notelbl" class="java.lang.String"/>
+	<parameter name="doctypelbl" class="java.lang.String"/>
 	<field name="srno" class="java.lang.String"/>
 	<field name="description" class="java.lang.String"/>
 	<field name="good" class="java.lang.String"/>
@@ -75,8 +76,8 @@
 				<text><![CDATA[RECEIVED FROM :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="176" y="9" width="84" height="20" uuid="8451e082-d00b-464d-bb2c-d6a0de71dad5"/>
-				<text><![CDATA[Ducument num#]]></text>
+				<reportElement x="229" y="9" width="31" height="20" uuid="8451e082-d00b-464d-bb2c-d6a0de71dad5"/>
+				<text><![CDATA[num#]]></text>
 			</staticText>
 			<line>
 				<reportElement x="262" y="5" width="1" height="50" uuid="afc42928-af8b-4f2e-9bde-39fbdf29ab51"/>
@@ -135,6 +136,10 @@
 					<font fontName="Segoe UI" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{recvtitle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="9" width="52" height="20" uuid="e939ea95-1ebc-4076-9711-62d463b61fd6"/>
+				<textFieldExpression><![CDATA[$P{doctypelbl}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

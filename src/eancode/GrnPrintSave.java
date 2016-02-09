@@ -432,6 +432,19 @@ if(grnnum.substring(0, 3).equals("MTN"))
 {
     grnnum = grnnum.replace("MTN", "LOC");
     System.out.println("tttt"+grnnum);
+    map.put("doctypelbl","MTN");
+    
+}else if ( grnnum.substring(0, 3).equals("LGR"))
+{
+   grnnum = grnnum.replace("LGR", "LOC");
+   System.out.println("tttt"+grnnum);
+   map.put("doctypelbl","LGR");
+    
+}else
+{
+  grnnum = grnnum.replace("AR", "LOC");
+  System.out.println("tttt"+grnnum);  
+  map.put("doctypelbl","AR");
 }
 map.put("grnnum",grnnum);
 map.put("grndate",grndate);
