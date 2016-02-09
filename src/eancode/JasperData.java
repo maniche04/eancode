@@ -10,14 +10,14 @@ package eancode;
  * @author santosh
  */
 public class JasperData {
-    String srno,description,remark,good,box,leak,brkn,total,orig,eancode,wgt;
+    String srno,description,remark,good,box,leak,brkn,total,orig,eancode,wgt,lotnum;
 
     
 
    
 
     
-    public JasperData(String srno, String description, String remark, String good, String box, String leak, String brkn, String total, String orig, String eancode,String wgt) {
+    public JasperData(String srno, String description, String remark, String good, String box, String leak, String brkn, String total, String orig, String eancode,String wgt, String lotnum) {
         this.srno = srno;
         this.description = description;
         this.good = good;
@@ -29,6 +29,7 @@ public class JasperData {
         this.eancode = eancode;
         this.wgt = wgt;
         this.remark = remark;
+        this.lotnum = lotnum;
        
     }
 
@@ -126,6 +127,12 @@ public class JasperData {
         this.eancode = eancode;
     }
 
-    
+     public String getlotnum() {
+        return lotnum;
+    }
+
+    public void setlotnum(String lotnum) {
+        this.lotnum = lotnum;
+    }
     
 }

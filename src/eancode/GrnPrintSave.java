@@ -99,7 +99,7 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
   {
       
  //if exist -> fill(select) and save(update) else not exist -> save(insert) 
-    String docstat = "select TOP 1 grnnumber, compname, receivefrom, suppinvc, ctnnum, grndate,recvdate from grndetailstbl Where grnnumber = '" + grnnum + "'";
+    String docstat = "select TOP 1 grnnumber, compname, receivefrom, suppinvc, ctnnum, grndate,recvdate,Comment from grndetailstbl Where grnnumber = '" + grnnum + "'";
     System.out.println("tttt" + docstat); 
     connekt =  dbconn.conn();
     pst = connekt.prepareStatement(docstat);
@@ -116,15 +116,14 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
        grndatetxt.setText(rs.getString("grndate").trim()); 
        String dateValue = rs.getString("recvdate").trim(); // What ever column
        java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(dateValue);
+       nottxtarea.setText(rs.getString("Comment").trim());
        recvdatetxt.setDate(date); 
        return 1;
-       
      } 
    else
      {
    return 0;
      }  
-     
  } 
      
 
@@ -155,6 +154,9 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         compdrop = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        nottxtarea = new javax.swing.JTextArea();
 
         setResizable(false);
 
@@ -162,7 +164,7 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
 
         jLabel2.setText("Receive From:");
 
-        jLabel3.setText("Supp. Invoice:");
+        jLabel3.setText("Doc no.:");
 
         jLabel4.setText("CTN:");
 
@@ -203,54 +205,69 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
             }
         });
 
+        jLabel9.setText("Note :");
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        nottxtarea.setColumns(20);
+        nottxtarea.setRows(5);
+        nottxtarea.setWrapStyleWord(true);
+        nottxtarea.setAutoscrolls(false);
+        jScrollPane1.setViewportView(nottxtarea);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addGap(23, 23, 23))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4))
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel3))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(compdrop, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(grndatetxt)
-                    .addComponent(grnnumtxt)
-                    .addComponent(ctntxt)
-                    .addComponent(suppinvctxt)
-                    .addComponent(recvfromtxt)
-                    .addComponent(recvdatetxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(compdrop, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(grndatetxt)
+                                .addComponent(grnnumtxt)
+                                .addComponent(ctntxt)
+                                .addComponent(suppinvctxt)
+                                .addComponent(recvfromtxt)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(recvdatetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1)
                     .addComponent(jLabel8))
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(compdrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -276,9 +293,13 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
                     .addComponent(grndatetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(recvdatetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -318,12 +339,12 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
                             
                    mygrntbl = gv.getSearchobj().eantbl;
                    String recvdatetxt1 = ((JTextField)recvdatetxt.getDateEditor().getUiComponent()).getText().trim();
-                   JasperGenerator(mygrntbl,compdrop.getSelectedItem().toString(),suppinvctxt.getText().trim(),ctntxt.getText().trim(),grnnumtxt.getText().trim(),grndatetxt.getText().trim(),recvdatetxt1,recvfromtxt.getText().trim());
+                   JasperGenerator(mygrntbl,compdrop.getSelectedItem().toString(),suppinvctxt.getText().trim(),ctntxt.getText().trim(),grnnumtxt.getText().trim(),grndatetxt.getText().trim(),recvdatetxt1,recvfromtxt.getText().trim(),nottxtarea.getText().trim());
                         }else       
                         {       
                     mygrntbl = gv.getSearchNormalobj().eantbl;          
                    String recvdatetxt1 = ((JTextField)recvdatetxt.getDateEditor().getUiComponent()).getText().trim();
-                   JasperGenerator(mygrntbl, compdrop.getSelectedItem().toString(),suppinvctxt.getText().trim(),ctntxt.getText().trim(),grnnumtxt.getText().trim(),grndatetxt.getText().trim(),recvdatetxt1,recvfromtxt.getText().trim());
+                   JasperGenerator(mygrntbl, compdrop.getSelectedItem().toString(),suppinvctxt.getText().trim(),ctntxt.getText().trim(),grnnumtxt.getText().trim(),grndatetxt.getText().trim(),recvdatetxt1,recvfromtxt.getText().trim(),nottxtarea.getText().trim());
                         }
                        
                    } catch (Exception ex) {
@@ -339,7 +360,7 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
      
     }//GEN-LAST:event_compdropItemStateChanged
 
-public void JasperGenerator(JTable table,String title, String suppinvc,String ctn,String grnnum,String grndate,String recddate, String titlecompsec) throws JRException
+public void JasperGenerator(JTable table,String title, String suppinvc,String ctn,String grnnum,String grndate,String recddate, String titlecompsec,String notetxt) throws JRException
 {
  
 int intval = 0;    
@@ -374,7 +395,7 @@ grdtotbrkn = grdtotbrkn + totbrknval;
 grdtotval = table.getModel().getValueAt(start,7).equals("") ? intval : Integer.parseInt(String.valueOf(table.getValueAt(start,7)));
 grandtotal = grandtotal + grdtotval;
 
-collectdate = new JasperData( String.valueOf(countitem++), //table.getValueAt(start,2)
+collectdate = new JasperData(String.valueOf(countitem++), //table.getValueAt(start,2)
                        String.valueOf(table.getValueAt(start,2)),
                        String.valueOf(table.getValueAt(start,11)),  
                        String.valueOf(table.getValueAt(start,3)),
@@ -384,7 +405,8 @@ collectdate = new JasperData( String.valueOf(countitem++), //table.getValueAt(st
                        String.valueOf(table.getValueAt(start,7)), //total
                        String.valueOf(table.getValueAt(start,8)), 
                        String.valueOf(table.getValueAt(start,9)),
-                       String.valueOf(table.getValueAt(start,10)));
+                       String.valueOf(table.getValueAt(start,10)),
+                       String.valueOf(table.getValueAt(start,12)));
 
 //grandtotal = grandtotal + Integer.parseInt(String.valueOf(table.getValueAt(start,7)));
 Resultados.add(collectdate);
@@ -398,7 +420,11 @@ reporte.setSize(900,700);
 reporte.setLocationRelativeTo(null);
 
 //reorte.setTtile("Reporte asdf");
-
+if(notetxt.length() > 0)
+{
+    map.put("notelbl","Note:");
+    map.put("note",notetxt);
+}
 map.put("inputtitle",title);//Parameter value is title
 map.put("suppinvoice",suppinvc);
 map.put("ctns",ctn);
@@ -447,10 +473,12 @@ public void NewGrnInfo() throws Exception
        String recvstr = recvfromtxt.getText(); 
        String suppstr = suppinvctxt.getText(); 
        String ctnnum = ctntxt.getText(); 
+       String notestr = nottxtarea.getText();
        String receivedate = ((JTextField)recvdatetxt.getDateEditor().getUiComponent()).getText().trim();
        
+       
     
-String addnewgrnstat = "insert into grndetailstbl(grnnumber, compname, receivefrom, suppinvc, ctnnum, grndate,recvdate) values ('"+ grnnumtxt.getText().trim() +"','" + comptitle + "','"+recvstr+"','"+suppstr+"','"+ctnnum+"','"+grndatetxt.getText().trim()+"','"+receivedate+"')";
+String addnewgrnstat = "insert into grndetailstbl(grnnumber, compname, receivefrom, suppinvc, ctnnum, grndate,recvdate,Comment) values ('"+ grnnumtxt.getText().trim() +"','" + comptitle + "','"+recvstr+"','"+suppstr+"','"+ctnnum+"','"+grndatetxt.getText().trim()+"','"+receivedate+"','"+notestr+"')";
       System.out.println(addnewgrnstat);
       pst = connekt.prepareStatement(addnewgrnstat);
       pst.executeUpdate();   
@@ -460,7 +488,7 @@ String addnewgrnstat = "insert into grndetailstbl(grnnumber, compname, receivefr
 public void updateGrnvalues(String grnnum) throws Exception
  {
     String receivedate = ((JTextField)recvdatetxt.getDateEditor().getUiComponent()).getText().trim();
-    String updategrnstr ="UPDATE grndetailstbl SET compname = '" +  compdrop.getSelectedItem().toString() + "', receivefrom = '" +recvfromtxt.getText().trim() +"', suppinvc = '"+suppinvctxt.getText().trim()+"', ctnnum = '"+ctntxt.getText().trim()+"', grndate = '"+grnnumtxt.getText().trim()+"', recvdate = '"+receivedate+"'  WHERE grnnumber = '" + grnnum + "'"; 
+    String updategrnstr ="UPDATE grndetailstbl SET compname = '" +  compdrop.getSelectedItem().toString() + "', receivefrom = '" +recvfromtxt.getText().trim() +"', suppinvc = '"+suppinvctxt.getText().trim()+"', ctnnum = '"+ctntxt.getText().trim()+"', grndate = '"+grnnumtxt.getText().trim()+"', recvdate = '"+receivedate+"', Comment = '"+nottxtarea.getText()+"'  WHERE grnnumber = '" + grnnum + "'"; 
     System.out.println(updategrnstr);
     pst = connekt.prepareStatement(updategrnstr);
     pst.executeUpdate();  
@@ -523,6 +551,9 @@ public static void main(String args[]) {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea nottxtarea;
     private com.toedter.calendar.JDateChooser recvdatetxt;
     private javax.swing.JTextField recvfromtxt;
     private javax.swing.JTextField suppinvctxt;
