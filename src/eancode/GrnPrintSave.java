@@ -99,7 +99,7 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
   {
       
  //if exist -> fill(select) and save(update) else not exist -> save(insert) 
-    String docstat = "select TOP 1 grnnumber, compname, receivefrom, suppinvc, ctnnum, grndate,recvdate,Comment from grndetailstbl Where grnnumber = '" + grnnum + "'";
+    String docstat = "select TOP 1 grnnumber, compname, receivefrom, suppinvc, ctnnum, grndate,recvdate,ISNULL(Comment,'') as Comment from grndetailstbl Where grnnumber = '" + grnnum + "'";
     System.out.println("tttt" + docstat); 
     connekt =  dbconn.conn();
     pst = connekt.prepareStatement(docstat);
