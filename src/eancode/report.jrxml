@@ -83,7 +83,7 @@
 				<reportElement x="262" y="5" width="1" height="50" uuid="afc42928-af8b-4f2e-9bde-39fbdf29ab51"/>
 			</line>
 			<line>
-				<reportElement x="178" y="32" width="177" height="1" uuid="9b4d4ce8-ae04-40f8-aacd-3479f2458d08"/>
+				<reportElement x="174" y="32" width="181" height="1" uuid="9b4d4ce8-ae04-40f8-aacd-3479f2458d08"/>
 			</line>
 			<staticText>
 				<reportElement x="229" y="37" width="31" height="18" uuid="4e6169ec-a826-49c5-865f-02ec4931d86a"/>
@@ -138,7 +138,7 @@
 				<textFieldExpression><![CDATA[$P{recvtitle}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="176" y="9" width="52" height="20" uuid="e939ea95-1ebc-4076-9711-62d463b61fd6"/>
+				<reportElement x="190" y="12" width="31" height="17" uuid="e939ea95-1ebc-4076-9711-62d463b61fd6"/>
 				<textFieldExpression><![CDATA[$P{doctypelbl}]]></textFieldExpression>
 			</textField>
 		</band>
