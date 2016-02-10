@@ -1748,7 +1748,7 @@ if(inputtbl.getValueAt(0,0).toString()!=null && inputtbl.getValueAt(0,1).toStrin
              
              
              whgt = (String) inputtbl.getValueAt(0,4).toString().trim();
-             String goodqtystr = "";
+             String goodqtystr = qty;
              String dmgboxqtystr = "";
              String dmgleakqtystr = "";
              String dmgbrkqtystr = "";
