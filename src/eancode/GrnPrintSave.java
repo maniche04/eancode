@@ -56,7 +56,7 @@ public final class GrnPrintSave extends javax.swing.JFrame {
     JTable mygrntbl = new JTable();
     Date date = new Date();
     DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    String docnumtxtpass = "";
+    
   
   
 public GrnPrintSave(String grnnum) throws Exception {
@@ -64,28 +64,19 @@ public GrnPrintSave(String grnnum) throws Exception {
     
     gv.setAppDefaultImg(this);
     compstr = compdrop.getSelectedItem().toString();
-    
+        
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
     this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
      
-                   if(gv.getDialogname().equals("admin"))
-                        {
-                mygrntbl = gv.getSearchobj().eantbl;
-                docnumtxtpass = mygrntbl.getValueAt(0, 14).toString();
-                        }
-                      else
-                        {
-                       mygrntbl = gv.getSearchobj().eantbl;
-                       docnumtxtpass = mygrntbl.getValueAt(0, 14).toString();
-                        }
                    
-    printGRNRepo(grnnum,docnumtxtpass); 
+                   
+    printGRNRepo(grnnum); 
 }
   
 
 
     
-public void printGRNRepo(String grnnumber,String docnumtxtpass) throws Exception
+public void printGRNRepo(String grnnumber) throws Exception
   {
      int exist = checkGrnTypeStatus(grnnumber);
         
@@ -100,7 +91,6 @@ public void printGRNRepo(String grnnumber,String docnumtxtpass) throws Exception
            //insert only
            grnnumtxt.setText(grnnumber); 
            grndatetxt.setText(dateFormat.format(date));
-           suppinvctxt.setText(docnumtxtpass);
            currgrnnumber = grnnumber;
            flaginsertupdate = 2;   
         }  
@@ -210,7 +200,7 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
             }
         });
 
-        compdrop.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "JIZAN PERFUMES LLC", "INTERCITY PERFUMES LLC" }));
+        compdrop.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "JIZAN PERFUMES LLC", "INTERCITY PERFUMES LLC", "J P G TRADING LLC" }));
         compdrop.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 compdropItemStateChanged(evt);

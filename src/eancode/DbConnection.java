@@ -24,8 +24,8 @@ Connection epconn = null;
 public Connection conn() throws ClassNotFoundException
  {
    try{
-          //String dbURL = "jdbc:sqlserver://10.1.100.200\\SQLEXPRESS:1433;databaseName=jizan_epromis";
-          String dbURL = "jdbc:sqlserver://10.1.100.200\\SQLEXPRESS:1433;databaseName=tst_jizan_epromise";
+          String dbURL = "jdbc:sqlserver://10.1.100.200\\SQLEXPRESS:1433;databaseName=jizan_epromis";
+          //String dbURL = "jdbc:sqlserver://10.1.100.200\\SQLEXPRESS:1433;databaseName=tst_jizan_epromise";
           String user = "manish";
           String pass = "Almunia24";
           Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
@@ -56,8 +56,8 @@ public Connection conn() throws ClassNotFoundException
 public Connection epormisconn() throws ClassNotFoundException
  {
     try { 
-            //String dbURL = "jdbc:sqlserver://192.168.1.12:1433;databaseName=profit_01";
-        String dbURL = "jdbc:sqlserver://192.168.1.12:1433;databaseName=tst_profit";
+            String dbURL = "jdbc:sqlserver://192.168.1.12:1433;databaseName=profit_01";
+        //String dbURL = "jdbc:sqlserver://192.168.1.12:1433;databaseName=tst_profit";
             String user = "intranet";
             String pass = "Almunia24";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 

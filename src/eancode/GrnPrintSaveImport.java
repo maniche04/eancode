@@ -241,7 +241,7 @@ public void updateGrnvaluesImpo(String grnnum) throws Exception
 
         jLabel12.setText("     Weight : ");
 
-        comptitledrop.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "JIZAN PERFUMES LLC", "INTERCITY PERFUMES LLC" }));
+        comptitledrop.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "JIZAN PERFUMES LLC", "INTERCITY PERFUMES LLC", "J P G TRADING LLC" }));
         comptitledrop.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comptitledropItemStateChanged(evt);
