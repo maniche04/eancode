@@ -653,26 +653,37 @@ public int checkGrnTypeStatus() throws Exception
 
 public void getLastGrn() throws SQLException
 {
-      String grnlastnum = "select MAX(grnserlnum) as grnserlnummax from grnseriestbl Where doctype = '" + currdoctype + "'"; 
-      System.out.println("tttt" + grnlastnum); 
-      scanpst = scanconnekt.prepareStatement(grnlastnum);
-      scanrs = scanpst.executeQuery();
+    String isstr = "ISR";
+    String grnlastnum = "";
+    
+    if(currdoctype.equals("ISR"))
+      {
+       grnlastnum = "select MAX(grnserlnum) as grnserlnummax from grnseriestbl Where doctype = '" + currdoctype + "'"; 
+      }
+      else
+      {
+       grnlastnum = "select MAX(grnserlnum) as grnserlnummax from grnseriestbl Where doctype IN ('MTN','LGR','AR')";   
+      }
       
-       if(scanrs.next())
+    System.out.println("tttt" + grnlastnum); 
+    scanpst = scanconnekt.prepareStatement(grnlastnum);
+    scanrs = scanpst.executeQuery();
+      
+    if(scanrs.next())
             {
-          grnnum = scanrs.getString("grnserlnummax").trim();    
+    grnnum = scanrs.getString("grnserlnummax").trim();    
             }
-       
 }
 
 public int checkdoctypestatus() throws Exception
 {
+    
      String docstat = "select docstatus from doctyperegistertbl Where doctype = '" + currdoctype + "' and docnum = '" + currdocnumtxt + "'";
      System.out.println("uuuu" + docstat); 
      scanconnekt =  dbconn.conn();
      scanpst = scanconnekt.prepareStatement(docstat);
      scanrs = scanpst.executeQuery();       
- if(scanrs.next())
+   if(scanrs.next())
      {
        String strstat = scanrs.getString("docstatus").toString(); 
             if(strstat.equals("Close"))
@@ -700,28 +711,30 @@ public int checkdoctypestatus() throws Exception
 
 public void insertdocstat(String matstat) throws Exception
     {                       
-        String addnewmatstat = "insert into doctyperegistertbl values ('"+ currdoctype +"','" + currdocnumtxt + "','" + matstat + "')";
-        System.out.println(addnewmatstat);
-        scanpst = scanconnekt.prepareStatement(addnewmatstat);
-        scanpst.executeUpdate();              
+String addnewmatstat = "insert into doctyperegistertbl values ('"+ currdoctype +"','" + currdocnumtxt + "','" + matstat + "')";
+System.out.println(addnewmatstat);
+scanpst = scanconnekt.prepareStatement(addnewmatstat);
+scanpst.executeUpdate();              
     }
  
  
 public void updatedocstat(String updatemat) throws Exception
  {
-    String updatematstr ="UPDATE doctyperegistertbl SET docstatus = '" + updatemat + "'  WHERE doctype = '" + currdoctype + "' and docnum = '"+ currdocnumtxt +"'" ; 
-    System.out.println(updatematstr);
-    scanpst = scanconnekt.prepareStatement(updatematstr);
-    scanpst.executeUpdate();  
+String updatematstr ="UPDATE doctyperegistertbl SET docstatus = '" + updatemat + "'  WHERE doctype = '" + currdoctype + "' and docnum = '"+ currdocnumtxt +"'" ; 
+System.out.println(updatematstr);
+scanpst = scanconnekt.prepareStatement(updatematstr);
+scanpst.executeUpdate();     
  }
 
 
 public void updategrndocstat(String grnnum,String grnstat) throws Exception
  {
+     
     String updategrnstr ="UPDATE grnseriestbl SET grnstatus = '" + grnstat + "'  WHERE doctype = '" + currdoctype + "' and docnum = '" + currdocnumtxt + "' and grnserlnum = '"+grnnum+"'"; ; 
     System.out.println(updategrnstr);
     scanpst = scanconnekt.prepareStatement(updategrnstr);
     scanpst.executeUpdate();  
+    
  }
 
 
@@ -1159,37 +1172,40 @@ public void inputcontroller()
                                         
                                          grntxt.setText("IMP. "+getgrnnum+" - "+formatyeartwodig); 
                                     }
-                                    else if(currdoctype.equals("LGR"))
+                                    else if(currdoctype.equals("Current"))
                                     {
-                                         String grnnew = String.valueOf(Integer.parseInt(grnnum)+1);
-                                         getgrnnum = grnDigit(grnnew);
-                                         grnNewSerialNumber(getgrnnum,"Start");
-                                      
-                                        grntxt.setText("LGR. "+getgrnnum+" - "+formatyeartwodig); 
-
-                                    }
-                                    else if(currdoctype.equals("MTN"))
-                                    {
-                                         String grnnew = String.valueOf(Integer.parseInt(grnnum)+1);
-                                         getgrnnum = grnDigit(grnnew);
-                                         grnNewSerialNumber(getgrnnum,"Start");
-                                      
-                                        grntxt.setText("MTN. "+getgrnnum+" - "+formatyeartwodig); 
-
-                                    }else if(currdoctype.equals("AR"))
-                                    {
-                                         String grnnew = String.valueOf(Integer.parseInt(grnnum)+1);
-                                         getgrnnum = grnDigit(grnnew);
-                                         grnNewSerialNumber(getgrnnum,"Start");
-                                      
-                                        grntxt.setText("AR . "+getgrnnum+" - "+formatyeartwodig); 
-
+                                     grntxt.setText("Non");
                                     }
                                     else
                                     {
-                                        
-                                        grntxt.setText("Non");
+                                         String grnnew = String.valueOf(Integer.parseInt(grnnum)+1);
+                                         getgrnnum = grnDigit(grnnew);
+                                         grnNewSerialNumber(getgrnnum,"Start");                                      
+                                         grntxt.setText("LOC. "+getgrnnum+" - "+formatyeartwodig); 
                                     }
+                                    
+//                                    if(currdoctype.equals("LGR"))
+//                                    else if(currdoctype.equals("MTN"))
+//                                    {
+//                                         String grnnew = String.valueOf(Integer.parseInt(grnnum)+1);
+//                                         getgrnnum = grnDigit(grnnew);
+//                                         grnNewSerialNumber(getgrnnum,"Start");
+//                                         grntxt.setText("LOC. "+getgrnnum+" - "+formatyeartwodig); 
+//
+//                                    }else if(currdoctype.equals("AR"))
+//                                    {
+//                                         String grnnew = String.valueOf(Integer.parseInt(grnnum)+1);
+//                                         getgrnnum = grnDigit(grnnew);
+//                                         grnNewSerialNumber(getgrnnum,"Start");
+//                                      
+//                                        grntxt.setText("LOC. "+getgrnnum+" - "+formatyeartwodig); 
+//
+//                                    }
+//                                    else
+//                                    {
+//                                        
+//                                        grntxt.setText("Non");
+//                                    }
                                  }
 
                                 else if(grnmatch == 2) //break
@@ -1202,34 +1218,40 @@ public void inputcontroller()
                                                grntxt.setText("IMP. "+getgrnnum+" - "+formatyeartwodig);
 
                                           }
-                                        else if(currdoctype.equals("LGR"))
+                                        else if(currdoctype.equals("Current"))
+                                            {
+                                                grntxt.setText("Non");
+                                            }
+                                        else 
                                           {
                                               String grnnew = String.valueOf(Integer.parseInt(grnnum));
                                               getgrnnum = grnDigit(grnnew);
                                               updategrndocstat(getgrnnum,"Break");
-                                              grntxt.setText("LGR. "+getgrnnum+" - "+formatyeartwodig);
+                                              grntxt.setText("LOC. "+getgrnnum+" - "+formatyeartwodig);
 
                                           }
-                                        else if (currdoctype.equals("MTN"))
-                                        {
-                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
-                                            getgrnnum = grnDigit(grnnew);
-                                            updategrndocstat(getgrnnum,"Break");
-                                            grntxt.setText("MTN. "+getgrnnum+" - "+formatyeartwodig);
-                                            
-                                        }
-                                        else if (currdoctype.equals("AR"))
-                                        {
-                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
-                                            getgrnnum = grnDigit(grnnew);
-                                            updategrndocstat(getgrnnum,"Break");
-                                            grntxt.setText("AR . "+getgrnnum+" - "+formatyeartwodig);
-                                            
-                                        }
-                                        else 
-                                          {
-                                              grntxt.setText("Non");
-                                          }
+                                        
+//                                        if(currdoctype.equals("LGR"))
+//                                        else if (currdoctype.equals("MTN"))
+//                                        {
+//                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
+//                                            getgrnnum = grnDigit(grnnew);
+//                                            updategrndocstat(getgrnnum,"Break");
+//                                            grntxt.setText("LOC. "+getgrnnum+" - "+formatyeartwodig);
+//                                            
+//                                        }
+//                                        else if (currdoctype.equals("AR"))
+//                                        {
+//                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
+//                                            getgrnnum = grnDigit(grnnew);
+//                                            updategrndocstat(getgrnnum,"Break");
+//                                            grntxt.setText("LOC. "+getgrnnum+" - "+formatyeartwodig);
+//                                            
+//                                        }
+//                                        else 
+//                                          {
+//                                              grntxt.setText("Non");
+//                                          }
                                    }
                              
                                 else if(grnmatch == 3) 
@@ -1242,37 +1264,43 @@ public void inputcontroller()
                                             getgrnnum = grnDigit(grnnew);
                                             updategrndocstat(getgrnnum,"Start");
                                             grntxt.setText("IMP. "+getgrnnum+" - "+formatyeartwodig);
-                            
                                         }
-                                  else if(currdoctype.equals("LGR"))
-                                      {
-                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
-                                            getgrnnum = grnDigit(grnnew);
-                                            updategrndocstat(getgrnnum,"Start");
-                                            grntxt.setText("LGR. "+getgrnnum+" - "+formatyeartwodig);
+                                  else if(currdoctype.equals("Current"))
+                                    {
+                                     grntxt.setText("Non");
+                                    }
+                                  else 
+                                    {
+                                        
+                                      String grnnew = String.valueOf(Integer.parseInt(grnnum));
+                                      getgrnnum = grnDigit(grnnew);
+                                      updategrndocstat(getgrnnum,"Start");
+                                      grntxt.setText("LOC. "+getgrnnum+" - "+formatyeartwodig);
                             
-                                       }
-                                  else if(currdoctype.equals("MTN"))
-                                      {
-                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
-                                            getgrnnum = grnDigit(grnnew);
-                                            updategrndocstat(getgrnnum,"Start");
-                                            grntxt.setText("MTN. "+getgrnnum+" - "+formatyeartwodig);
-                            
-                                       }
-                                  else if (currdoctype.equals("AR"))
-                                        {
-                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
-                                            getgrnnum = grnDigit(grnnew);
-                                            updategrndocstat(getgrnnum,"Start");
-                                            grntxt.setText("AR . "+getgrnnum+" - "+formatyeartwodig);
-                                            
-                                        }
-                                 else
-                                        {
-                                            
-                                            grntxt.setText("Non");
-                                        }  
+                                    }
+                                  
+//                                  if(currdoctype.equals("LGR"))
+//                                  else if(currdoctype.equals("MTN"))
+//                                      {
+//                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
+//                                            getgrnnum = grnDigit(grnnew);
+//                                            updategrndocstat(getgrnnum,"Start");
+//                                            grntxt.setText("LOC. "+getgrnnum+" - "+formatyeartwodig);
+//                            
+//                                       }
+//                                  else if (currdoctype.equals("AR"))
+//                                        {
+//                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
+//                                            getgrnnum = grnDigit(grnnew);
+//                                            updategrndocstat(getgrnnum,"Start");
+//                                            grntxt.setText("LOC. "+getgrnnum+" - "+formatyeartwodig);
+//                                            
+//                                        }
+//                                 else
+//                                        {
+//                                            
+//                                            grntxt.setText("Non");
+//                                        }  
                                     
                                 }
                         
@@ -1280,43 +1308,48 @@ public void inputcontroller()
                                 {
                                   if(currdoctype.equals("ISR"))
                                         {
-                                            
+       
                                             String grnnew = String.valueOf(Integer.parseInt(grnnum));
                                             getgrnnum = grnDigit(grnnew);
                                             grnNewSerialNumber(getgrnnum,"Start");
                                             grntxt.setText("IMP. "+getgrnnum+" - "+formatyeartwodig);
-                                            
-                                            
+                                        
                                         }
-                                  else if(currdoctype.equals("LGR"))
+                                  else if(currdoctype.equals("Current"))
+                                    {
+                                     grntxt.setText("Non");
+                                    }
+                                  else 
                                      {
                                             String grnnew = String.valueOf(Integer.parseInt(grnnum));
                                             getgrnnum = grnDigit(grnnew);
                                             grnNewSerialNumber(getgrnnum,"Start");
-                                            grntxt.setText("LGR. "+getgrnnum+" - "+formatyeartwodig);
+                                            grntxt.setText("LOC. "+getgrnnum+" - "+formatyeartwodig);
                             
                                       }
-                                 else if(currdoctype.equals("MTN"))
-                                      {
-                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
-                                            getgrnnum = grnDigit(grnnew);
-                                            grnNewSerialNumber(getgrnnum,"Start");
-                                            grntxt.setText("MTN. "+getgrnnum+" - "+formatyeartwodig);
-                            
-                                       }
-                                  else if (currdoctype.equals("AR"))
-                                        {
-                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
-                                            getgrnnum = grnDigit(grnnew);
-                                            grnNewSerialNumber(getgrnnum,"Start");
-                                            grntxt.setText("AR . "+getgrnnum+" - "+formatyeartwodig);
-                                            
-                                        } 
-                                else
-                                      {
-                                           
-                                        grntxt.setText("Non");
-                                      }  
+                                  
+//                                  if(currdoctype.equals("LGR")) //from up else
+//                                 else if(currdoctype.equals("MTN"))
+//                                      {
+//                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
+//                                            getgrnnum = grnDigit(grnnew);
+//                                            grnNewSerialNumber(getgrnnum,"Start");
+//                                            grntxt.setText("LOC. "+getgrnnum+" - "+formatyeartwodig);
+//                            
+//                                       }
+//                                  else if (currdoctype.equals("AR"))
+//                                        {
+//                                            String grnnew = String.valueOf(Integer.parseInt(grnnum));
+//                                            getgrnnum = grnDigit(grnnew);
+//                                            grnNewSerialNumber(getgrnnum,"Start");
+//                                            grntxt.setText("LOC. "+getgrnnum+" - "+formatyeartwodig);
+//                                            
+//                                        } 
+//                                else
+//                                      {
+//                                           
+//                                        grntxt.setText("Non");
+//                                      }  
                                     
                                     }
                          grnstartbtn.setText("Break");
@@ -1364,13 +1397,11 @@ public void inputcontroller()
                 btnclose.setVisible(false);
                 }
            
-           /*End - to check for grn proper number and auto increament*/
-           
+        /*End - to check for grn proper number and auto increament*/
         }   
        
 else if("Break".equals(evt.getActionCommand()))
         { 
-           
             String getgrnnum = "";
             newean = "";
             grnstartbtn.setText("Start");
@@ -1395,7 +1426,7 @@ else if("Break".equals(evt.getActionCommand()))
              
             }
             
-       try {
+    try {
              updatedocstat("Break");
                if(currdoctype.equals("ISR") || currdoctype.equals("LGR") || currdoctype.equals("MTN") || currdoctype.equals("AR"))
                {
@@ -1404,13 +1435,12 @@ else if("Break".equals(evt.getActionCommand()))
                         {
                            
                             //5,9
-                             String updategrnstat = grntxt.getText().trim().substring(5, 9);
-                             //String grnnew = String.valueOf(Integer.parseInt(grnnum));
-                             //getgrnnum = grnDigit(grnnew);
-                             updategrndocstat(updategrnstat,"Break");
-                             grntxt.setText("");
-                             //grntxt.setText("IMP. "+getgrnnum+" - "+formatyeartwodig);
-                            
+                            String updategrnstat = grntxt.getText().trim().substring(5, 9);
+                            //String grnnew = String.valueOf(Integer.parseInt(grnnum));
+                            //getgrnnum = grnDigit(grnnew);
+                            updategrndocstat(updategrnstat,"Break");
+                            grntxt.setText("");
+                            //grntxt.setText("IMP. "+getgrnnum+" - "+formatyeartwodig);
                         }
                       else if(currdoctype.equals("LGR"))
                         {
@@ -1444,7 +1474,7 @@ else if("Break".equals(evt.getActionCommand()))
                         }
                       else
                         {
-                            grntxt.setText("");
+                           grntxt.setText("");
                         }
                }
                else{
@@ -1730,13 +1760,13 @@ if(inputtbl.getValueAt(0,0).toString()!=null && inputtbl.getValueAt(0,1).toStrin
                  currgrntxt = "IMP. "+grntxt.getText().trim().substring(5,9)+" - "+formatyeartwodig;
              }else if(!grntxt.getText().trim().isEmpty() && currdoctype.equals("LGR"))
              {
-                currgrntxt = "LGR. "+grntxt.getText().trim().substring(5,9)+" - "+formatyeartwodig;
+                currgrntxt = "LOC. "+grntxt.getText().trim().substring(5,9)+" - "+formatyeartwodig;
              }else if(!grntxt.getText().trim().isEmpty() && currdoctype.equals("MTN"))
              {
-                currgrntxt = "MTN. "+grntxt.getText().trim().substring(5,9)+" - "+formatyeartwodig;
+                currgrntxt = "LOC. "+grntxt.getText().trim().substring(5,9)+" - "+formatyeartwodig;
              }else if(!grntxt.getText().trim().isEmpty() && currdoctype.equals("AR"))
              {
-                currgrntxt = "AR . "+grntxt.getText().trim().substring(5,9)+" - "+formatyeartwodig;
+                currgrntxt = "LOC. "+grntxt.getText().trim().substring(5,9)+" - "+formatyeartwodig;
              }
              else
              {

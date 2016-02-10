@@ -1344,11 +1344,7 @@ public void deleterow()
      
  }
     
-     
-
-    
-
-
+ 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
  // TODO add your handling code here:
         SwingUtilities.invokeLater(new Runnable() {
@@ -1379,7 +1375,7 @@ public void deleterow()
           }
       }
        
-       if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("LGR")) 
+       if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("LOC")) 
        {
            try {
                gv.setDialogname("normal");
@@ -1390,31 +1386,33 @@ public void deleterow()
            } catch (Exception ex) {
                Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
            }
-       }else if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("MTN")) 
-       {
-           try {
-               gv.setDialogname("normal");
-               gv.setSearchNormalobj(this);
-               GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
-               grnprintobj.setVisible(true);
-               
-               
-           } catch (Exception ex) {
-               Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
-           }
-       }else if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("AR ")) 
-       {
-           try {
-               gv.setDialogname("normal");
-               gv.setSearchNormalobj(this);
-               GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
-               grnprintobj.setVisible(true);
-               
-               
-           } catch (Exception ex) {
-               Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
-           }
        }
+       
+//       else if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("MTN")) 
+//       {
+//           try {
+//               gv.setDialogname("normal");
+//               gv.setSearchNormalobj(this);
+//               GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
+//               grnprintobj.setVisible(true);
+//               
+//               
+//           } catch (Exception ex) {
+//               Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
+//           }
+//       }else if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("AR ")) 
+//       {
+//           try {
+//               gv.setDialogname("normal");
+//               gv.setSearchNormalobj(this);
+//               GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
+//               grnprintobj.setVisible(true);
+//               
+//               
+//           } catch (Exception ex) {
+//               Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
+//           }
+//       }
        else if(!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("IMP"))
        {
            try {

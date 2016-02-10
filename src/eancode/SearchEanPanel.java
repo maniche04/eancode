@@ -1375,41 +1375,46 @@ public void deleterow()
           }
       }
       
-      if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("LGR")) 
+      if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("LOC")) 
        {
-           try {
+         try {
+               
                gv.setDialogname("admin");
-               System.out.println("admin:"+gv.getDialogname() );
+               System.out.println("admin:"+ gv.getDialogname() );
                GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
                grnprintobj.setVisible(true);
                gv.setSearchobj(this);
 
-           } catch (Exception ex) {
+           }catch (Exception ex) {
                Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
            }
-       }else if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("MTN")) 
-       {
-           try {
-               gv.setDialogname("admin");
-               GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
-               grnprintobj.setVisible(true);
-               gv.setSearchobj(this);
+       }
 
-           } catch (Exception ex) {
-               Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
-           }
-       }else if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("AR ")) 
-       {
-           try {
-               gv.setDialogname("admin");
-               GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
-               grnprintobj.setVisible(true);
-               gv.setSearchobj(this);
-
-           } catch (Exception ex) {
-               Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
-           }
-       }else if(!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("IMP"))
+//else if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("MTN")) 
+//       {
+//           try {
+//               gv.setDialogname("admin");
+//               GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
+//               grnprintobj.setVisible(true);
+//               gv.setSearchobj(this);
+//
+//           } catch (Exception ex) {
+//               Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
+//           }
+//       }else if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("AR ")) 
+//       {
+//           try {
+//               gv.setDialogname("admin");
+//               GrnPrintSave grnprintobj =  new GrnPrintSave(filtergrn.getText().trim());
+//               grnprintobj.setVisible(true);
+//               gv.setSearchobj(this);
+//
+//           } catch (Exception ex) {
+//               Logger.getLogger(SearchEanPanel.class.getName()).log(Level.SEVERE, null, ex);
+//           }
+//}
+       
+       else if(!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && filtergrn.getText().substring(0, 3).equals("IMP"))
        {
            try {
               gv.setDialogname("admin"); 

@@ -54,51 +54,63 @@ public final class GrnPrintSave extends javax.swing.JFrame {
     String currgrnnumber = "";
     Object panelget =null;    
     JTable mygrntbl = new JTable();
+    Date date = new Date();
+    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    String docnumtxtpass = "";
+  
+  
+public GrnPrintSave(String grnnum) throws Exception {
+    initComponents();
+    
+    gv.setAppDefaultImg(this);
+    compstr = compdrop.getSelectedItem().toString();
+    
+    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+     
+                   if(gv.getDialogname().equals("admin"))
+                        {
+                mygrntbl = gv.getSearchobj().eantbl;
+                docnumtxtpass = mygrntbl.getValueAt(0, 14).toString();
+                        }
+                      else
+                        {
+                       mygrntbl = gv.getSearchobj().eantbl;
+                       docnumtxtpass = mygrntbl.getValueAt(0, 14).toString();
+                        }
+                   
+    printGRNRepo(grnnum,docnumtxtpass); 
+}
+  
 
-  
-  
-    public GrnPrintSave(String grnnum) throws Exception {
-        initComponents();
-        gv.setAppDefaultImg(this);
-        compstr = compdrop.getSelectedItem().toString();
+
+    
+public void printGRNRepo(String grnnumber,String docnumtxtpass) throws Exception
+  {
+     int exist = checkGrnTypeStatus(grnnumber);
         
-       
-         
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        printGRNRepo(grnnum);
-    
-    }
-    
-    
-public void printGRNRepo(String grnnumber) throws Exception
-    {
-        int exist = checkGrnTypeStatus(grnnumber);
-        
-        if(exist == 1)
+      if(exist == 1)
         {
-          //feed data and update only
+            //feed data and update only
             currgrnnumber = grnnumber;
             flaginsertupdate = 1;
         }
         else
         {
-          //insert only
-          grnnumtxt.setText(grnnumber);
-          Date date = new Date();
-          DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-          grndatetxt.setText(dateFormat.format(date));
-          currgrnnumber = grnnumber;
-          flaginsertupdate = 2;
-            
-        }
-        
-    }
+           //insert only
+           grnnumtxt.setText(grnnumber); 
+           grndatetxt.setText(dateFormat.format(date));
+           suppinvctxt.setText(docnumtxtpass);
+           currgrnnumber = grnnumber;
+           flaginsertupdate = 2;   
+        }  
+      
+  }
      
 public int checkGrnTypeStatus(String grnnum) throws Exception
   {
       
- //if exist -> fill(select) and save(update) else not exist -> save(insert) 
+    //if exist -> fill(select) and save(update) else not exist -> save(insert) 
     String docstat = "select TOP 1 grnnumber, compname, receivefrom, suppinvc, ctnnum, grndate,recvdate,ISNULL(Comment,'') as Comment from grndetailstbl Where grnnumber = '" + grnnum + "'";
     System.out.println("tttt" + docstat); 
     connekt =  dbconn.conn();
@@ -107,19 +119,18 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
     
  if(rs.next())
     {
-       
-       compdrop.setSelectedItem(rs.getString("compname").trim());
-       recvfromtxt.setText(rs.getString("receivefrom").trim()); 
-       suppinvctxt.setText(rs.getString("suppinvc").trim()); 
-       ctntxt.setText(rs.getString("ctnnum").trim()); 
-       grnnumtxt.setText(rs.getString("grnnumber").trim()); 
-       grndatetxt.setText(rs.getString("grndate").trim()); 
-       String dateValue = rs.getString("recvdate").trim(); // What ever column
-       java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(dateValue);
-       nottxtarea.setText(rs.getString("Comment").trim());
-       recvdatetxt.setDate(date); 
-       return 1;
-     } 
+    compdrop.setSelectedItem(rs.getString("compname").trim());
+    recvfromtxt.setText(rs.getString("receivefrom").trim()); 
+    suppinvctxt.setText(rs.getString("suppinvc").trim()); 
+    ctntxt.setText(rs.getString("ctnnum").trim()); 
+    grnnumtxt.setText(rs.getString("grnnumber").trim()); 
+    grndatetxt.setText(rs.getString("grndate").trim()); 
+    String dateValue = rs.getString("recvdate").trim(); // What ever column
+    java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(dateValue);
+    nottxtarea.setText(rs.getString("Comment").trim());
+    recvdatetxt.setDate(date); 
+    return 1;
+    } 
    else
      {
    return 0;
@@ -128,11 +139,12 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
      
 
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+/**
+  * This method is called from within the constructor to initialize the form.
+  * WARNING: Do NOT modify this code. The content of this method is always
+  * regenerated by the Form Editor.
+  */
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -329,7 +341,7 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-       if(!grnnumtxt.getText().isEmpty() && !grndatetxt.getText().isEmpty() && grnnumtxt.getText().substring(0, 3).equals("LGR") || grnnumtxt.getText().substring(0, 3).equals("MTN") || grnnumtxt.getText().substring(0, 3).equals("AR ")) 
+       if(!grnnumtxt.getText().isEmpty() && !grndatetxt.getText().isEmpty() && grnnumtxt.getText().substring(0, 3).equals("LOC") || grnnumtxt.getText().substring(0, 3).equals("LOC") || grnnumtxt.getText().substring(0, 3).equals("LOC")) 
             {
                  try {
                    this.setVisible(false);  
@@ -420,34 +432,32 @@ reporte.setSize(900,700);
 reporte.setLocationRelativeTo(null);
 
 //reorte.setTtile("Reporte asdf");
+
 if(notetxt.length() > 0)
 {
-    map.put("notelbl","Note:");
-    map.put("note",notetxt);
+  map.put("notelbl","Note:");
+  map.put("note",notetxt);
 }
+else
+{
+  map.put("notelbl","");
+  map.put("note","");  
+}
+
 map.put("inputtitle",title);//Parameter value is title
 map.put("suppinvoice",suppinvc);
 map.put("ctns",ctn);
-if(grnnum.substring(0, 3).equals("MTN"))
+
+if(grnnum.substring(0, 3).equals("LOC"))
 {
-    grnnum = grnnum.replace("MTN", "LOC");
-    System.out.println("tttt"+grnnum);
-    map.put("doctypelbl","MTN");
-    
-}else if ( grnnum.substring(0, 3).equals("LGR"))
-{
-   grnnum = grnnum.replace("LGR", "LOC");
+   grnnum = grnnum.replace("MTN", "LOC");
    System.out.println("tttt"+grnnum);
-   map.put("doctypelbl","LGR");
-    
-}else
-{
-  grnnum = grnnum.replace("AR", "LOC");
-  System.out.println("tttt"+grnnum);  
-  map.put("doctypelbl","AR");
+   map.put("doctypelbl","LOC");    
 }
+
 map.put("grnnum",grnnum);
 map.put("grndate",grndate);
+System.out.println("date"+grndate);
 map.put("recddate",recddate);
 map.put("recvtitle",titlecompsec);
 map.put("grndtot",String.valueOf(grandtotal));
@@ -459,8 +469,10 @@ map.put("dmgtot",String.valueOf(grdtotbox + grdtotleak + grdtotbrkn ));
 
 //map.put("Fetch","2763238");//Parameter value is Fetch
 
-JasperPrint jPrint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("eancode/report.jasper"),map, new JRBeanCollectionDataSource(Resultados));
-//JasperPrint jPrint = JasperFillManager.
+    JasperPrint jPrint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("eancode/report.jasper"),map, new JRBeanCollectionDataSource(Resultados));
+    
+//JasperPrint jPrint = JasperFillManager
+    
 JRViewer jv = new JRViewer(jPrint);
 reporte.getContentPane().add(jv);
 reporte.setVisible(true);
@@ -482,6 +494,8 @@ reporte.setVisible(true);
 public void NewGrnInfo() throws Exception
 {
     //todo list
+    
+     grndatetxt.setText(dateFormat.format(date));
        String comptitle =   compdrop.getSelectedItem().toString();
        String recvstr = recvfromtxt.getText(); 
        String suppstr = suppinvctxt.getText(); 
@@ -491,11 +505,11 @@ public void NewGrnInfo() throws Exception
        
        
     
-String addnewgrnstat = "insert into grndetailstbl(grnnumber, compname, receivefrom, suppinvc, ctnnum, grndate,recvdate,Comment) values ('"+ grnnumtxt.getText().trim() +"','" + comptitle + "','"+recvstr+"','"+suppstr+"','"+ctnnum+"','"+grndatetxt.getText().trim()+"','"+receivedate+"','"+notestr+"')";
+      String addnewgrnstat = "insert into grndetailstbl(grnnumber, compname, receivefrom, suppinvc, ctnnum, grndate,recvdate,Comment) values ('"+ grnnumtxt.getText().trim() +"','" + comptitle + "','"+recvstr+"','"+suppstr+"','"+ctnnum+"','"+grndatetxt.getText().trim()+"','"+receivedate+"','"+notestr+"')";
       System.out.println(addnewgrnstat);
       pst = connekt.prepareStatement(addnewgrnstat);
       pst.executeUpdate();   
-    
+      
 }
 
 public void updateGrnvalues(String grnnum) throws Exception
