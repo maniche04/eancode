@@ -230,17 +230,30 @@ public void ItemData(int totitem)
         
         if(gv.getUsertype().equals("admin"))
         {
+            
         SearchEanPanel searchpanel = new SearchEanPanel();
         searchpanel.setVisible(true);
         this.scanersrchbtn.setEnabled(false);
         gv.setObj(this);
+        
         }
-        else
+        else if(gv.getUsertype().equals("purchase")) 
         {
+            
         SearchEanPanelNormal searchpanelnormal = new SearchEanPanelNormal();
         searchpanelnormal.setVisible(true);
         this.scanersrchbtn.setEnabled(false);
-        gv.setObj(this);    
+        gv.setObj(this);       
+            
+        }
+        else
+        {
+            
+        SearchEanPanelNormal searchpanelnormal = new SearchEanPanelNormal();
+        searchpanelnormal.setVisible(true);
+        this.scanersrchbtn.setEnabled(false);
+        gv.setObj(this);
+        
         }
         
     }//GEN-LAST:event_scanersrchbtnActionPerformed

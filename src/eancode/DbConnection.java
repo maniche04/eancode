@@ -56,7 +56,7 @@ public Connection conn() throws ClassNotFoundException
 public Connection epormisconn() throws ClassNotFoundException
  {
     try { 
-            String dbURL = "jdbc:sqlserver://192.168.1.12:1433;databaseName=profit_01";
+        String dbURL = "jdbc:sqlserver://192.168.1.12:1433;databaseName=profit_01";
         //String dbURL = "jdbc:sqlserver://192.168.1.12:1433;databaseName=tst_profit";
             String user = "intranet";
             String pass = "Almunia24";

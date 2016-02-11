@@ -11,13 +11,18 @@ package eancode;
 import SearchPack.AutoCompleteDBLink;
 import SearchPack.AutoTextComplete;
 import SearchPack.Popuplist;
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import eancode.helpers.MatImage;
+import java.awt.Button;
 
 
 //import com.lowagie.text.Document;
 //import com.lowagie.text.DocumentException;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.awt.Label;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.Toolkit;
@@ -60,6 +65,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -79,6 +85,16 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 
@@ -156,8 +172,17 @@ public SearchEanPanelNormal() {
         
         gv.setAppDefaultImg(this); 
         
-        
-        
+        if(gv.getUsertype().equals("purchase"))
+        {
+        printsetupbtn.setVisible(false);
+        updatebtn.setVisible(false);
+        delrowtbn.setVisible(false);
+        cancelbtn1.setVisible(false);
+        saveasexcelbtn.setVisible(true);
+        }else
+        {
+          saveasexcelbtn.setVisible(false);  
+        }
         /*ROW HEIGHT EXPAND ON RUN TIME*/
         tblrowresize.TableRowResizer(eantbl);
         tblrowresizeseltbl.TableRowResizer(eantbl);
@@ -213,6 +238,7 @@ public SearchEanPanelNormal() {
         filtergrn = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         cancelbtn1 = new javax.swing.JButton();
+        saveasexcelbtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -457,6 +483,13 @@ public SearchEanPanelNormal() {
             }
         });
 
+        saveasexcelbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eancode/excl.png"))); // NOI18N
+        saveasexcelbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveasexcelbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -475,7 +508,11 @@ public SearchEanPanelNormal() {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(filtermaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(filtermaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(filterdesc, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -487,11 +524,9 @@ public SearchEanPanelNormal() {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelbtn1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(filterdesc, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(saveasexcelbtn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -548,12 +583,13 @@ public SearchEanPanelNormal() {
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cancelbtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(filtergrn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
-                            .addComponent(filtercountryorigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(filtercountryorigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(saveasexcelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1452,6 +1488,130 @@ public void deleterow()
         
     }//GEN-LAST:event_cancelbtn1ActionPerformed
 
+    public String saveFile (Frame f, String title, String defDir, String fileType) {
+    FileDialog fd = new FileDialog(f, title,    FileDialog.SAVE);
+    fd.setFile(fileType);
+    fd.setDirectory(defDir);
+    fd.setLocation(50, 50);
+    fd.show();
+    return fd.getFile();
+    }
+    
+    
+    
+    private void saveasexcelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveasexcelbtnActionPerformed
+        // TODO add your handling code here:
+    if(filtergrn.getText().trim().isEmpty())
+       {
+           JOptionPane.showMessageDialog(this, "Please, Enter GRN No. and Search to save!!");  
+           return;
+       }
+      for(int check = 0 ; check <= eantbl.getRowCount()-1;check++)
+      {
+          if(eantbl.getModel().getValueAt(check, 15).toString().equals(filtergrn.getText().trim()) == true)
+          {
+              
+          }else
+          {
+              JOptionPane.showMessageDialog(this, "Please, Enter GRN No. and Search to save!!");  
+              return;
+          }
+      }
+       
+    if (!filtergrn.getText().trim().isEmpty() && eantbl.getRowCount() > 0 && (filtergrn.getText().substring(0, 3).equals("LOC") || filtergrn.getText().substring(0, 3).equals("IMP") )) 
+       {
+       try {
+           String filepath = saveFile(new Frame(), "Save...", ".\\", "*.xls");
+           importexcel(eantbl,filepath);
+           JOptionPane.showMessageDialog(this,"Saved sucessfull!");
+    } catch (IOException ex) {
+        Logger.getLogger(GrnPrintSave.class.getName()).log(Level.SEVERE, null, ex);
+    }
+       }  
+    }//GEN-LAST:event_saveasexcelbtnActionPerformed
+
+    
+public  void exportXLS(JTable table,String path) throws IOException, JRException{
+ 
+   
+   String headervalue[] = {"ID","matecode","Description","Good","Dmg","Leak","Brkn","Total","Origin","Eancode","Weight","Remark","Lotnum","Doctype","Docnum","Grnnum","Docstatus","Grnstatus"};
+     try {
+        HSSFWorkbook fWorkbook = new HSSFWorkbook();
+                    HSSFSheet fSheet = fWorkbook.createSheet("Pur Sheet");
+                    HSSFFont sheetTitleFont = fWorkbook.createFont();
+                    File file = new File(path);
+                    HSSFCellStyle cellStyle = fWorkbook.createCellStyle();
+
+                    sheetTitleFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+                    //sheetTitleFont.setColor();
+                    TableModel model = table.getModel();
+                     
+                   
+                      
+//                   for (int j = 0; j < model.getColumnCount(); j++) {
+//                             cell = fRow.createCell((short) j);
+//                             cell.setCellValue(model.getColumnName(j));
+//                            cell.setCellStyle(cellStyle);
+//
+//                        }
+                   
+                      for (int i = 0; i < model.getRowCount(); i++) {
+                        HSSFRow fRow = fSheet.createRow((short) i);
+                         for (int j = 0; j < model.getColumnCount(); j++) {
+                           HSSFCell  cell = fRow.createCell((short) j);
+                            if(i == 0)
+                             {
+                            cell.setCellValue(headervalue[j]); 
+                            cell.setCellStyle(cellStyle);  
+                            
+                             }
+                            else 
+                                {
+                            cell.setCellValue(model.getValueAt(i, j).toString());
+                            cell.setCellStyle(cellStyle);   
+                                }
+                        }
+                     } 
+                    
+        
+                FileOutputStream fileOutputStream;
+                fileOutputStream = new FileOutputStream(file);
+                BufferedOutputStream bos = new BufferedOutputStream(fileOutputStream);
+                fWorkbook.write(bos);
+                bos.close();
+                fileOutputStream.close();
+            }catch(Exception e){
+
+        }  
+     
+  }   
+
+public void importexcel(JTable table,String path) throws FileNotFoundException
+{
+    Workbook wb = new XSSFWorkbook();
+Sheet sheet = wb.createSheet();
+Row row = sheet.createRow(0);
+TableModel model = table.getModel();
+for (int i = 0; i < model.getColumnCount(); i++) {
+    row.createCell(i).setCellValue(model.getColumnName(i));
+}
+for (int i = 0; i < model.getRowCount(); i++) {
+    row = sheet.createRow(i + 1);
+    for (int j = 0; j < model.getColumnCount(); j++) {
+        row.createCell(j).setCellValue(
+            model.getValueAt(i, j).toString()
+        );
+    }
+}
+FileOutputStream fileOut = new FileOutputStream(path);
+        try {
+            wb.write(fileOut);
+            fileOut.close();
+        } catch (IOException ex) {
+            Logger.getLogger(SearchEanPanelNormal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+}
 
 public void myMethod(JTable entryTable) throws Exception {
      
@@ -1640,6 +1800,7 @@ public String stringstat(String str)
     private javax.swing.JScrollPane jScrollPane2;
     private java.awt.PopupMenu popupMenu1;
     private javax.swing.JButton printsetupbtn;
+    private javax.swing.JButton saveasexcelbtn;
     private javax.swing.JButton updatebtn;
     // End of variables declaration//GEN-END:variables
 }

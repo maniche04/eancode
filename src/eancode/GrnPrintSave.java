@@ -8,6 +8,12 @@ package eancode;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,15 +29,31 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
+import net.sf.jasperreports.export.Exporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 import net.sf.jasperreports.swing.JRViewer;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 
 /**
  *
@@ -63,6 +85,7 @@ public GrnPrintSave(String grnnum) throws Exception {
     initComponents();
     
     gv.setAppDefaultImg(this);
+    
     compstr = compdrop.getSelectedItem().toString();
         
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -109,15 +132,15 @@ public int checkGrnTypeStatus(String grnnum) throws Exception
     
  if(rs.next())
     {
-    compdrop.setSelectedItem(rs.getString("compname").trim());
-    recvfromtxt.setText(rs.getString("receivefrom").trim()); 
-    suppinvctxt.setText(rs.getString("suppinvc").trim()); 
-    ctntxt.setText(rs.getString("ctnnum").trim()); 
-    grnnumtxt.setText(rs.getString("grnnumber").trim()); 
-    grndatetxt.setText(rs.getString("grndate").trim()); 
-    String dateValue = rs.getString("recvdate").trim(); // What ever column
-    java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(dateValue);
-    nottxtarea.setText(rs.getString("Comment").trim());
+  compdrop.setSelectedItem(rs.getString("compname").trim());
+  recvfromtxt.setText(rs.getString("receivefrom").trim()); 
+  suppinvctxt.setText(rs.getString("suppinvc").trim()); 
+  ctntxt.setText(rs.getString("ctnnum").trim()); 
+  grnnumtxt.setText(rs.getString("grnnumber").trim()); 
+  grndatetxt.setText(rs.getString("grndate").trim()); 
+  String dateValue = rs.getString("recvdate").trim(); // What ever column
+  java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(dateValue);
+  nottxtarea.setText(rs.getString("Comment").trim());
     recvdatetxt.setDate(date); 
     return 1;
     } 
@@ -459,27 +482,21 @@ map.put("dmgtot",String.valueOf(grdtotbox + grdtotleak + grdtotbrkn ));
 
 //map.put("Fetch","2763238");//Parameter value is Fetch
 
-    JasperPrint jPrint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("eancode/report.jasper"),map, new JRBeanCollectionDataSource(Resultados));
+  JasperPrint jPrint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("eancode/report.jasper"),map, new JRBeanCollectionDataSource(Resultados));
     
 //JasperPrint jPrint = JasperFillManager
+  
+ 
     
 JRViewer jv = new JRViewer(jPrint);
 reporte.getContentPane().add(jv);
 reporte.setVisible(true);
 
+
    
 } 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     
 public void NewGrnInfo() throws Exception
 {

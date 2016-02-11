@@ -1786,13 +1786,13 @@ if(inputtbl.getValueAt(0,0).toString()!=null && inputtbl.getValueAt(0,1).toStrin
             String addnewrow = "insert into eancodetbl(date,eancode,epromis_material,des,doctype,docnum,cond_goodqty,cond_dmgboxqty,cond_dmgleakqty, cond_dmgbrkqty,qty,weight,contrycode,remark,username,lotnumber,grnnum) values ('"+ currdate +"','" + newean + "','" + empromismat + "','" + des + "',"
                     + "'" + currdoctype + "','"+ currdocnumtxt + "','" + goodqtystr + "','" + dmgboxqtystr + "','" + dmgleakqtystr + "','" + dmgbrkqtystr +"','" + qty + "','" + whgt + "','" + ctry + "','" + remarkstr +"','" + currusername +"','" + lotnum +"','"+currgrntxt+"')";
             
-            
             System.out.println("insert into selfprog_db");
             System.out.println(addnewrow);
             scanpst = scanconnekt.prepareStatement(addnewrow);
             scanpst.executeUpdate();
                  
-             }else
+             }
+             else
              { //(2) insert both in master and transcation
                  
             String addnewrowtomaster = "insert into eancodescaniastbl(empromisname,empromiscode,countryorig,eancode) values ('" + des +"','"+empromismat+"','"+ctry+"','"+newean+"')";
